@@ -10,6 +10,11 @@ export class BaseHttpService<T>{
 
   constructor(private http: HttpClient) { }
 
+
+  public get(eninty: string, queryParmas = ""){
+    return this.getAll(eninty)
+  }
+
   private getAll(eninty: string, queryParmas = ""): Observable<T[]> {
     return this.http.get<T[]>(`${environment.baseUrl}/${eninty}${queryParmas}`);
   }
@@ -28,7 +33,7 @@ export class BaseHttpService<T>{
   }
   //same note as create
   private updateOne(eninty: string, queryParmas = "", id: number, body: {}): Observable<any> {
-    return this.http.get<any>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
+    return this.http.put<any>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`, body);
   }
 
 }

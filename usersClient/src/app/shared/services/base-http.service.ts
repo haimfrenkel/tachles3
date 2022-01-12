@@ -24,12 +24,12 @@ export class BaseHttpService<T>{
     return this.http.post<any>(`${environment.baseUrl}/${eninty}${queryParmas}`, body);
   }
 
-  private getOneByID(eninty: string, queryParmas = "", id: number): Observable<T> {
+  public getOneByID(eninty: string, queryParmas = "", id: number): Observable<T> {
     return this.http.get<T>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
   }
 
-  private deleteOne(eninty: string, queryParmas = "", id: number): Observable<T[]> {
-    return this.http.get<T[]>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
+  private deleteOne(eninty: string, queryParmas = "", id: number): Observable<T> {
+    return this.http.delete<T>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
   }
   //same note as create
   private updateOne(eninty: string, queryParmas = "", id: number, body: {}): Observable<any> {

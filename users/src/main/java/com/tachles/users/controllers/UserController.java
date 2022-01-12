@@ -14,23 +14,23 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("users")
+
 public class UserController {
     @Autowired
     UserService userService;
-
     @PostMapping()
     public User createOne(@RequestBody User user) {
         return userService.create(user);
     }
-
     @GetMapping("/{id}")
     public User getOne(@PathVariable(value = "id")long id){
         System.out.println("id");
         return userService.getOneByID(id);
     }
-
     @GetMapping()
     public ArrayList<User> getAllUsers(){
         return userService.getAll();
     }
 }
+
+

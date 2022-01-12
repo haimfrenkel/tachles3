@@ -18,7 +18,7 @@ public class Job extends BaseModel {
     private String job;
     @ManyToOne
     @JsonBackReference
-    private PersonalInformation jobs;
+    private PersonalInformation personalInformation_job;
 
 
 }

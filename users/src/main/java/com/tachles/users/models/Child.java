@@ -24,5 +24,4 @@ public class Child extends BaseModel {
     @ManyToOne
     @JsonBackReference
     private User user;
-    private String LJL;
 }

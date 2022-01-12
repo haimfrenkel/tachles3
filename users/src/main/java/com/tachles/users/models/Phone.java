@@ -18,5 +18,5 @@ public class Phone extends BaseModel {
     private boolean whatsapp;
     @ManyToOne
     @JsonBackReference
-    private PersonalInformation phones;
+    private PersonalInformation personalInformation_phone;
 }

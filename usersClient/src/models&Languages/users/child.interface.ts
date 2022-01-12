@@ -1,4 +1,4 @@
-import { Name } from '../users/name.interface'
+import { Name } from './name.interface'
 
 export interface Child {
     name: Name;

@@ -1,4 +1,4 @@
-import { Address } from '../users/address.interface'
+import { Address } from './address.interface'
 
 
 

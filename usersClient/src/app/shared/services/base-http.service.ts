@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BaseHttpService<T>{
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
 
   public get(eninty: string, queryParmas = ""){

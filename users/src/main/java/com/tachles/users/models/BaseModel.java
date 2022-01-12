@@ -1,7 +1,9 @@
 package com.tachles.users.models;
 
+import java.io.Serializable;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +17,13 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 @MappedSuperclass
-public class BaseModel {
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class BaseModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
-    // constructor, getters, setters
 }
 

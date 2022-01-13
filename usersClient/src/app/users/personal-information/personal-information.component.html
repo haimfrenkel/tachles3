@@ -1,0 +1,22 @@
+<div class="card" style="width: 18rem; margin: 20px;">
+       
+    <div class="card-body" style="width: 18rem; margin: 20px;">          
+          <h5 class="card-title">{{personalName.name.startName}} {{personalName.name.firstName}} {{personalName.name.lastName}} {{personalName.name.endName}} </h5>
+      <p class="card-text"></p>
+    </div >
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">fatherName: {{personalName.fatherName}}</li>
+      <li class="list-group-item">grandfather Name: {{personalName.grandfatherName}}</li>
+      <li class="list-group-item">greatGrandfather Name: {{personalName.greatGrandfatherName}}</li>
+      <li class="list-group-item">email: {{personalName.email}}</li>
+      <li class="list-group-item">marital Status: {{personalName.maritalStatus}}</li>
+      <div *ngFor='let phon of personalName.phones'>
+        <li class="list-group-item">{{phon.number}}</li>
+      </div>
+
+    </ul>
+    <div class="card-body" style="width: 18rem; margin: 20px;">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>

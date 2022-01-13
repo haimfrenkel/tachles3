@@ -6,9 +6,10 @@ export interface PersonalInformation {
     name: Name;
     fatherName: string;
     grandfatherName: string;
-    greatGrandfatherName: string;
-    DOB: Date;
+    greatGrandfatherName?: string;
+    DOB?: Date;
     email: string;
     phones: Phone[];
     jobs: Job[];
+    maritalStatus:string;
 }

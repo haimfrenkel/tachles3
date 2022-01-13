@@ -1,0 +1,22 @@
+<p>users-list works!</p>
+<ag-grid-angular 
+    style="width: 1200px; height: 300px;" 
+    class="ag-theme-alpine"
+    [rowData]="rowData1 " 
+    [columnDefs]="columnDefs1"
+    rowSelection="multiple"
+    (rowDoubleClicked)='NavToDetail($event)' 
+    >
+</ag-grid-angular>
+<button (click)="getSelectedRows()">Get Selected Rows</button>
+<ag-grid-angular 
+    style="width: 1200px; height: 300px;" 
+    class="ag-theme-alpine"
+    [rowData]="rowData | async"
+    [columnDefs]="columnDefs"
+    rowSelection="multiple"
+    (rowDoubleClicked)='NavToDetail($event)'
+    >
+</ag-grid-angular>
+
+

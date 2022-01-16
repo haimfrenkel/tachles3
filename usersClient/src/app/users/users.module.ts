@@ -6,14 +6,17 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersListComponent } from './users-list/users-list.component';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    UsersListComponent
   ],
   imports: [
+
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,

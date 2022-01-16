@@ -23,7 +23,7 @@ public class UserService {
 
     public User getOneByID(long id) {
         System.out.println(id);
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).orElseThrow();
     }
 
     public ArrayList<User> getAll(){

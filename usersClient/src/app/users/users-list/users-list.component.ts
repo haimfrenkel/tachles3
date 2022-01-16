@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
-import { UserList } from 'src/types&Languages/users/userList.interface';
-import { User } from 'src/types&Languages/users/userType';
+import { UserList } from '../../../models&Languages/users/userList.interface';
+import { User } from '../../../models&Languages/users/userType';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';

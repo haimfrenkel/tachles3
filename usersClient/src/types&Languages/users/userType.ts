@@ -6,11 +6,14 @@ import { Child } from "./child.interface";
 
 export class User {
     userName: string;
+    children: Child[];
     men: PersonalInformation;
     women: PersonalInformation;
     address: Address;
     bankAccount: BankAccount;
-    dateOfMarriage: string
-    childern: Child[]
+    dateOfMarriage: string;
+    role?:string;
+    
     shtibel: string;
+    id?:number;
 }

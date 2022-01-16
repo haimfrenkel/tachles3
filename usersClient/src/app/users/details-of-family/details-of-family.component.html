@@ -1,0 +1,24 @@
+<div class="row">
+        
+    <div class="card" style="width: 300px; margin: 20px;">
+   
+        <div class="card-body" style="width: 300px; margin: 20px;">      
+            <h4>The card is: </h4>
+            <h3>{{user.userName}}</h3>
+            <hr style="width: 250px; margin: 0px">
+            <h5  style="width: 200px; margin :30px 0px 5px 0px; ">date Of Marriage:</h5>
+            <div >{{user.dateOfMarriage}}</div>
+            <h5  style="width: 100px; margin :30px 0px 5px 0px; ">address:</h5>
+
+            <app-address-print [address]="user.address"></app-address-print>
+            <h5  style="width: 100px; margin :30px 0px 5px 0px; ">shtibel:</h5>
+            <div > {{user.shtibel}}</div>
+            <h5  style="width: 100px; margin :30px 0px 5px 0px; ">bankAccount:</h5>
+            <div >bank: {{user.bankAccount.bankName}} ({{user.bankAccount.bankNo}})</div>
+            <div >branch: {{user.bankAccount.branchNo}}</div>
+            <div >accountNo: {{user.bankAccount.accountNo}}</div>
+
+            
+        </div>
+    </div>
+</div>

@@ -5,11 +5,12 @@ import { Job } from '../users/job.interface'
 export interface PersonalInformation {
     name: Name;
     fatherName: string;
-    grandfatherName: string;
+    grandfatherName?: string;
     greatGrandfatherName?: string;
-    DOB?: Date;
+    dob?: string;
     email: string;
     phones: Phone[];
     jobs: Job[];
     maritalStatus:string;
+    id?:number;
 }

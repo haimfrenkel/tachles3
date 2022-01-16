@@ -5,4 +5,5 @@ export interface Address {
     buildingNumber: number;
     apartment: number;
     zipCode: number;
+    id?:number;
 }

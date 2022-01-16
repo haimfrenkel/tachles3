@@ -2,5 +2,7 @@ export interface Name {
     startName: string;
     firstName: string;
     lastName: string;
-    endName: string
+    endName: string;
+    id?:number;
+
 }

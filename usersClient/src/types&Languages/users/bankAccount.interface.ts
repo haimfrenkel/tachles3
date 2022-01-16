@@ -3,4 +3,6 @@ export interface BankAccount {
     bankName: string;
     branchNo: number;
     accountNo: number;
+    id?:number;
+
 }

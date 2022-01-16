@@ -1,0 +1,15 @@
+<h5  style="width: 200px; margin :5px 0px 0px 80px; padding :10px">children</h5>  
+<div *ngFor='let child of children; let i = index' class="card" style="width: 300px; margin: 10px;">   
+ <div class="card-body ">
+    <div class="row "> 
+        <div class="card-title" style="margin :0px 0px 0px 20px; padding :10px">{{child.name.startName}} {{child.name.firstName}} {{child.name.lastName}} {{child.name.endName}}   </div>
+        <img *ngIf ='!moreInfoChildren[i]' (click)="childrenMore(i)" class="img" src="../../../assets/plus.png">
+        <img *ngIf ='moreInfoChildren[i]' (click)="childrenMore(i)" class="img" src="../../../assets/minus.png">
+    </div>   
+    <div style="margin-left: 20px;"  *ngIf ='moreInfoChildren[i]'>
+        <div class="card-title">{{child.sex}} </div>
+        <div class="card-title">{{child.maritalStatus}} </div>
+        <div class="card-title">place of study: {{child.placeOfStudy}} </div>
+        <div class="card-title">dob: {{child.dob}} </div>
+    </div> 
+</div>

@@ -1,6 +1,6 @@
-<div class="card" style="width: 18rem; margin: 20px;">
+<div class="card" style="width: 300px; margin: 20px;">
        
-    <div class="card-body" style="width: 18rem; margin: 20px;">          
+    <div class="card-body" style="width: 300px; margin: 20px;">          
           <h5 class="card-title">{{personalName.name.startName}} {{personalName.name.firstName}} {{personalName.name.lastName}} {{personalName.name.endName}} </h5>
       <p class="card-text"></p>
     </div >
@@ -10,13 +10,29 @@
       <li class="list-group-item">greatGrandfather Name: {{personalName.greatGrandfatherName}}</li>
       <li class="list-group-item">email: {{personalName.email}}</li>
       <li class="list-group-item">marital Status: {{personalName.maritalStatus}}</li>
-      <div *ngFor='let phon of personalName.phones'>
-        <li class="list-group-item">{{phon.number}}</li>
-      </div>
+      <li *ngFor='let phon of personalName.phones' class="card-body row" style="width: 300px; margin: 10px;">
+        <div class="card-link">{{phon.number}}</div>
+        <div class="card-link">{{phon.whatsapp}}</div>
+      </li>
 
     </ul>
-    <div class="card-body" style="width: 18rem; margin: 20px;">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+    
   </div>
+  
+    <h5  style="width: 100px; margin-left :50px; ">job</h5>
+  
+  <div *ngFor='let job of personalName.jobs ; let i = index' class="card" style="width: 300px; margin-left: 20px;margin-bottom:10px">
+    <div class="card-body ">
+      <div class="row "> 
+          <div class="card-title" style="margin :0px 0px 0px 20px; padding :10px">{{job.job}}</div>
+          <img *ngIf ='!moreInfoJob[i]' (click)="jobClick(i)" class="img" src="../../../assets/plus.png">
+          <img *ngIf ='moreInfoJob[i]' (click)="jobClick(i)" class="img" src="../../../assets/minus.png">
+      </div>   
+      <div style="margin-left: 20px;"  *ngIf ='moreInfoJob[i]'>
+        <div class="card-title">company Name:{{job.companyName}}</div>
+        <app-address-print [address]="job.address">      </app-address-print>
+      </div> 
+ 
+</div>
+
+  

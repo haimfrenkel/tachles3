@@ -5,5 +5,6 @@ export interface UserList {
     fatherName: string;
     foneNumber: number;
     city: string
-    
+    id?:number;
+
     }

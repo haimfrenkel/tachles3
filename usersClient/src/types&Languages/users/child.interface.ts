@@ -2,8 +2,10 @@ import { Name } from '../users/name.interface'
 
 export interface Child {
     name: Name;
-    DOB: Date;
+    dob: string;
     sex: string;
     maritalStatus: string;
     placeOfStudy: string;
+    id?:number;
+
 }

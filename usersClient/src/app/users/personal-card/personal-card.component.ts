@@ -10,9 +10,9 @@ import { User } from 'src/types&Languages/users/userType';
 export class PersonalCardComponent implements OnInit {
   id:number;
   // user={userName: "uriel shalom"}
-  user=
+  user :User=
     {
-      "userName": "uriel shalom",
+      "userName": "dov ber kenig",
       "men": {
           "name": {
               "startName": "arav",
@@ -41,8 +41,8 @@ export class PersonalCardComponent implements OnInit {
           "jobs": [
               {
                   "address": {
-                      "state": "",
-                      "city": "",
+                      "state": "aa",
+                      "city": "aa",
                       "street": "arav ",
                       "buildingNumber": 0,
                       "apartment": 0,
@@ -52,10 +52,24 @@ export class PersonalCardComponent implements OnInit {
                   "companyName": "",
                   "job": "Renovations contractor",
                   "id": 13
-              }
+              },
+              {
+                "address": {
+                    "state": "israel",
+                    "city": "jerusalem",
+                    "street": "artom",
+                    "buildingNumber": 14,
+                    "apartment": 0,
+                    "zipCode": 0,
+                    "id": 21
+                },
+                "companyName": "intel",
+                "job": "Software developer ",
+                "id": 14
+            }
           ],
-          "id": 13,
-          "dob": null
+        "id": 13,
+        "dob": "01/01/1970"
       },
       "women": {
           "name": {
@@ -66,7 +80,7 @@ export class PersonalCardComponent implements OnInit {
               "id": 24
           },
           "fatherName": "avraham",
-          "grandfatherName": null,
+          "grandfatherName": "avraham2",
           "greatGrandfatherName": "yaakov",
           "email": "go@gmail.com",
           "maritalStatus": "married",
@@ -99,9 +113,9 @@ export class PersonalCardComponent implements OnInit {
               }
           ],
           "id": 14,
-          "dob": null
+          "dob": "26/05/1972"
       },
-      "role": null,
+      "role": "null",
       "address": {
           "state": "israel",
           "city": "jerusalem",
@@ -118,7 +132,7 @@ export class PersonalCardComponent implements OnInit {
           "accountNo": 451081,
           "id": 7
       },
-      "dateOfMarriage": null,
+      "dateOfMarriage": "02/05/2001",
       "children": [
           {
               "name": {
@@ -131,7 +145,7 @@ export class PersonalCardComponent implements OnInit {
               "sex": "male",
               "maritalStatus": "single",
               "placeOfStudy": "amala shel tora",
-              "dob": null,
+              "dob": "03/06/2013",
               "id": 11
           },
           {
@@ -145,28 +159,20 @@ export class PersonalCardComponent implements OnInit {
               "sex": "female",
               "maritalStatus": "single",
               "placeOfStudy": "bnot rachel",
-              "dob": null,
+              "dob": "01/01/2010",
               "id": 12
           }
       ],
-      "shtibel": null,
+      "shtibel": "mekor hanhal",
       "id": 7
   }
 
-  
 
-constructor(private route:ActivatedRoute){
-    this.route.params.subscribe((params:Params) => {
-    this.id = params['id'];
-    });
- }
 
 ngOnInit(): void {
     console.log("this.id: ",this.id);
     console.log(this.user);
     
   }
-
-
-
+  
 }

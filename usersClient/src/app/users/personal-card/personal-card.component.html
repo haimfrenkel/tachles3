@@ -1,6 +1,11 @@
-<h3>The card is {{user.userName}}</h3>
-<div class="row">
-    <app-personal-information [personalName] = user.men></app-personal-information>
-    <app-personal-information [personalName] = user.women></app-personal-information>  
+<div style="margin-top :50px;">
+    
+    <div class="row" style="margin-left: 50px;">
+        
+        <div style="width: 100px"> </div>
+        <app-details-of-family [user] = user></app-details-of-family>
+        <app-personal-information [personalName] = user.men></app-personal-information>
+        <app-personal-information [personalName] = user.women></app-personal-information> 
+        <app-children-information [children] = user.children></app-children-information> 
+    </div>
 </div>
- 

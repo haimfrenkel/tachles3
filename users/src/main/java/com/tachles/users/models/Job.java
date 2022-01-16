@@ -1,6 +1,7 @@
 package com.tachles.users.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import javax.persistence.*;
 
@@ -15,6 +16,9 @@ public class Job extends BaseModel {
     private Address address;
     private String companyName;
     private String job;
+    @ManyToOne
+    @JsonBackReference
+    private PersonalInformation personalInformation_job;
 
 
 }

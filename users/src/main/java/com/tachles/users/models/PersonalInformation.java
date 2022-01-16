@@ -1,6 +1,7 @@
 package com.tachles.users.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
@@ -22,10 +23,10 @@ public class PersonalInformation extends BaseModel {
     private Date DOB;
     private String email;
     private String maritalStatus;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "personalInformation_phone")
+    @JsonManagedReference
     private List<Phone> phones;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "personalInformation_job")
+    @JsonManagedReference
     private List<Job> jobs;
-
-
 }

@@ -1,0 +1,8 @@
+.key{
+    text-indent: 5px;
+    font-weight: bold;
+}
+.value{
+    text-indent: 20px;
+    color: blue;
+}

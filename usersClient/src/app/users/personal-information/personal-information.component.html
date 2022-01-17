@@ -1,25 +1,60 @@
-<div class="card" style="width: 300px; margin: 20px;">
+<div class="card" style="width: 300px; margin: 10px;">
        
     <div class="card-body" style="width: 300px; margin: 20px;">          
           <h5 class="card-title">{{personalName.name.startName}} {{personalName.name.firstName}} {{personalName.name.lastName}} {{personalName.name.endName}} </h5>
       <p class="card-text"></p>
     </div >
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">fatherName: {{personalName.fatherName}}</li>
-      <li class="list-group-item">grandfather Name: {{personalName.grandfatherName}}</li>
-      <li class="list-group-item">greatGrandfather Name: {{personalName.greatGrandfatherName}}</li>
-      <li class="list-group-item">email: {{personalName.email}}</li>
-      <li class="list-group-item">marital Status: {{personalName.maritalStatus}}</li>
-      <li *ngFor='let phon of personalName.phones' class="card-body row" style="width: 300px; margin: 10px;">
-        <div class="card-link">{{phon.number}}</div>
-        <img *ngIf ='phon.whatsapp'  class="img" src="../../../assets/WhatsApp.png">
+      
+
+      <li class="list-group-item " > 
+          <div class="row">
+            <div class="key">father name : </div>
+            <div class="value">{{personalName.fatherName}}</div>
+          </div>
       </li>
+      <li class="list-group-item "> 
+        <div class="row">
+          <div class="key">grandfather name:  </div>
+          <div class="value">{{personalName.grandfatherName}}</div>
+        </div>
+      </li>
+      <li class="list-group-item "> 
+        <div class="row">
+          <div class="key">greatgrandfather :  </div>
+          <div class="value">{{personalName.greatGrandfatherName}}</div>
+        </div>
+      </li>
+      <li class="list-group-item "> 
+        <div class="row">
+          <div class="key">email:  </div>
+          <div class="value">{{personalName.email}}</div>
+        </div>
+      </li>
+      <li class="list-group-item "> 
+        <div class="row">
+          <div class="key">marital status: </div>
+          <div class="value">{{personalName.maritalStatus}}</div>
+        </div>
+      </li>
+     
+      
+        <div *ngFor='let phon of personalName.phones; let i = index' class="">
+          <li class="card-body row " style="width: 300px; margin: 5px;">
+            <div *ngIf ='i==0' class="card-link key">phone number:</div>
+            <div *ngIf ='i!=0' class="card-link key" style="color: white;" >phone number:</div>
+            <div class="value ">{{phon.number}}</div>
+            <img *ngIf ='phon.whatsapp'  class="img_whatsapp" src="../../../assets/WhatsApp.png">
+          </li>
+        </div>
+        
+      
 
     </ul>
     
   </div>
   
-    <h5  style="width: 100px; margin-left :50px; ">job</h5>
+    <div  class="key" style=" margin-left :15px; ">job:</div>
   
   <div *ngFor='let job of personalName.jobs ; let i = index' class="card" style="width: 300px; margin-left: 20px;margin-bottom:10px">
     <div class="card-body ">

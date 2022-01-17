@@ -2,7 +2,7 @@
 <div *ngFor='let child of children; let i = index' class="card" style="width: 300px; margin: 10px;">   
  <div class="card-body ">
     <div class="row "> 
-        <div class="card-title" style="margin :0px 0px 0px 20px; padding :10px">{{child.name.startName}} {{child.name.firstName}} {{child.name.lastName}} {{child.name.endName}}   </div>
+        <div class="card-title" style="margin :0px 0px 0px 20px; padding :10px" [ngStyle]="{'color':child.sex === 'male' ? 'rgb(49, 141, 226)' : 'rgb(231, 23, 186)' }">{{child.name.startName}} {{child.name.firstName}} {{child.name.lastName}} {{child.name.endName}}   </div>
         <img *ngIf ='!moreInfoChildren[i]' (click)="childrenMore(i)" class="img" src="../../../assets/plus.png">
         <img *ngIf ='moreInfoChildren[i]' (click)="childrenMore(i)" class="img" src="../../../assets/minus.png">
     </div>   

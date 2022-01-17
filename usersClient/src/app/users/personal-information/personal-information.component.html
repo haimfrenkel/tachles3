@@ -12,7 +12,7 @@
       <li class="list-group-item">marital Status: {{personalName.maritalStatus}}</li>
       <li *ngFor='let phon of personalName.phones' class="card-body row" style="width: 300px; margin: 10px;">
         <div class="card-link">{{phon.number}}</div>
-        <div class="card-link">{{phon.whatsapp}}</div>
+        <img *ngIf ='phon.whatsapp'  class="img" src="../../../assets/WhatsApp.png">
       </li>
 
     </ul>

@@ -34,7 +34,7 @@ export class PersonalCardComponent implements OnInit {
               },
               {
                   "number": 535284896,
-                  "whatsapp": false,
+                  "whatsapp": true,
                   "id": 26
               }
           ],

@@ -9,9 +9,9 @@ import { PersonalInformationComponent } from './personal-information/personal-in
 import { AddressPrintComponent } from './address-print/address-print.component';
 import { ChildrenInformationComponent } from './children-information/children-information.component';
 import { DetailsOfFamilyComponent } from './details-of-family/details-of-family.component';
-import { UsersComponent } from './users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './users.component';
 
 
 @NgModule({
@@ -23,14 +23,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddressPrintComponent,
     ChildrenInformationComponent,
     DetailsOfFamilyComponent,
-    CreateUserComponent,
-    UsersListComponent
+    CreateUserComponent
   ],
   imports: [
 
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([])
   ]

@@ -171,7 +171,7 @@ export class PersonalCardComponent implements OnInit {
 
 ngOnInit(): void {
     console.log("this.id: ",this.id);
-    console.log(this.user);
+   
     
   }
   

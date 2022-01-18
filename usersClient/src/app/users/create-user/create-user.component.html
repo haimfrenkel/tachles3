@@ -1,109 +1,113 @@
-<form [formGroup]="form">
-  <h3>create a new user
-  </h3>
-
-  <label>
-    user name:
-    <input type="text" formControlName="userName">
-  </label> <br>
-  <div formGroupName="men">
-    <h3>men Details</h3>
-    <div formGroupName="name">
+<form [formGroup]="form"> 
+  <div class="header">
+    <h3>create a new user</h3> 
+    <label> 
+      user name:
+      <input type="text" formControlName="userName">
+    </label>
+</div> 
+     
+<div class="row ">
+    <div class="card personal" formGroupName="men">
+      <h3>men Details</h3>
+      <div formGroupName="name">
+        <label>
+          <div class="key">start name:</div> 
+          <input type="text" formControlName="startName">
+        </label> <br>
+        <label>
+            <div class="key">first name:</div> 
+          <input type="text" formControlName="firstName">
+        </label> <br>
+        <label>
+            <div class="key">last name:</div> 
+          <input type="text" formControlName="lastName">
+        </label> <br>
+        <label>
+            <div class="key">end name:</div> 
+          <input type="text" formControlName="endName">
+        </label> <br>
+      </div>
       <label>
-        start name:
-        <input type="text" formControlName="startName">
-      </label> <br>
+        <div class="key">fathers Name:</div> 
+        <input type="text" formControlName="fathersName">
+      </label> 
       <label>
-        first name:
-        <input type="text" formControlName="firstName">
-      </label> <br>
+        <div class="key">grand Father Name:</div> 
+        <input type="text" formControlName="grandFatherName">
+      </label> 
       <label>
-        last name:
-        <input type="text" formControlName="lastName">
-      </label> <br> 
-      <label>
-        end name:
-        <input type="text" formControlName="endName">
-      </label> <br>
-    </div>
-    <label>
-      fathers Name:
-      <input type="text" formControlName="fathersName">
-    </label> <br>
-    <label>
-      grand Father Name:
-      <input type="text" formControlName="grandFatherName">
-    </label> <br>
-    <label>
-      great Grand Father Name:
-      <input type="text" formControlName="greatGrandFatherName">
-    </label> <br>
-    <!-- <div formArrayName="phones">
-      <a *ngFor="let phone of phones.controls; let i = index">
-        <a formGroupName="phone">
-        <input type="text" formControlName="number">
-        <input type="text" formControlName="whatsapp"> 
-      </a>
-      </a> 
-      <button type="button" (click)="addPhone">add phone</button>
-    </div> -->
-    <label>
-      email:
-      <input type="text" formControlName="email">
-    </label> <br>
-    <label>
-      marital Status:
-      <input type="text" formControlName="maritalStatus">
-    </label> <br>
-  </div>
-  <div formGroupName="women">
-    <h3>women Details</h3>
-    <div formGroupName="name">
-      <label>
-        start name:
-        <input type="text" formControlName="startName">
-      </label> <br>
-      <label>
-        first name:
-        <input type="text" formControlName="firstName">
-      </label> <br>
-      <label>
-        last name:
-        <input type="text" formControlName="lastName">
-      </label> <br>
-      <label>
-        end name:
-        <input type="text" formControlName="endName">
-      </label> <br>
-    </div>
-    <label>
-      fathers Name:
-      <input type="text" formControlName="fathersName">
-    </label> <br>
-    <label>
-      grand Father Name:
-      <input type="text" formControlName="grandFatherName">
-    </label> <br>
-    <label>
-      great Grand Father Name:
-      <input type="text" formControlName="greatGrandFatherName">
-    </label> <br>
-    <!-- <div formArrayName="phones"> -->
-      <!-- <a *ngFor="let phone of phonesForm.controls">
-        <a [formGroup]=phone>
+        <div class="key">great Grand Father Name:</div> 
+        <input type="text" formControlName="greatGrandFatherName">
+      </label> 
+      <!-- <div formArrayName="phones">
+        <a *ngFor="let phone of phones.controls; let i = index">
+          <a formGroupName="phone">
           <input type="text" formControlName="number">
-          <input type="text" formControlName="whatsapp">
+          <input type="text" formControlName="whatsapp"> 
         </a>
-      </a>
-    </div> -->
-    <label>
-      email:
-      <input type="text" formControlName="email">
-    </label> <br>
-    <label>
-      marital Status:
-      <input type="text" formControlName="maritalStatus">
-    </label> <br>
-  </div>
-  <button type="submit" (click)="save(form.value)">Submit Application</button>
-</form>
+        </a> 
+        <button type="button" (click)="addPhone">add phone</button>
+      </div> -->
+      <label>
+        <div class="key">email:</div> 
+        <input type="text" formControlName="email">
+      </label> 
+      <label>
+        <div class="key">marital Status:</div> 
+        <input type="text" formControlName="maritalStatus">
+      </label> 
+    </div>
+
+    <div class="card personal" formGroupName="women">
+      <h3>women Details</h3>
+      <div formGroupName="name">
+        <label>
+            <div class="key">start name:</div> 
+          <input type="text" formControlName="startName">
+        </label> <br>
+        <label>
+            <div class="key">first name:</div> 
+          <input type="text" formControlName="firstName">
+        </label> <br>
+        <label>
+            <div class="key">last name:</div> 
+          <input type="text" formControlName="lastName">
+        </label> <br>
+        <label>
+            <div class="key">end name:</div> 
+          <input type="text" formControlName="endName">
+        </label> <br>
+      </div>
+      <label>
+        <div class="key">fathers Name:</div> 
+        <input type="text" formControlName="fathersName">
+      </label> 
+      <label>
+        <div class="key">grand Father Name:</div> 
+        <input type="text" formControlName="grandFatherName">
+      </label>
+      <label>
+        <div class="key">great Grand Father Name:</div> 
+        <input type="text" formControlName="greatGrandFatherName">
+      </label> 
+      <!-- <div formArrayName="phones"> -->
+        <!-- <a *ngFor="let phone of phonesForm.controls">
+          <a [formGroup]=phone>
+            <input type="text" formControlName="number">
+            <input type="text" formControlName="whatsapp">
+          </a>
+        </a>
+      </div> -->
+      <label>
+        <div class="key">email:</div> 
+        <input type="text" formControlName="email">
+      </label> 
+      <label>
+        <div class="key">marital Status:</div> 
+        <input type="text" formControlName="maritalStatus">
+      </label> 
+    </div>
+</div> 
+    <button class="header" type="submit" (click)="save(form.value)">Submit Application</button>
+  </form>

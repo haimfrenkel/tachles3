@@ -23,7 +23,7 @@ import { UsersComponent } from './users.component';
     AddressPrintComponent,
     ChildrenInformationComponent,
     DetailsOfFamilyComponent,
-    CreateUserComponent
+    CreateUserComponent,
   ],
   imports: [
 

@@ -1,1 +1,11 @@
-<p>home works!</p>
+<div *ngIf="!e404" class="header">
+    <button type="button" class="btn btn-secondary btn-lg button"  routerLink="/users/user-list">מאגר נתונים</button>
+    <button type="button" class="btn btn-secondary btn-lg button" (click)="eror404()">בחן ובחסד</button>
+    <button type="button" class="btn btn-secondary btn-lg button" (click)="eror404()">כולנו כאחד</button>
+</div>
+<div *ngIf="e404" class="header">
+    <div class="eror404"> Eror 404 </div>
+    <div class="eror404"> הדף בבניה  </div>
+    <button type="button" class="btn btn-outline-danger button" (click)="eror404()">חזרה לדף הבית</button>
+
+</div>

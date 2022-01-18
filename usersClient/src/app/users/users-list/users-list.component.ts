@@ -38,7 +38,6 @@ rowData: Observable<any[]>;
 @ViewChild('agGrid') agGrid!: AgGridAngular;
   constructor(private http: HttpClient,  private router: Router) {
     this.rowData = this.http.get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
-    console.log(" this.rowData:", this.rowData);
     
    }
 

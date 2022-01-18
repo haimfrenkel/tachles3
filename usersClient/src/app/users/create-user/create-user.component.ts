@@ -12,7 +12,8 @@ export class CreateUserComponent implements OnInit {
   phonesForm: FormArray;
   jobsForm: FormArray;
   childrenForm: FormArray
-  addressForm: FormGroup
+  addressForm: FormGroup;
+  nameForm: FormGroup;
   upForm = FormGroup;
   user: User;
 
@@ -53,7 +54,7 @@ export class CreateUserComponent implements OnInit {
             }),
             'componyName': new FormControl(''),
             'job': new FormControl('')
-          })
+          })  
         ]),
         'email': new FormControl('', (Validators.email, Validators.required)),
         'maritalStatus': new FormControl('', Validators.required),
@@ -68,7 +69,7 @@ export class CreateUserComponent implements OnInit {
         'fathersName': new FormControl('', Validators.required),
         'grandFatherName': new FormControl('', Validators.required),
         'greatGrandFatherName': new FormControl('', Validators.required),
-        phones: this.phonesForm,
+        // phones: this.phonesForm,
         jobs: new FormArray([
           new FormGroup({
             address: new FormGroup({
@@ -116,12 +117,18 @@ export class CreateUserComponent implements OnInit {
         })
       ])
     })
-    this.phonesForm = new FormArray([
-      new FormGroup({
-        'Number': new FormControl(''),
-        'whatsapp': new FormControl('')
-      })
-    ])
+    // this.phonesForm = new FormArray([
+    //   new FormGroup({
+    //     'Number': new FormControl(''),
+    //     'whatsapp': new FormControl('')
+    //   })
+    // ])
+    this.nameForm = new FormGroup({
+      'startName': new FormControl('', Validators.required),
+      'firstName': new FormControl('', Validators.required),
+      'lastName': new FormControl('', Validators.required),
+      'endName': new FormControl('', Validators.required),
+    })
   }
 
  

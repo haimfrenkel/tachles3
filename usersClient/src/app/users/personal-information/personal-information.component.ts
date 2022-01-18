@@ -15,9 +15,7 @@ moreInfoJob : boolean[]=[];
       this.moreInfoJob[i]= false;
       
     }
-    console.log("personalName:" ,this.personalName);
-    console.log(" this.personalName.name.startName:" , this.personalName.name.startName);
-    console.log("personalName.jobs.job: ",this.personalName.jobs[0].job );
+   
 
     
   }

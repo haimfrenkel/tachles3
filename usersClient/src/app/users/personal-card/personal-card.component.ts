@@ -8,7 +8,7 @@ import { User } from '../../../models&Languages/users/userType';
   styleUrls: ['./personal-card.component.css']
 })
 export class PersonalCardComponent implements OnInit {
-  id:number;
+  id;
   // user={userName: "uriel shalom"}
   user :any =
     {
@@ -169,8 +169,10 @@ export class PersonalCardComponent implements OnInit {
   }
 
 
-
+  constructor(public route: ActivatedRoute) { }
 ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get("id")
+
     console.log("this.id: ",this.id);
    
     

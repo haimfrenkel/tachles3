@@ -13,7 +13,6 @@ export class User {
     bankAccount: BankAccount;
     dateOfMarriage: string;
     role?:string;
-    
     shtibel: string;
     id?:number;
 }

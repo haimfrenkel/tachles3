@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { User } from 'src/types&Languages/users/userType';
+import { User } from '../../../models&Languages/users/userType';
 
 @Component({
   selector: 'app-personal-card',
@@ -10,10 +10,11 @@ import { User } from 'src/types&Languages/users/userType';
 export class PersonalCardComponent implements OnInit {
   id:number;
   // user={userName: "uriel shalom"}
-  user :User=
+  user :any =
     {
       "userName": "dov ber kenig",
       "men": {
+          "ID": 308190909,
           "name": {
               "startName": "arav",
               "firstName": "dov ber",

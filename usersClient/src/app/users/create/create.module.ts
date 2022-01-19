@@ -9,6 +9,7 @@ import { JobFormComponent } from './job-form/job-form.component';
 import { MainFormComponent } from './main-form/main-form.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateRoutingModule } from './create-routing.module';
 
 
 
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CreateRoutingModule
   ]
 })
 export class CreateModule { }

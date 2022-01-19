@@ -1,10 +1,27 @@
-<form [formGroup]="form">
-    <div class="header">
-        <h3>create a new user</h3>
-        <label>
-          user name:
-          <input type="text" formControlName="ID">
-          <app-name-form></app-name-form>
-        </label>
-      </div>
-</form>
+<div class="card card_create ">
+  <h3 class="header ">{{person}}</h3>
+  <div class="row">
+    
+    <form >
+        <div class="header ">
+          <div class="key">ID:</div>
+          <input class="input_create" type="text" formControlName="ID">
+          <div class="key">father name:</div>
+          <input class="input_create" type="text" formControlName="fatherName">
+          <div class="key">grandfather name:</div>
+          <input class="input_create" type="text" formControlName="grandfatherName">
+          <div class="key">great grandfather name:</div>
+          <input class="input_create" type="text" formControlName="greatGrandfatherName">
+          <div class="key">DOB:</div>
+          <input class="input_create" type="text" formControlName="DOB">
+          <div class="key">email:</div>
+          <input class="input_create" type="text" formControlName="email">
+          <div class="key">marital status:</div>
+          <input class="input_create" type="text" formControlName="maritalStatus">
+        </div>
+    </form>
+    <app-job-form ></app-job-form>
+</div>
+</div>
+
+

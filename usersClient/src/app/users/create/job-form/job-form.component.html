@@ -1,16 +1,17 @@
 <div class="card card_create">
 
-    <form >
-        <div class="header">
-        <div class="key">job:</div>
-        <input class="input_create" type="text" formControlName="job">
-        <div class="key">company name:</div>
-        <input class="input_create" type="text" formControlName="companyName">
-        
+    <form [formGroup]="form">
+        <div class="header" formArrayName="jobs">
+            <a *ngFor="let Job of jobs.controls; let i = index">
+                <a [formGroupName]="i">
+                    <div class="key">job:</div>
+                    <input class="input_create" type="text" formControlName="job">
+                    <div class="key">company name:</div>
+                    <input class="input_create" type="text" formControlName="companyName">
+                </a>
+                <app-address-fomr (data)=pushAddress($event) ></app-address-fomr>
+                <button (click)=addJobs(i)>add job</button>
+            </a>
         </div>
     </form>
-    <app-address-fomr></app-address-fomr>
-    
 </div>
-
-

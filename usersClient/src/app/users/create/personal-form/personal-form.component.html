@@ -2,7 +2,7 @@
   <h3 class="header ">{{person}}</h3>
   <div class="row">
     
-    <form >
+    <form [formGroup]="form">
         <div class="header ">
           <div class="key">ID:</div>
           <input class="input_create" type="text" formControlName="ID">
@@ -20,7 +20,7 @@
           <input class="input_create" type="text" formControlName="maritalStatus">
         </div>
     </form>
-    <app-job-form ></app-job-form>
+    <app-job-form [key]="keyForJob" ></app-job-form>
 </div>
 </div>
 

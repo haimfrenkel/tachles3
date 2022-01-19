@@ -78,12 +78,12 @@ export class CreateService {
         this.user.men.phones = value;
         break;
       case "menJobs":
-        this.user.men.jobs = value;
+        this.user.men.jobs.push(value)
         break;
       case "menName":
         this.user.men.name = value;
         break;
-        case "women":
+      case "women":
         this.user.women.ID = value.ID;
         this.user.women.dob = value.dob;
         this.user.women.email = value.email;

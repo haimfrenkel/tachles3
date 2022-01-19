@@ -11,15 +11,17 @@ import { CreateService } from '../create.service';
   styleUrls: ['./address-fomr.component.css']
 })
 export class AddressFomrComponent implements OnInit {
-@Input() key
-@Output() data = new EventEmitter()
+  @Input() key
+  @Output() data = new EventEmitter<Address>()
+
+
   form: FormGroup
   subscription: Subscription
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
-   this.subscription =  this.form.valueChanges.subscribe(data=>{
+    this.subscription = this.form.valueChanges.subscribe(data => {
       this.sendData()
     })
   }
@@ -28,7 +30,7 @@ export class AddressFomrComponent implements OnInit {
     this.subscription.unsubscribe
   }
 
-  initForm(){
+  initForm() {
     this.form = new FormGroup({
       'state': new FormControl(''),
       'city': new FormControl(''),
@@ -38,7 +40,7 @@ export class AddressFomrComponent implements OnInit {
       'zipCode': new FormControl(''),
     })
   }
-  sendData(){
+  sendData() {
     this.data.emit(this.form.value)
   }
 }

@@ -10,13 +10,15 @@ import { CreateService } from '../create.service';
 })
 export class PersonalFormComponent implements OnInit {
   @Input() person;
-  
+  keyForJob: string
   form: FormGroup;
   constructor(private create: CreateService) { }
 
   ngOnInit(): void {
-    
+    this.initForm()
     console.log("person: ",this.person);
+    console.log(this.form.value);
+    this.keyForJob =`${this.person}Jobs` 
     
   }
 

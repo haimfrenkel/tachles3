@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Address } from 'src/models&Languages/users/address.interface';
+import { Job } from 'src/models&Languages/users/job.interface';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-job-form',
@@ -7,12 +10,18 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./job-form.component.css']
 })
 export class JobFormComponent implements OnInit {
-
+  @Input() key
   form: FormGroup
-  constructor() { }
+  convert: Job
+  address: Address
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
+    this.form.valueChanges.subscribe(data => {
+      console.log(data);
+
+    })
   }
 
   initForm() {
@@ -21,22 +30,38 @@ export class JobFormComponent implements OnInit {
         new FormGroup({
           'companyName': new FormControl(),
           'job': new FormControl(),
-         
         })
       ])
-    })
+    }) 
   }
 
   get jobs() {
     return this.form.controls["jobs"] as FormArray
   }
 
-  addChildern() {
-    const childForm = new FormGroup({
+  addJobs(idx: number) {
+    this.createData(idx)
+    this.saveSRV.onSave(this.key, this.convert)
+    const jobForm = new FormGroup({
       'companyName': new FormControl(),
-          'job': new FormControl(),
+      'job': new FormControl(),
     });
-    this.jobs.push(childForm);
+    this.jobs.push(jobForm);
+    console.log(this.saveSRV.user);
+    
+  }
+
+  pushAddress(data: any) {
+    this.address = data
+  }
+
+  createData(idx: number){
+    console.log(this.form.get(['jobs',idx, 'companyName'])?.value);
+    this.convert = {
+      job: this.form.get(['jobs',idx, 'job'])?.value,
+      companyName: this.form.get(['jobs',idx, 'companyName'])?.value,
+      address: this.address
+    }   
   }
 
 }

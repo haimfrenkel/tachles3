@@ -9,11 +9,15 @@ import { CreateService } from '../create.service';
   styleUrls: ['./personal-form.component.css']
 })
 export class PersonalFormComponent implements OnInit {
-  @Input() person
+  @Input() person;
+  
   form: FormGroup;
   constructor(private create: CreateService) { }
 
   ngOnInit(): void {
+    
+    console.log("person: ",this.person);
+    
   }
 
   initForm() {

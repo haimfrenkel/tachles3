@@ -36,5 +36,8 @@ export class PhoneFormComponent implements OnInit {
     });
     this.phones.push(phonesForm);
   }
+  save(e: any) {
+    console.log(this.form.value);
+  }
 }
 

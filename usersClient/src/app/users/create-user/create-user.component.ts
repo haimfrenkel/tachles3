@@ -21,6 +21,11 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
+    console.log(this.form.value);
+    this.form.valueChanges.subscribe(data=>{
+      console.log(data);
+      
+    })
   }
 
   initForm() {

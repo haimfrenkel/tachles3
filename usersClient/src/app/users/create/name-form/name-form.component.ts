@@ -7,12 +7,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./name-form.component.css']
 })
 export class NameFormComponent implements OnInit {
-
   form: FormGroup;
   constructor() { }
 
   ngOnInit(): void {
     this.initForm()
+    this.form.valueChanges.subscribe(data=>{
+      console.log(data);
+    })
   }
 
   initForm() {
@@ -23,4 +25,5 @@ export class NameFormComponent implements OnInit {
       'endName': new FormControl('', Validators.required),
     })
   }
+  
 }

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver;
 
+import lombok.extern.java.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +35,13 @@ public class UserController {
     @GetMapping()
     public ArrayList<User> getAllUsers(){
         return userService.getAll();
+    }
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id)  {
+        System.out.println("delete User "+id);
+
+        return userService.deleteUser(id);
+
     }
 }
 

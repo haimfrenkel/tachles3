@@ -4,6 +4,7 @@ import com.tachles.users.models.PersonalInformation;
 import com.tachles.users.models.User;
 import com.tachles.users.repositorys.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -22,12 +23,19 @@ public class UserService {
     }
 
     public User getOneByID(long id) {
-        System.out.println(id);
+        System.out.println("id:"+id);
         return userRepository.findById(id).orElseThrow();
     }
 
     public ArrayList<User> getAll(){
         System.out.println("user");
         return (ArrayList<User>) userRepository.findAll();
+    }
+    public ResponseEntity<?> deleteUser(long id) {
+        System.out.println("delete User "+id);
+        User user = getOneByID(id);
+        userRepository.delete(user);
+        return ResponseEntity.ok().build();
+        
     }
 }

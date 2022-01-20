@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateService } from '../create.service';
 
@@ -9,6 +9,8 @@ import { CreateService } from '../create.service';
 })
 export class NameFormComponent implements OnInit {
   @Input() key
+  @Output() data = new EventEmitter()
+
   form: FormGroup;
   constructor(private saveSRV: CreateService) { }
 

@@ -10,7 +10,7 @@ import { CreateService } from '../create.service';
 })
 export class PersonalFormComponent implements OnInit {
   @Input() person;
-  keyForJob: string
+  keyForJob: string;
   form: FormGroup;
   constructor(private create: CreateService) { }
 

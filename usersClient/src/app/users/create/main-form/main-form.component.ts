@@ -45,6 +45,7 @@ export class MainFormComponent implements OnInit {
         this.nextToChild= true
     }
 
+    console.log(" this.nextToPersonal", this.nextToPersonal);
     
   
 

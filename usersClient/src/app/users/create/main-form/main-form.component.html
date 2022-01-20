@@ -1,5 +1,5 @@
 <div >
-    <div *ngIf="!nextToPersonal &&!nextToChild" class="row">
+    <div *ngIf="!nextToPersonal &&!nextToChild" class="row ">
         <form [formGroup]="form" >
             <div class="header">
                 
@@ -17,19 +17,22 @@
          <app-address-fomr></app-address-fomr>
          
     </div>
-   <button  *ngIf="!nextToPersonal" type="button" class="btn btn-secondary btn-lg " style="height:45px; margin-left: 50%;margin-top: 30px;" (click)="next()">next </button>
+   <button  *ngIf="!nextToPersonal" type="button" class="btn btn-secondary btn-lg button div_center" (click)="next()">next </button>
     
     `
     <div *ngIf="nextToPersonal" >
-        <div class="row">
+        <div class="row div_center">
             <app-personal-form person="men"></app-personal-form>
             <app-personal-form person="women"></app-personal-form>
         </div>
+        <div class="row div_center">
+            
+            <button   type="button" class="btn btn-secondary btn-lg button"  (click)="next()">back</button>
+            <button   type="button" class="btn btn-secondary btn-lg button"  routerLink="/users/create/ChildFormComponent">next to add children </button>
+            <button   type="button" class="btn btn-secondary btn-lg button"  (click)="save()">send </button>
+        </div>
+        <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/user-list" >user-list </button>
 
-        <button   type="button" class="btn btn-secondary btn-lg " style="height:45px; margin-left: 50%;margin-top: 30px;" (click)="next_to_child()">next to child </button>
-        <button   type="button" class="btn btn-secondary btn-lg " style="height:45px; margin-left: 50%;margin-top: 30px;" (click)="save()">send </button>
-
-        
         <div *ngIf="nextToChild">
         <button type="button" class="btn btn-secondary btn-lg " style="height:45px;" (click)="addChild()" >add child </button>
         <div *ngFor='let child of children; let i = index'>

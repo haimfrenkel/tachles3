@@ -25,11 +25,13 @@ margin-top: 0px;
     height: 30px;
 }
 .card_create{
-    background-color: rgb(237, 240, 200);
     padding: 10px;
-    margin: 10px 10px 5px 10px;
+    margin: 20px 10px 5px 10px;
     border-color: rgb(237, 240, 200);
-    width: ;
+     border-radius: 0.25rem;
+    background-color: #e4e7b6d3;
+    border-color: #e4e7b6d3;
+    min-height: 500px;
 }
 .app{
     padding: 10px;

@@ -39,13 +39,38 @@ export class MainFormComponent implements OnInit {
       'shtibel': new FormControl(),
     })
   }
+<<<<<<< HEAD
 
   next() {
+=======
+  next(){
+    
+>>>>>>> 8ae46da0d107ea135dde818af7f9a7d2c97aca21
     if (this.nextToPersonal) {
       this.nextToPersonal = false
     } else {
+<<<<<<< HEAD
     } this.nextToPersonal = true
   }
+=======
+      this.nextToPersonal= true
+      }    
+    }
+    next_to_child(){
+              this.addChild()
+
+      this.nextToPersonal=false
+      if (this.nextToChild) {
+        this.nextToChild= false
+        
+      } else {
+        this.nextToChild= true
+    }
+
+    console.log(" this.nextToPersonal", this.nextToPersonal);
+    
+  
+>>>>>>> 8ae46da0d107ea135dde818af7f9a7d2c97aca21
 
   next_to_child() {
     this.addChild()

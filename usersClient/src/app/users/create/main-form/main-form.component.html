@@ -4,7 +4,7 @@
             <div class="header">
                 
                 <div class="card card_create">
-                    <h3>create a new user</h3>
+                    <h3>Create a new user</h3>
                     <div class="key">user name:</div>
                     <input class="input_create" type="text" formControlName="userName">
                     <div class="key">date of marriage:</div>
@@ -17,7 +17,7 @@
          <app-address-fomr></app-address-fomr>
          <app-bank-account-form></app-bank-account-form>
     </div>
-   <button  *ngIf="!nextToPersonal" type="button" class="btn btn-secondary btn-lg button div_center" (click)="next()">next </button>
+   <button  *ngIf="!nextToPersonal" type="button" class="btn btn-secondary button" (click)="next()">Next </button>
     
     `
     <div *ngIf="nextToPersonal" >
@@ -27,18 +27,10 @@
         </div>
         <div class="row div_center">
             
-            <button   type="button" class="btn btn-secondary btn-lg button"  (click)="next()">back</button>
-            <button   type="button" class="btn btn-secondary btn-lg button"  routerLink="/users/create/ChildFormComponent">next to add children </button>
-            <button   type="button" class="btn btn-secondary btn-lg button"  (click)="save()">send </button>
+            <button   type="button" class="btn btn-secondary button"  (click)="next()">Back</button>
+            <button   type="button" class="btn btn-secondary button"  routerLink="/users/create/ChildFormComponent">Next to add children </button>
+            <button   type="button" class="btn btn-secondary button"  (click)="save()">Send </button>
         </div>
-        <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/user-list" >user-list </button>
-
-        <div *ngIf="nextToChild">
-        <button type="button" class="btn btn-secondary btn-lg " style="height:45px;" (click)="addChild()" >add child </button>
-        <div *ngFor='let child of children; let i = index'>
-            <app-child-form></app-child-form>
-        </div>
-    </div>
-</div>
+    </div> 
 </div>
 <!-- <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/PersonalFormComponent" >next </button> -->

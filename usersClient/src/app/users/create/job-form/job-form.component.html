@@ -1,4 +1,4 @@
-<div class="card card_create">
+<div class="card card_create card_job">
 
     <form [formGroup]="form">
         <div class="header" formArrayName="jobs">
@@ -9,8 +9,8 @@
                     <div class="key">company name:</div>
                     <input class="input_create" type="text" formControlName="companyName">
                 </a>
-                <app-address-fomr [key]="keyToAddress" (data)=pushAddress($event) ></app-address-fomr>
-                <button (click)=addJobs(i)>add job</button>
+                <app-address-fomr (data)=pushAddress($event) ></app-address-fomr>
+                <button class="btn btn-secondary" style="margin-left: 35%;" (click)=addJobs(i)>add job</button>
             </a>
         </div>
     </form>

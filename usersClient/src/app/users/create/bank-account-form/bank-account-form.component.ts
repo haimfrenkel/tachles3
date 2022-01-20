@@ -16,6 +16,7 @@ export class BankAccountFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
+    this.editForm()
     this.subscription = this.form.valueChanges.subscribe(data=>{
       this.saveSRV.onSave("bankAccount", data)
     })
@@ -26,7 +27,6 @@ export class BankAccountFormComponent implements OnInit {
   }
 
   
-
   initForm(){
     this.form = new FormGroup({
       'bankNo': new FormControl('', Validators.required),
@@ -35,5 +35,11 @@ export class BankAccountFormComponent implements OnInit {
       'accountNo': new FormControl('', Validators.required),
     })
   }
-
+  
+  editForm(){
+    this.form.get('bankNo')?.setValue(this.saveSRV.user.bankAccount.bankNo ? this.saveSRV.user.bankAccount.bankNo : 0);
+    this.form.get('bankName')?.setValue(this.saveSRV.user.bankAccount.bankName ? this.saveSRV.user.bankAccount.bankName : 0);
+    this.form.get('branchNo')?.setValue(this.saveSRV.user.bankAccount.branchNo ? this.saveSRV.user.bankAccount.branchNo : 0);
+    this.form.get('accountNo')?.setValue(this.saveSRV.user.bankAccount.accountNo ? this.saveSRV.user.bankAccount.accountNo : 0);
+  }
 }

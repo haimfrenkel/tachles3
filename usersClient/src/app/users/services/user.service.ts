@@ -13,4 +13,7 @@ export class UserService extends BaseHttpService<User> {
   constructor(protected override http: HttpClient) {
     super(http);
   }
+
+  createUser() {
+  }
 }

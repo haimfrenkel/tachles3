@@ -2,10 +2,10 @@
   <form [formGroup]="form">
       <div class="header row" formArrayName="children">
         <a *ngFor="let child of children.controls; let i = index">
-          <a [formGroupName]="i" >
+          <a [formGroupName]="i">
             <div style="margin-left: 40%;">child {{i+1}}</div>
             <div class="header_child"  >
-              <app-name-form [key]="keyForName" (data)=pushName($event)></app-name-form>
+              <app-name-form [key]="keyForName" [idx]="i" (data)=pushName($event)></app-name-form>
               <div style="padding-left: 27px;">                <div class="key">DOB:</div>
                 <input class="input_create" type="text" formControlName="dob">
                 <div class="key">sex:</div>

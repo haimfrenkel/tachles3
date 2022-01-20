@@ -11,6 +11,8 @@ import { CreateService } from '../create.service';
 })
 export class ChildFormComponent implements OnInit {
   @Input() key
+
+  idx: number;
   form: FormGroup
   convert: Child
   name: Name
@@ -56,13 +58,13 @@ export class ChildFormComponent implements OnInit {
     this.name = data
   }
 
-  createData(idx: number){
+  createData(idx: number) {
     this.convert = {
-      dob: this.form.get(['jobs',idx, 'job'])?.value,
-      sex: this.form.get(['jobs',idx, 'companyName'])?.value,
-      maritalStatus: this.form.get(['jobs',idx, 'companyName'])?.value,
-      placeOfStudy: this.form.get(['jobs',idx, 'companyName'])?.value,
+      dob: this.form.get(['children', idx, 'dob'])?.value,
+      gender: this.form.get(['children', idx, 'gender'])?.value,
+      maritalStatus: this.form.get(['children', idx, 'maritalStatus'])?.value,
+      placeOfStudy: this.form.get(['children', idx, 'placeOfStudy'])?.value,
       name: this.name
-    }   
+    }
   }
 }

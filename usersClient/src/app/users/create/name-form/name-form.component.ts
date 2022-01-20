@@ -10,7 +10,8 @@ import { CreateService } from '../create.service';
   styleUrls: ['./name-form.component.css']
 })
 export class NameFormComponent implements OnInit {
-  @Input() key
+  @Input() key;
+  @Input() idx;
   @Output() data = new EventEmitter<Name>()
 
   form: FormGroup
@@ -18,11 +19,12 @@ export class NameFormComponent implements OnInit {
 
   constructor(private saveSRV: CreateService) { }
 
-  ngOnInit(): void {    
-    this.initForm()
+  ngOnInit(): void {
+    this.initForm();
+    this.editForm();
     this.subscription = this.form.valueChanges.subscribe(data => {
-      if(this.key == "child"){
-        this.sendData();
+      if (this.key == "child") {
+        this.sendEmitToParent();
       } else {
         this.saveSRV.onSave(this.key, data);
       }
@@ -41,8 +43,28 @@ export class NameFormComponent implements OnInit {
       'endName': new FormControl('', Validators.required),
     })
   }
-  
-  sendData() {
+  editForm() {
+    if (this.key == "menName") {
+      this.form.get('startName')?.setValue(this.saveSRV.user.men.name.startName ? this.saveSRV.user.men.name.startName : "")
+      this.form.get('firstName')?.setValue(this.saveSRV.user.men.name.firstName ? this.saveSRV.user.men.name.firstName : "")
+      this.form.get('lastName')?.setValue(this.saveSRV.user.men.name.lastName ? this.saveSRV.user.men.name.lastName : "")
+      this.form.get('endName')?.setValue(this.saveSRV.user.men.name.endName ? this.saveSRV.user.men.name.endName : "")
+    }
+    if (this.key == "womenName") {
+      this.form.get('startName')?.setValue(this.saveSRV.user.women.name.startName ? this.saveSRV.user.women.name.startName : "")
+      this.form.get('firstName')?.setValue(this.saveSRV.user.women.name.firstName ? this.saveSRV.user.women.name.firstName : "")
+      this.form.get('lastName')?.setValue(this.saveSRV.user.women.name.lastName ? this.saveSRV.user.women.name.lastName : "")
+      this.form.get('endName')?.setValue(this.saveSRV.user.women.name.endName ? this.saveSRV.user.women.name.endName : "")
+    }
+    if(this.key == "child"){
+      this.form.get('startName')?.setValue(this.saveSRV.user.children[this.idx].name.startName ? this.saveSRV.user.children[this.idx].name.startName : "")
+      this.form.get('firstName')?.setValue(this.saveSRV.user.children[this.idx].name.firstName ? this.saveSRV.user.children[this.idx].name.firstName : "")
+      this.form.get('lastName')?.setValue(this.saveSRV.user.children[this.idx].name.lastName ? this.saveSRV.user.children[this.idx].name.lastName : "")
+      this.form.get('endName')?.setValue(this.saveSRV.user.children[this.idx].name.endName ? this.saveSRV.user.children[this.idx].name.endName : "")
+    }
+  }
+
+  sendEmitToParent() {
     this.data.emit(this.form.value)
   }
 }

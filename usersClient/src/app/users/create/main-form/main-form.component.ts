@@ -22,14 +22,15 @@ export class MainFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
-    this.form.valueChanges.subscribe(data => {
+    this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onSave("", data)
     })
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
   }
+
 
   initForm() {
     this.form = new FormGroup({

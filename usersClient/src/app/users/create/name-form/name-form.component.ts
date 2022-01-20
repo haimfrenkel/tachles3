@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Name } from 'src/models&Languages/users/name.interface';
 import { CreateService } from '../create.service';
 
 @Component({
@@ -9,16 +11,29 @@ import { CreateService } from '../create.service';
 })
 export class NameFormComponent implements OnInit {
   @Input() key
-  @Output() data = new EventEmitter()
+  @Output() data = new EventEmitter<Name>()
 
-  form: FormGroup;
+  form: FormGroup
+  subscription: Subscription
+
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
+    console.log(this.key);
+    
     this.initForm()
-    this.form.valueChanges.subscribe(data=>{
-      this.saveSRV.onSave(this.key, data)
+    console.log(this.key);
+    this.subscription = this.form.valueChanges.subscribe(data => {
+      if(this.key == "child"){
+        this.sendData()
+      } else {
+        this.saveSRV.onSave(this.key, data)
+      }
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe
   }
 
   initForm() {
@@ -30,4 +45,7 @@ export class NameFormComponent implements OnInit {
     })
   }
   
+  sendData() {
+    this.data.emit(this.form.value)
+  }
 }

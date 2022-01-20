@@ -5,7 +5,7 @@
           <a [formGroupName]="i" >
             <div style="margin-left: 40%;">child {{i+1}}</div>
             <div class="header_child"  >
-              <app-name-form></app-name-form>
+              <app-name-form [key]="keyToName" (data)=pushName($event)></app-name-form>
               <div style="padding-left: 27px;">
                 <div class="key">DOB:</div>
                 <input class="input_create" type="text" formControlName="dob">
@@ -18,12 +18,13 @@
               </div>
             </div>
           </a>
+          <button class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
         </a>
         
       </div>
   </form>
 </div>
 <div>
-    <button class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern()>to add child</button>
+    
 </div>
 

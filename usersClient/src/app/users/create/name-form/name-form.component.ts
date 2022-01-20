@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-name-form',
@@ -7,13 +8,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./name-form.component.css']
 })
 export class NameFormComponent implements OnInit {
+  @Input() key
   form: FormGroup;
-  constructor() { }
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
     this.form.valueChanges.subscribe(data=>{
-      console.log(data);
+      this.saveSRV.onSave(this.key, data)
     })
   }
 
@@ -21,7 +23,7 @@ export class NameFormComponent implements OnInit {
     this.form = new FormGroup({
       'startName': new FormControl('', Validators.required),
       'firstName': new FormControl('', Validators.required),
-      'lastName:': new FormControl('', Validators.required),
+      'lastName': new FormControl('', Validators.required),
       'endName': new FormControl('', Validators.required),
     })
   }

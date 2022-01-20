@@ -14,14 +14,11 @@ export class JobFormComponent implements OnInit {
   form: FormGroup
   convert: Job
   address: Address
+  keyToAddress: string = "job"
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
-    this.form.valueChanges.subscribe(data => {
-      console.log(data);
-
-    })
   }
 
   initForm() {

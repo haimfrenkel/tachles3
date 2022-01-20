@@ -14,15 +14,21 @@ export class AddressFomrComponent implements OnInit {
   @Input() key
   @Output() data = new EventEmitter<Address>()
 
-
   form: FormGroup
   subscription: Subscription
+
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
-      this.sendData()
+      console.log(this.key);
+      if(this.key == "job"){
+        this.sendData()
+      } else {
+        this.saveSRV.onSave("address", data)
+      }
+      
     })
   }
 

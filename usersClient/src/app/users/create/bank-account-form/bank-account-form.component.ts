@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-bank-account-form',
@@ -7,13 +9,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./bank-account-form.component.css']
 })
 export class BankAccountFormComponent implements OnInit {
-
+  subscription: Subscription
   form: FormGroup;
-  constructor() { }
+  
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
+    this.subscription = this.form.valueChanges.subscribe(data=>{
+      this.saveSRV.onSave("bankAccount", data)
+    })
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
+  }
+
+  
 
   initForm(){
     this.form = new FormGroup({

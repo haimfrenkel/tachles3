@@ -9,7 +9,7 @@
                     <div class="key">company name:</div>
                     <input class="input_create" type="text" formControlName="companyName">
                 </a>
-                <app-address-fomr (data)=pushAddress($event) ></app-address-fomr>
+                <app-address-fomr [key]="keyToAddress" (data)=pushAddress($event) ></app-address-fomr>
                 <button (click)=addJobs(i)>add job</button>
             </a>
         </div>

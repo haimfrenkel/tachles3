@@ -109,6 +109,9 @@ export class CreateService {
       case "bankAccount":
         this.user.bankAccount = value;
         break;
+        case "address":
+        this.user.address = value;
+        break;
       case "children":
         this.user.children = value;
         break;

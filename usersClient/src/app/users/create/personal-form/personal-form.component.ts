@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CreateService } from '../create.service';
 
 @Component({
@@ -11,15 +12,19 @@ import { CreateService } from '../create.service';
 export class PersonalFormComponent implements OnInit {
   @Input() person;
   keyForJob: string
+  keyForName: string
   form: FormGroup;
-  constructor(private create: CreateService) { }
+  subscription: Subscription
+
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
-    console.log("person: ",this.person);
-    console.log(this.form.value);
-    this.keyForJob =`${this.person}Jobs` 
-    
+    this.keyForJob = `${this.person}Jobs`
+    this.keyForName = `${this.person}Name`
+    this.subscription = this.form.valueChanges.subscribe(data => {
+      this.saveSRV.onSave(this.person, data)
+    })
   }
 
   initForm() {

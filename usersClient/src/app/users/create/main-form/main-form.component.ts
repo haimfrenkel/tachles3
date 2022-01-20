@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CreateService } from '../create.service';
 
 @Component({
@@ -9,15 +10,25 @@ import { CreateService } from '../create.service';
 })
 export class MainFormComponent implements OnInit {
 
+  subscription: Subscription
   form: FormGroup;
-  children:number[]=[];
-  numberOfChildren=0
-  nextToPersonal:boolean=false;
-  nextToChild:boolean=false;
-  constructor(private create: CreateService) { }
+  children: number[] = [];
+  numberOfChildren = 0
+  nextToPersonal: boolean = false;
+  nextToChild: boolean = false;
+
+
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
+    this.form.valueChanges.subscribe(data => {
+      this.saveSRV.onSave("", data)
+    })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe
   }
 
   initForm() {
@@ -27,36 +38,31 @@ export class MainFormComponent implements OnInit {
       'shtibel': new FormControl(),
     })
   }
-  next(){
+
+  next() {
     if (this.nextToPersonal) {
-      this.nextToPersonal= false
-      
+      this.nextToPersonal = false
     } else {
-  }    this.nextToPersonal= true
-    }
-    next_to_child(){
-              this.addChild()
-
-      this.nextToPersonal=false
-      if (this.nextToChild) {
-        this.nextToChild= false
-        
-      } else {
-        this.nextToChild= true
-    }
-
-    
-  
-
+    } this.nextToPersonal = true
   }
-  addChild(){
+
+  next_to_child() {
+    this.addChild()
+    this.nextToPersonal = false
+    if (this.nextToChild) {
+      this.nextToChild = false
+    } else {
+      this.nextToChild = true
+    }
+  }
+
+  addChild() {
     this.numberOfChildren++;
     this.children.push(this.numberOfChildren);
     console.log(this.numberOfChildren);
-    
-
   }
-  save(){
+  
+  save() {
 
   }
 }

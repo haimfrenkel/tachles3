@@ -3,16 +3,10 @@
       <div class="header row" formArrayName="children">
         <a *ngFor="let child of children.controls; let i = index">
           <a [formGroupName]="i" >
-            <div style="margin-left: 40%;">Child {{i+1}}</div>
+            <div style="margin-left: 40%;">child {{i+1}}</div>
             <div class="header_child"  >
-<<<<<<< HEAD
-              <app-name-form [key]="keyToName" (data)=pushName($event)></app-name-form>
-              <div style="padding-left: 27px;">
-=======
-              <app-name-form></app-name-form>
-              <div style="padding-left: 28px;">
->>>>>>> 8ae46da0d107ea135dde818af7f9a7d2c97aca21
-                <div class="key">DOB:</div>
+              <app-name-form [key]="keyForName" (data)=pushName($event)></app-name-form>
+              <div style="padding-left: 27px;">                <div class="key">DOB:</div>
                 <input class="input_create" type="text" formControlName="dob">
                 <div class="key">sex:</div>
                 <input class="input_create" type="text" formControlName="sex">
@@ -29,14 +23,7 @@
       </div>
   </form>
 </div>
-<<<<<<< HEAD
 <div>
     
-=======
-<div style="justify-content:center">
-  <!-- <button   type="button" class="btn btn-secondary btn-lg button"  >back</button> -->
-  <button class="btn btn-secondary button"  (click)=addChildern()>Add child</button>
-  <button   type="button" class="btn btn-secondary  button"  >Send </button>
->>>>>>> 8ae46da0d107ea135dde818af7f9a7d2c97aca21
 </div>
 

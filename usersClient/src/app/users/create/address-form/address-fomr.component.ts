@@ -22,13 +22,11 @@ export class AddressFomrComponent implements OnInit {
   ngOnInit(): void {
     this.initForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
-      console.log(this.key);
       if(this.key == "job"){
         this.sendData()
       } else {
         this.saveSRV.onSave("address", data)
       }
-      
     })
   }
 

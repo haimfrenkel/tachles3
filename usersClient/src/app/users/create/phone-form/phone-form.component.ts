@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-phone-form',
@@ -7,11 +8,14 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./phone-form.component.css']
 })
 export class PhoneFormComponent implements OnInit {
-
+  @Input() key
+  keyForPhone: string
   form: FormGroup;
-  constructor() { }
+  constructor(private savaSRV: CreateService) { }
 
   ngOnInit(): void {
+    this.keyForPhone = `${this.key}Phones`
+    this.initForm()
   }
 
   initForm() {
@@ -29,15 +33,21 @@ export class PhoneFormComponent implements OnInit {
     return this.form.controls["phones"] as FormArray
   }
 
-  addPhones() {
+  addPhone() {
     const phonesForm = new FormGroup({
       'number': new FormControl(),
-      'whatsapp': new FormControl()
+      'whatsapp': new FormControl(false)
     });
     this.phones.push(phonesForm);
   }
-  save(e: any) {
+
+  savePhones() {
+    this.savaSRV.onSave(this.keyForPhone, this.form.value)
     console.log(this.form.value);
+    console.log(this.keyForPhone);
+    
+    console.log(this.savaSRV.user);
+    
   }
 }
 

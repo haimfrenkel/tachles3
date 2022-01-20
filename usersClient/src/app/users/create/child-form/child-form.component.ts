@@ -14,13 +14,15 @@ export class ChildFormComponent implements OnInit {
   form: FormGroup
   convert: Child
   name: Name
-  keyToName: string = "child"
+  keyForName: string = "child"
 
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
   }
+
+
   initForm() {
     this.form = new FormGroup({
       children: new FormArray([
@@ -48,8 +50,6 @@ export class ChildFormComponent implements OnInit {
       'placeOfStudy': new FormControl()
     });
     this.children.push(childForm);
-    console.log(this.saveSRV.user);
-
   }
 
   pushName(data: any) {

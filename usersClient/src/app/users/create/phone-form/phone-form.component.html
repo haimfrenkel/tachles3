@@ -1,11 +1,16 @@
 <form [formGroup]="form">
+  <a formArrayName="phones">
     <div class="header">
-      <div class="key">phone number:</div>
-      <input class="input_create" type="text" formControlName="number">
-      <div class="key">whatsapp true/falsa:</div>
-      <input class="input_create" type="text" formControlName="whatsapp">
-      
+      <a *ngFor="let phone of phones.controls; let i = index">
+        <a [formGroupName]="i">
+          <div class="key">phone number:</div>
+          <input class="input_create" type="text" formControlName="number">
+          <div class="key">whatsapp true/falsa:</div>
+          <input class="input_create" type="text" formControlName="whatsapp">
+        </a>
+      </a>
     </div>
-    <button class="header" type="submit" (click)="save(form.value)">Submit Application</button>
+  </a>
+  <button class="header" type="submit" (click)="savePhones()">save phone</button>
+  <button class="header" type="submit" (click)="addPhone()">add phone</button>
 </form>
-

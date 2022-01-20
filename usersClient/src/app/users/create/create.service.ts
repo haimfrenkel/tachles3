@@ -25,7 +25,7 @@ export class CreateService {
         maritalStatus: "",
         phones: [],
         jobs: [],
-        dob: ""
+        DOB: ""
       },
       women: {
         ID: 0,
@@ -42,7 +42,7 @@ export class CreateService {
         maritalStatus: "",
         phones: [],
         jobs: [],
-        dob: ""
+        DOB: ""
       },
       address: {
         state: "",
@@ -71,7 +71,7 @@ export class CreateService {
         this.user.men = {...this.user.men, ...value}
         break;
       case "menPhones":
-        this.user.men.phones.push(value) 
+        this.user.men.phones = {...value} 
         break;
       case "menJobs":
         this.user.men.jobs.push(value)
@@ -83,10 +83,10 @@ export class CreateService {
         this.user.women = {...this.user.women, ...value}
         break;
       case "womenPhones":
-        this.user.women.phones = value;
+        this.user.women.phones.push(value) 
         break;
       case "womenJobs":
-        this.user.women.jobs = value;
+        this.user.women.jobs.push(value)
         break;
       case "womenName":
         this.user.women.name = value;

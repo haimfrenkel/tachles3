@@ -28,11 +28,13 @@ export class MainFormComponent implements OnInit {
     })
   }
   next(){
+    
     if (this.nextToPersonal) {
       this.nextToPersonal= false
       
     } else {
-  }    this.nextToPersonal= true
+      this.nextToPersonal= true
+      }    
     }
     next_to_child(){
               this.addChild()

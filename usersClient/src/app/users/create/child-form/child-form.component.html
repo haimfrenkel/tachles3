@@ -6,7 +6,7 @@
             <div style="margin-left: 40%;">child {{i+1}}</div>
             <div class="header_child"  >
               <app-name-form></app-name-form>
-              <div style="padding-left: 27px;">
+              <div style="padding-left: 28px;">
                 <div class="key">DOB:</div>
                 <input class="input_create" type="text" formControlName="dob">
                 <div class="key">sex:</div>
@@ -23,7 +23,9 @@
       </div>
   </form>
 </div>
-<div>
-    <button class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern()>to add child</button>
+<div style="justify-content:center">
+  <button   type="button" class="btn btn-secondary btn-lg button"  >back</button>
+  <button class="btn btn-secondary btn-lg button"  (click)=addChildern()>to add child</button>
+  <button   type="button" class="btn btn-secondary btn-lg button"  >send </button>
 </div>
 

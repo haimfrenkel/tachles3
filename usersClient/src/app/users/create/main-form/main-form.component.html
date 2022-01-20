@@ -31,14 +31,6 @@
             <button   type="button" class="btn btn-secondary btn-lg button"  routerLink="/users/create/ChildFormComponent">next to add children </button>
             <button   type="button" class="btn btn-secondary btn-lg button"  (click)="save()">send </button>
         </div>
-        <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/user-list" >user-list </button>
-
-        <div *ngIf="nextToChild">
-        <button type="button" class="btn btn-secondary btn-lg " style="height:45px;" (click)="addChild()" >add child </button>
-        <div *ngFor='let child of children; let i = index'>
-            <app-child-form></app-child-form>
-        </div>
-    </div>
-</div>
+    </div> 
 </div>
 <!-- <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/PersonalFormComponent" >next </button> -->

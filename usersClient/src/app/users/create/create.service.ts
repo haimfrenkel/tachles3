@@ -63,19 +63,15 @@ export class CreateService {
       shtibel: ""
     }
   }
+
+
   onSave(key: string, value: any) {
     switch (key) {
       case "men":
-        this.user.men.ID = value.ID;
-        this.user.men.dob = value.dob;
-        this.user.men.email = value.email;
-        this.user.men.fatherName = value.fatherName;
-        this.user.men.grandfatherName = value.grandfatherName;
-        this.user.men.greatGrandfatherName = value.greatGrandfatherName;
-        this.user.men.maritalStatus = value.maritalStatus;
+        this.user.men = {...this.user.men, ...value}
         break;
       case "menPhones":
-        this.user.men.phones = value;
+        this.user.men.phones.push(value) 
         break;
       case "menJobs":
         this.user.men.jobs.push(value)
@@ -84,13 +80,7 @@ export class CreateService {
         this.user.men.name = value;
         break;
       case "women":
-        this.user.women.ID = value.ID;
-        this.user.women.dob = value.dob;
-        this.user.women.email = value.email;
-        this.user.women.fatherName = value.fatherName;
-        this.user.women.grandfatherName = value.grandfatherName;
-        this.user.women.greatGrandfatherName = value.greatGrandfatherName;
-        this.user.women.maritalStatus = value.maritalStatus;
+        this.user.women = {...this.user.women, ...value}
         break;
       case "womenPhones":
         this.user.women.phones = value;
@@ -101,7 +91,7 @@ export class CreateService {
       case "womenName":
         this.user.women.name = value;
         break;
-      case "":
+      case "main":
         this.user.dateOfMarriage = value.dateOfMarriage;
         this.user.shtibel = value.shtibel
         this.user.userName = value.userName
@@ -113,7 +103,7 @@ export class CreateService {
         this.user.address = value;
         break;
       case "children":
-        this.user.children = value;
+        this.user.children.push(value);
         break;
     }
   }

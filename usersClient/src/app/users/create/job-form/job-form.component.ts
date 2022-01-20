@@ -43,9 +43,7 @@ export class JobFormComponent implements OnInit {
       'companyName': new FormControl(),
       'job': new FormControl(),
     });
-    this.jobs.push(jobForm);
-    console.log(this.saveSRV.user);
-    
+    this.jobs.push(jobForm);    
   }
 
   pushAddress(data: any) {
@@ -53,7 +51,6 @@ export class JobFormComponent implements OnInit {
   }
 
   createData(idx: number){
-    console.log(this.form.get(['jobs',idx, 'companyName'])?.value);
     this.convert = {
       job: this.form.get(['jobs',idx, 'job'])?.value,
       companyName: this.form.get(['jobs',idx, 'companyName'])?.value,

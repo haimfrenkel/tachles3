@@ -18,22 +18,19 @@ export class NameFormComponent implements OnInit {
 
   constructor(private saveSRV: CreateService) { }
 
-  ngOnInit(): void {
-    console.log(this.key);
-    
+  ngOnInit(): void {    
     this.initForm()
-    console.log(this.key);
     this.subscription = this.form.valueChanges.subscribe(data => {
       if(this.key == "child"){
-        this.sendData()
+        this.sendData();
       } else {
-        this.saveSRV.onSave(this.key, data)
+        this.saveSRV.onSave(this.key, data);
       }
     })
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe
+    this.subscription.unsubscribe();
   }
 
   initForm() {

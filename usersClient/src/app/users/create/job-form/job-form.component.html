@@ -1,17 +1,24 @@
-<div class="card card_create card_job">
+
+
+<div class="card card_create " >
 
     <form [formGroup]="form">
         <div class="header" formArrayName="jobs">
-            <a *ngFor="let Job of jobs.controls; let i = index">
-                <a [formGroupName]="i">
-                    <div class="key">job:</div>
-                    <input class="input_create" type="text" formControlName="job">
-                    <div class="key">company name:</div>
-                    <input class="input_create" type="text" formControlName="companyName">
+            <div class="row div_center">
+                <a *ngFor="let Job of jobs.controls; let i = index">  
+                    
+                    <div class="card card_create card_job">  
+                        <a [formGroupName]="i">
+                            <div class="key">job {{i+1}}:</div>
+                            <input class="input_create" type="text" formControlName="job">
+                            <div class="key">company name:</div>
+                            <input class="input_create" type="text" formControlName="companyName">
+                        </a>
+                        <app-address-fomr (data)=pushAddress($event)  ></app-address-fomr>
+                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>add job</button>
+                    </div>     
                 </a>
-                <app-address-fomr (data)=pushAddress($event) ></app-address-fomr>
-                <button class="btn btn-secondary" style="margin-left: 35%;" (click)=addJobs(i)>add job</button>
-            </a>
+            </div>
         </div>
     </form>
 </div>

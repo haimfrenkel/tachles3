@@ -7,7 +7,7 @@
     width: 25%;
 }
 .header{
-margin-left: 30px;
+margin-left: 20px;
 margin-top: 0px;
 }
 .key{
@@ -17,12 +17,17 @@ margin-top: 0px;
     font-weight: bold;
     font-size: 15px;
     letter-spacing: normal;
+    margin-left: 20px;
+    margin: 10px 20px 2px 20px;
+    text-transform: capitalize
     
 }
 
 .input_create{
     width: 200px;
     height: 30px;
+    margin-left: 20px;
+    text-transform:uppercase;
 }
 .card_create{
     padding: 10px;
@@ -31,7 +36,7 @@ margin-top: 0px;
      border-radius: 0.25rem;
     background-color: #e4e7b6d3;
     border-color: #e4e7b6d3;
-    min-height: 500px;
+    min-height: 440px;
 }
 .app{
     padding: 10px;
@@ -41,4 +46,7 @@ margin-top: 0px;
 }
 .div_center{
     justify-content:center;
+}
+.h3{
+    text-transform:capitalize;
 }

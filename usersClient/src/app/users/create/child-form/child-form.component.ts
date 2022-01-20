@@ -15,7 +15,7 @@ export class ChildFormComponent implements OnInit {
   convert: Child
   name: Name
   keyForName: string = "child"
-
+  sowButtontAdd:number =0
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
@@ -50,6 +50,7 @@ export class ChildFormComponent implements OnInit {
       'placeOfStudy': new FormControl()
     });
     this.children.push(childForm);
+    this.sowButtontAdd++;
   }
 
   pushName(data: any) {

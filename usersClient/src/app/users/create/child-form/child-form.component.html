@@ -17,7 +17,7 @@
               </div>
             </div>
           </a>
-          <button class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
+          <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
         </a>
         
       </div>

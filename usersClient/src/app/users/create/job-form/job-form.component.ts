@@ -50,6 +50,8 @@ export class JobFormComponent implements OnInit {
   }
 
   pushAddress(data: any) {
+    console.log("pushAddress.data: ",data );
+    
     this.address = data
   }
 

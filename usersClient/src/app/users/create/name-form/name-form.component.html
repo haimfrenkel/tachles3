@@ -1,14 +1,21 @@
 <div class="card_name">
 <form [formGroup]="form">
     <div class="header ">
+      
       <div class="key">start name:</div>
-      <input class="input_create" type="text" formControlName="startName">
+      <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="startName">
+        <option *ngFor="let startName of startNameOptions" [ngValue]="startName">{{startName}}</option>
+     </select>
+      <!-- <input class="input_create" type="text" formControlName="startName"> -->
       <div class="key">first name:</div>
       <input class="input_create" type="text" formControlName="firstName">
       <div class="key">last name:</div>
       <input class="input_create" type="text" formControlName="lastName">
       <div class="key">end name:</div>
-      <input class="input_create" type="text" formControlName="endName">
+      <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="endName">
+        <option *ngFor="let endName of endNameOptions" [ngValue]="endName">{{endName}}</option>
+     </select>
+      <!-- <input class="input_create" type="text" formControlName="endName"> -->
 
     </div>
 </form>

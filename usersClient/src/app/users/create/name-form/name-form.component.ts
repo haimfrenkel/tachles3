@@ -15,6 +15,8 @@ export class NameFormComponent implements OnInit {
 
   form: FormGroup
   subscription: Subscription
+  startNameOptions: string[] = [" ","הרב", "הרה''ג", "מרת","הרבנית", ];
+  endNameOptions: string[] = [" ", "שליט''א", "תליט''א", "הי''ו", "נ''י", "'תחי"];
 
   constructor(private saveSRV: CreateService) { }
 
@@ -27,6 +29,11 @@ export class NameFormComponent implements OnInit {
         this.saveSRV.onSave(this.key, data);
       }
     })
+  }
+  userAnswersClick(event){
+    console.log("event: ",event);
+    
+
   }
 
   ngOnDestroy() {

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/models&Languages/users/userType';
 
 @Injectable({
@@ -7,7 +9,8 @@ import { User } from 'src/models&Languages/users/userType';
 })
 export class CreateService {
   user: User
-  constructor() {
+
+  constructor(private httpClient:HttpClient) {
     this.user = {
       userName: "",
       men: {
@@ -63,8 +66,16 @@ export class CreateService {
       shtibel: ""
     }
   }
-
-
+  
+  get (): Observable <any>{
+    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&limit=6000`)
+                                'https://data.gov.il/api/3/action/datastore_search?resource_id=d4901968-dad3-4845-a9b0-a57d027f11ab&limit=5'
+                                'https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=5'
+  }
+  getStreet (): Observable <any>{
+    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=6000`)
+                              
+  }
   onSave(key: string, value: any) {
     switch (key) {
       case "men":
@@ -107,4 +118,5 @@ export class CreateService {
         break;
     }
   }
+  
 }

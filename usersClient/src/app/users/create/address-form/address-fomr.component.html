@@ -1,6 +1,6 @@
 
 <div class="card card_create card_address">
-    <h3  class="header ">Address </h3>
+    <h3 *ngIf="key ==undefined" class="header ">Address </h3>
     <form [formGroup]="form" >
         <div class="">
         <div class="key">street:</div>
@@ -10,7 +10,10 @@
         <div class="key">apartment:</div>
         <input class="input_create" type="text" formControlName="apartment">
         <div class="key">city:</div>
-        <input class="input_create" type="text" formControlName="city">
+        <select class="dropdownStyle input_create"  formControlName="city">
+            <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+         </select>
+        <!-- <input class="input_create" type="text" formControlName="city"> -->
         <div class="key">zipCode:</div>
         <input class="input_create" type="text" formControlName="zipCode">
         </div>

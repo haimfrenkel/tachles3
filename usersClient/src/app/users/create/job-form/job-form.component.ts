@@ -14,6 +14,9 @@ export class JobFormComponent implements OnInit {
   form: FormGroup
   convert: Job
   address: Address
+  keyToAddress: string = "job"
+  sowButtontAdd:number =0
+
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
@@ -42,10 +45,13 @@ export class JobFormComponent implements OnInit {
       'companyName': new FormControl(),
       'job': new FormControl(),
     });
-    this.jobs.push(jobForm);    
+    this.jobs.push(jobForm);  
+    this.sowButtontAdd++;  
   }
 
   pushAddress(data: any) {
+    console.log("pushAddress.data: ",data );
+    
     this.address = data
   }
 

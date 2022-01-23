@@ -21,6 +21,7 @@ export class MainFormComponent implements OnInit {
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
+    
     this.initForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onSave("main", data)

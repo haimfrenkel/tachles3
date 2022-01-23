@@ -15,15 +15,26 @@ export class AddressFomrComponent implements OnInit {
   @Input() key
   @Input() idx
   @Output() data = new EventEmitter<Address>()
-
+ 
   form: FormGroup
   subscription: Subscription
+  cities: any;
+  streets:any;
 
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    this.initForm();
-    this.editForm()
+    console.log("key: ", this.key);
+
+    this.saveSRV.get().subscribe((res)=>{ 
+      this.cities = res.result.records.map(field=>field['שם יישוב'])
+      console.log(this.cities)
+    })
+    this.saveSRV.getStreet().subscribe((res)=>{ 
+      console.log("res",res)
+    })
+    
+    this.initForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
       if (this.key == "job") {
         this.endEmitToParent()

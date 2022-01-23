@@ -13,15 +13,18 @@
           <div class="key">great grandfather name:</div>
           <input class="input_create" type="text" formControlName="greatGrandfatherName">
           <div class="key">DOB:</div>
-          <input class="input_create" type="text" formControlName="DOB">
+          <input class="input_create" type="date"  formControlName="DOB">
           <div class="key">email:</div>
           <input class="input_create" type="text" formControlName="email">
           <div class="key">marital status:</div>
-          <input class="input_create" type="text" formControlName="maritalStatus">
+          <select class="dropdownStyle input_create"  formControlName="maritalStatus">
+            <option *ngFor="let maritalStatus of maritalStatusOptions" [ngValue]="maritalStatus">{{maritalStatus}}</option>
+         </select>
+          <!-- <input class="input_create" type="text" formControlName="maritalStatus"> -->
           <app-phone-form [key]="gender"></app-phone-form>
         </div>
     </form>
-    <h3 class="header ">Address</h3>
+    
     <app-job-form [key]="keyForJob" ></app-job-form>
 
 </div>

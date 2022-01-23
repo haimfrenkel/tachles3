@@ -7,7 +7,7 @@
             <div class="header_child"  >
               <app-name-form [key]="keyForName" [idx]="i" (data)=pushName($event)></app-name-form>
               <div style="padding-left: 27px;">                <div class="key">DOB:</div>
-                <input class="input_create" type="text" formControlName="dob">
+                <input class="input_create" type="date" formControlName="dob">
                 <div class="key">sex:</div>
                 <input class="input_create" type="text" formControlName="sex">
                 <div class="key">marital Status:</div>
@@ -17,7 +17,7 @@
               </div>
             </div>
           </a>
-          <button class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
+          <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
         </a>
         
       </div>

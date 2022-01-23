@@ -30,12 +30,7 @@ export class NameFormComponent implements OnInit {
       }
     })
   }
-  userAnswersClick(event){
-    console.log("event: ",event);
-    
-
-  }
-
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

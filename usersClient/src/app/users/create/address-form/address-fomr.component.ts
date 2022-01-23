@@ -28,10 +28,8 @@ export class AddressFomrComponent implements OnInit {
 
     this.saveSRV.get().subscribe((res)=>{ 
       this.cities = res.result.records.map(field=>field['שם יישוב'])
-      console.log(this.cities)
     })
     this.saveSRV.getStreet().subscribe((res)=>{ 
-      console.log("res",res)
     })
     
     this.initForm()

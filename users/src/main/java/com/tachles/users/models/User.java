@@ -16,7 +16,8 @@ import java.util.*;
 @AllArgsConstructor
 
 public class User extends BaseModel {
-    private String userName;
+    public String userName;
+    private long ID;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalInformation men;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -29,7 +30,7 @@ public class User extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private BankAccount bankAccount;
     private Date dateOfMarriage;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     @JsonManagedReference
     private List<Child> children;
     private String shtibel;

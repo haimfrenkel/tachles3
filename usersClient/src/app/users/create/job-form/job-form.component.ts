@@ -14,13 +14,15 @@ export class JobFormComponent implements OnInit {
   form: FormGroup
   convert: Job
   address: Address
-  keyToAddress: string = "job"
+  keyForAddress: string = "job"
   sowButtontAdd:number =0
 
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
+    console.log(this.saveSRV.user);
+
   }
 
   initForm() {

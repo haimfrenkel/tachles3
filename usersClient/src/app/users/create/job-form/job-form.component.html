@@ -14,7 +14,8 @@
                             <div class="key">company name:</div>
                             <input class="input_create" type="text" formControlName="companyName">
                         </a>
-                        <app-address-fomr (data)=pushAddress($event)  ></app-address-fomr>
+  keyForAddress: string = "job"
+                        <app-address-fomr [key]="keyForAddress" (data)=pushAddress($event)  ></app-address-fomr>
                         <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>add job</button>
                     </div>     
                 </a>

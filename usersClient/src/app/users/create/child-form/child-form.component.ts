@@ -22,6 +22,8 @@ export class ChildFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
+    console.log(this.saveSRV.user);
+
   }
 
 

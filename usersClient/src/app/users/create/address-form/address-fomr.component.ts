@@ -28,15 +28,9 @@ export class AddressFomrComponent implements OnInit {
     console.log("key: ", this.key);
 
     this.saveSRV.get().subscribe((res)=>{ 
-<<<<<<< HEAD
       this.cities = res.result.records.map(field=>field['שם יישוב'])
     })
     this.saveSRV.getStreet().subscribe((res)=>{ 
-=======
-      console.log("res",res)
-      this.cities = res.result.records
-      // console.log("this.cities",this.cities)
->>>>>>> 87a5d1e04494e1118949fc16eda22a5cdad85b9d
     })
     // this.saveSRV.getStreet().subscribe((res)=>{ 
     //   this.streets = res.result.records.map(field=>field['שם רחוב'])

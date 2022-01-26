@@ -20,6 +20,7 @@ export class AddressFomrComponent implements OnInit {
   subscription: Subscription
   cities: any;
   streets:any;
+  city:any;
 
   constructor(private saveSRV: CreateService) { }
 
@@ -27,10 +28,20 @@ export class AddressFomrComponent implements OnInit {
     console.log("key: ", this.key);
 
     this.saveSRV.get().subscribe((res)=>{ 
+<<<<<<< HEAD
       this.cities = res.result.records.map(field=>field['שם יישוב'])
     })
     this.saveSRV.getStreet().subscribe((res)=>{ 
+=======
+      console.log("res",res)
+      this.cities = res.result.records
+      // console.log("this.cities",this.cities)
+>>>>>>> 87a5d1e04494e1118949fc16eda22a5cdad85b9d
     })
+    // this.saveSRV.getStreet().subscribe((res)=>{ 
+    //   this.streets = res.result.records.map(field=>field['שם רחוב'])
+    //   console.log("res",res)
+    // })
     
     this.initForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
@@ -41,6 +52,21 @@ export class AddressFomrComponent implements OnInit {
       }
     })
   }
+  userAnswersClick(event){
+    console.log("this.form.value.city['סמל יישוב']: " ,this.form.value.city['סמל יישוב']);
+    this.city=this.form.value.city;
+    this.saveSRV.getStreet().subscribe((res)=>{ 
+      // console.log("res",res)
+      this.streets = res.result.records.filter(s=>s['סמל_ישוב']==this.city['סמל יישוב'])
+      // console.log(this.streets)
+    
+    //   this.streets = res.result.records.filter(s=>s['שם רחוב']== this.form.value.city)
+    //   console.log(this.streets)
+    })
+    // console.log("streets: ",this.streets);
+
+  }
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe

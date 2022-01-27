@@ -12,6 +12,8 @@ import { DetailsOfFamilyComponent } from './details-of-family/details-of-family.
 import { CreateUserComponent } from './create-user/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { UsersComponent } from './users.component';
     ChildrenInformationComponent,
     DetailsOfFamilyComponent,
     CreateUserComponent,
+    UploadFileComponent,
   ],
   imports: [
 
@@ -32,7 +35,9 @@ import { UsersComponent } from './users.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    MatIconModule
+
   ]
 })
 export class UsersModule { }

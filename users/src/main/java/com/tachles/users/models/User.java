@@ -17,7 +17,7 @@ import java.util.*;
 
 public class User extends BaseModel {
     public String userName;
-    private long ID;
+//    private int ID;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalInformation men;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

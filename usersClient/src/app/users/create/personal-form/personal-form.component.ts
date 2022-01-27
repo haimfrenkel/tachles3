@@ -15,7 +15,7 @@ export class PersonalFormComponent implements OnInit {
   keyForName: string
   form: FormGroup;
   subscription: Subscription
-  maritalStatusOptions:string[]=[" ","רווק", "רווקה", "נשוי", "נשואה", "גרוש", "גרושה", "אלמן", "אלמנה"]
+  maritalStatusOptions:string[]=[" ","רווק/ה",  "נשוי/ה",  "גרוש/ה",  "אלמן/ה" ]
 
   constructor(private saveSRV: CreateService) { }
 

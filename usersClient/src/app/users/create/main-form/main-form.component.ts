@@ -21,14 +21,16 @@ export class MainFormComponent implements OnInit {
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    
     this.initForm()
+    this.editForm
     this.subscription = this.form.valueChanges.subscribe(data => {
-      this.saveSRV.onSave("main", data)
+      this.saveSRV.onValueChange("main", data)
+      console.log(this.saveSRV.user);
+
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe()
   }
 
@@ -39,6 +41,12 @@ export class MainFormComponent implements OnInit {
       'dateOfMarriage': new FormControl(),
       'shtibel': new FormControl(),
     })
+  }
+
+  editForm() {
+    this.form.get('userName')?.setValue(this.saveSRV.user.userName ? this.saveSRV.user.userName : "")
+    this.form.get('dateOfMarriage')?.setValue(this.saveSRV.user.dateOfMarriage ? this.saveSRV.user.dateOfMarriage : "")
+    this.form.get('dateOfMarriage')?.setValue(this.saveSRV.user.shtibel ? this.saveSRV.user.shtibel : "")
   }
 
   next() {
@@ -65,6 +73,9 @@ export class MainFormComponent implements OnInit {
   }
 
   save() {
-
+    this.saveSRV.save().subscribe(data => {
+      console.log(data);
+      this.saveSRV.initUser();
+    })
   }
 }

@@ -1,14 +1,16 @@
 <button type="button" class="btn btn btn-lg button" routerLink="/users/new-create-user" >new-create-user </button>
 
-<ag-grid-angular 
+    <ag-grid-angular 
     style="width: 1200px; height: 300px;" 
     class="ag-theme-alpine"
-    [rowData]="rowData1 " 
-    [columnDefs]="columnDefs1"
+    [rowData]="rowData | async  " 
+    [columnDefs]="columnDefs"
     rowSelection="multiple"
     (rowDoubleClicked)='NavToDetail($event)' 
     >
 </ag-grid-angular>
+
+
 <button class="btn btn btn-lg button" (click)="getSelectedRows()">Get Selected Rows</button>
 <!-- <ag-grid-angular 
     style="width: 1200px; height: 300px;" 

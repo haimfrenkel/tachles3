@@ -15,15 +15,11 @@ export class UploadFileComponent implements OnInit {
   }
 
   onFileSelected(event) {
-
     const file: File = event.target.files[0];
-
     if (file) {
       this.fileName = file.name;
       const formData = new FormData();
       formData.append("file", file);
-//a http req
-
     }
   }
 }

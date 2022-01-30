@@ -42,7 +42,7 @@ export class PhoneFormComponent implements OnInit {
   }
 
   savePhones() {
-    this.savaSRV.onSave(this.keyForPhone, this.form.value)
+    this.savaSRV.onValueChange(this.keyForPhone, this.form.value)
     console.log(this.form.value);
     console.log(this.keyForPhone);
     

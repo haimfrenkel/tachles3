@@ -28,7 +28,7 @@ export class NameFormComponent implements OnInit {
       if (this.key == "child") {
         this.sendEmitToParent();
       } else {
-        this.saveSRV.onSave(this.key, data);
+        this.saveSRV.onValueChange(this.key, data);
       }
     })
   }

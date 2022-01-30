@@ -3,14 +3,21 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/models&Languages/users/userType';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CreateService {
+export class CreateService extends UserService {
   user: User
 
-  constructor(private httpClient:HttpClient) {
+
+  constructor(protected override http: HttpClient) {
+    super(http);
+    this.initUser()
+  }
+
+  initUser() {
     this.user = {
       userName: "",
       men: {
@@ -66,57 +73,56 @@ export class CreateService {
       shtibel: ""
     }
   }
-  
-  get (): Observable <any>{
-    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&limit=60000`)
-                               
+
+  getCity(): Observable<any> {
+    return this.http.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&limit=60000`)
+
   }
-  getStreet (): Observable <any>{
-    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=60000`)
-                              
+  getStreet(): Observable<any> {
+    return this.http.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=60000`)
+
   }
-  onSave(key: string, value: any) {
+  onValueChange(key: string, value: any) {
     switch (key) {
       case "men":
-        this.user.men = {...this.user.men, ...value}
+        this.user.men = { ...this.user.men, ...value }
         break;
       case "menPhones":
-        this.user.men.phones = {...value} 
+        this.user.men.phones = { ...value }
         break;
       case "menJobs":
         this.user.men.jobs.push(value)
         break;
       case "menName":
-        this.user.men.name = value;
+        this.user.men.name = {...value};
         break;
       case "women":
-        this.user.women = {...this.user.women, ...value}
+        this.user.women = { ...this.user.women, ...value }
         break;
       case "womenPhones":
-        this.user.women.phones.push(value) 
+        this.user.women.phones.push(value)
         break;
       case "womenJobs":
         this.user.women.jobs.push(value)
         break;
       case "womenName":
-        this.user.women.name = value;
+        this.user.women.name = {...value};
         break;
       case "main":
-        this.user.dateOfMarriage = value.dateOfMarriage;
-        this.user.shtibel = value.shtibel
-        this.user.userName = value.userName
+        this.user = {...this.user, ...value}
         break;
       case "bankAccount":
-        this.user.bankAccount = value;
+        this.user.bankAccount = {...value};
         break;
-        case "address":
-        this.user.address = value;
+      case "address":
+        this.user.address = {...value};
         break;
       case "children":
         this.user.children.push(value);
         break;
     }
   }
-  save(){
+  save(): Observable<any> {
+  return  this.create("users", "", this.user);
   }
 }

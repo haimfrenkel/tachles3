@@ -25,7 +25,7 @@ export class PersonalFormComponent implements OnInit {
     this.keyForJob = `${this.gender}Jobs`
     this.keyForName = `${this.gender}Name`
     this.subscription = this.form.valueChanges.subscribe(data => {
-      this.saveSRV.onSave(this.gender, data)
+      this.saveSRV.onValueChange(this.gender, data)
     })
     console.log(this.saveSRV.user);
     

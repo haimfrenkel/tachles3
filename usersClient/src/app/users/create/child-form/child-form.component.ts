@@ -46,7 +46,7 @@ export class ChildFormComponent implements OnInit {
 
   addChildern(idx: number) {
     this.createData(idx)
-    this.saveSRV.onSave(this.key, this.convert)
+    this.saveSRV.onValueChange(this.key, this.convert)
     const childForm = new FormGroup({
       'dob': new FormControl(),
       'sex': new FormControl(),

@@ -27,7 +27,7 @@ export class AddressFomrComponent implements OnInit {
   ngOnInit(): void {
     console.log("key: ", this.key);
 
-    this.saveSRV.get().subscribe((res)=>{ 
+    this.saveSRV.getCity().subscribe((res)=>{ 
       this.cities = res.result.records.map(field=>field['שם יישוב'])
     })
     this.saveSRV.getStreet().subscribe((res)=>{ 
@@ -42,7 +42,7 @@ export class AddressFomrComponent implements OnInit {
       if (this.key == "job") {
         this.endEmitToParent()
       } else {
-        this.saveSRV.onSave("address", data)
+        this.saveSRV.onValueChange("address", data)
       }
     })
   }

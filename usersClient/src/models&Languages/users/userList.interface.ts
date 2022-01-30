@@ -1,9 +1,9 @@
 export interface UserList {
-    ID: number;
+    ID?: number;
     firstName: string;
     lastName: string;
     fatherName: string;
-    foneNumber: number;
+    phoneNumber: number;
     city: string
     id?:number;
 

@@ -42,7 +42,7 @@ export class JobFormComponent implements OnInit {
 
   addJobs(idx: number) {
     this.createData(idx)
-    this.saveSRV.onSave(this.key, this.convert)
+    this.saveSRV.onValueChange(this.key, this.convert)
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),

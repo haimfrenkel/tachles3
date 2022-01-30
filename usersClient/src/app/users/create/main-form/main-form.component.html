@@ -8,7 +8,7 @@
                     <div class="key">user name:</div>
                     <input class="input_create" type="text" formControlName="userName">
                     <div class="key">date of marriage:</div>
-                    <input class="input_create" type="text" formControlName="dateOfMarriage">
+                    <input class="input_create" type="date" formControlName="dateOfMarriage">
                     <div class="key">shtibel:</div>
                     <input class="input_create" type="text" formControlName="shtibel">
                 </div>   
@@ -33,4 +33,4 @@
         </div>
     </div> 
 </div>
-<!-- <button type="button" class="btn btn-secondary btn-lg button" routerLink="/users/PersonalFormComponent" >next </button> -->
+<button type="button" class="btn btn-secondary btn-lg button" (click)="save()" >save </button>

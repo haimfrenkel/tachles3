@@ -11,32 +11,31 @@ import { User } from '../../../models&Languages/users/userType';
 })
 export class UserService extends BaseHttpService<User> {
 
+  users: Observable<User[]>
+
   constructor(protected override http: HttpClient) {
     super(http);
   }
 
-  getAllUsers(): Observable<any> {
-    return this.getAll("users").pipe(map(data => this.convertToUserList(data)))
+  getAllUsers(): Observable<User[]> {
+    if(!this.users){
+      this.users = this.getAll("users");
+    }
+    return this.users
   }
 
   getOne(id: number) {
     return this.getOneByID("users", "", id)
   }
 
-  convertToUserList(data: User[]) {
-    let userList: UserList[] = []
-    for (let i = 0; i < data.length; i++) {
-      let user: UserList = {
-        "id": data[i].id,
-        "firstName": data[i].men.name.firstName,
-        "lastName": data[i].men.name.lastName,
-        "fatherName": data[i].men.fatherName,
-        "phoneNumber": data[i].men.phones[0]?.number ? data[i].men.phones[0].number : 0,
-        "city": data[i].address.city,
-      }
-      userList.push(user)
-    }
-    return userList
+  uploadFile(formData: FormData){
+    return this.create("users", "/uploadFile", formData).subscribe(data=>{
+      console.log(data);
+      
+    })
   }
+
+ 
+  
 }
 

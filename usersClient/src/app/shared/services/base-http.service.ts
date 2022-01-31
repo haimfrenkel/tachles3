@@ -20,19 +20,19 @@ export class BaseHttpService<T>{
   }
   //To return information that the information was successfully received, the type is any, 
   //and the server will return a message that the information was successfully received
-  protected create(eninty: string, queryParmas = "", body: T): Observable<any> {
+  protected create(eninty: string, queryParmas = "", body: T | any, headers?: HttpHeaders): Observable<any> {    
     return this.http.post<any>(`${environment.baseUrl}/${eninty}${queryParmas}`, body);
   }
 
-  public getOneByID(eninty: string, queryParmas = "", id: number): Observable<T> {
+  protected getOneByID(eninty: string, queryParmas = "", id: number): Observable<T> {
     return this.http.get<T>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
   }
 
-  private deleteOne(eninty: string, queryParmas = "", id: number): Observable<T> {
+  protected deleteOne(eninty: string, queryParmas = "", id: number): Observable<T> {
     return this.http.delete<T>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`);
   }
   //same note as create
-  private updateOne(eninty: string, queryParmas = "", id: number, body: {}): Observable<any> {
+  protected updateOne(eninty: string, queryParmas = "", id: number, body: {}): Observable<any> {
     return this.http.put<any>(`${environment.baseUrl}/${eninty}/${id}${queryParmas}`, body);
   }
 

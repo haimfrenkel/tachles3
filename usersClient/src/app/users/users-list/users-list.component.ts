@@ -3,10 +3,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
 import { UserList } from '../../../models&Languages/users/userList.interface';
 import { User } from '../../../models&Languages/users/userType';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -22,26 +23,14 @@ export class UsersListComponent implements OnInit {
     { headerName: "phoneNumber", field: "phoneNumber" },
     { headerName: "city", field: "city", sortable: true, filter: true }
   ];
-  rowData: Observable<any[]>;
+  rowData: Observable<UserList[]>;
 
   @ViewChild('agGrid') agGrid!: AgGridAngular;
 
-  constructor(private userService: UserService, private router: Router) {
-
-
-  }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(data => {
-      console.log(data);
-    });
-
-    this.rowData = this.userService.getAllUsers();
-  }
-
-  onCellClicked(e) {
-    console.log("onCellClicked is up");
-    console.log("event: ", e);
+    this.rowData = this.userService.getAllUsers().pipe(map(data => data.map(this.convertToUserList)));
   }
 
   getSelectedRows(): void {
@@ -57,42 +46,15 @@ export class UsersListComponent implements OnInit {
 
   }
 
-  getAllUser(data: User[]): UserList[] {
-    let userList: UserList[] = []
-    for (let i = 0; i < data.length; i++) {
-      let user: UserList = {
-        "ID": 5,
-        "firstName": data[i].men.name.firstName,
-        "lastName": data[i].men.name.lastName,
-        "fatherName": data[i].men.fatherName,
-        "phoneNumber": data[i].men.phones[0]?.number ? data[i].men.phones[0].number : 0,
-        "city": data[i].address.city,
-      }
-      userList.push(user)
+  convertToUserList(data: User): UserList {
+    let user: UserList = {
+      "id": data.id,
+      "firstName": data.men.name.firstName,
+      "lastName": data.men.name.lastName,
+      "fatherName": data.men.fatherName,
+      "phoneNumber": data.men.phones[0]?.number ? data.men.phones[0].number : 0,
+      "city": data.address.city,
     }
-    return userList
+    return user
   }
-
 }
-
-
-// <ag-grid-angular
-//     #agGrid
-//     style="width: 100%; height: 75vh;"
-//     class="ag-theme-alpine"
-//     [rowData]="rowData | async"
-//     [columnDefs]="columnDefs"
-//     rowSelection="multiple"
-//     row-animation
-//     pagination
-//     suppressCellSelection="true"
-//     (selectionChanged)="onSelectionChanged($event)"
-//     (gridReady)="onGridReady($event)" 
-//     [suppressRowClickSelection]="!restore"
-//     (rowDoubleClicked)='NavToDetail($event)'
-//     [defaultColDef]="defaultColDef">
-
-
-//     >
-// </ag-grid-angular>
-

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/models&Languages/users/userType';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,7 +11,7 @@ export class UploadFileComponent implements OnInit {
 
   fileName = '';
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +21,8 @@ export class UploadFileComponent implements OnInit {
     if (file) {
       this.fileName = file.name;
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", file);    
+      this.userService.uploadFile(formData)
     }
   }
 }

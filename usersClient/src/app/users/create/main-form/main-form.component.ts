@@ -25,8 +25,6 @@ export class MainFormComponent implements OnInit {
     this.editForm
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onValueChange("main", data)
-      console.log(this.saveSRV.user);
-
     })
   }
 
@@ -74,7 +72,6 @@ export class MainFormComponent implements OnInit {
 
   save() {
     this.saveSRV.save().subscribe(data => {
-      console.log(data);
       this.saveSRV.initUser();
     })
   }

@@ -3,8 +3,11 @@ package com.tachles.users.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,7 +23,7 @@ public class PersonalInformation extends BaseModel {
     private String fatherName;
     private String grandfatherName;
     private String greatGrandfatherName;
-    private Date DOB;
+    private LocalDate DOB;
     private String email;
     private String maritalStatus;
     @OneToMany(cascade = CascadeType.ALL,  mappedBy = "personalInformation_phone")

@@ -10,7 +10,7 @@ import { MainFormComponent } from './main-form/main-form.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateRoutingModule } from './create-routing.module';
-
+import { TranslatePipe } from 'src/app/languages/translate.pipe';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { CreateRoutingModule } from './create-routing.module';
     ChildFormComponent,
     JobFormComponent,
     MainFormComponent,
-    PersonalFormComponent
+    PersonalFormComponent,
+    TranslatePipe
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,8 @@
     <h3 *ngIf="key ==undefined" class="header ">Address </h3>
     <form [formGroup]="form" >
         <div class="">
+            <div class="key">state</div>
+                <input class="input_create" type="text" formControlName="state">
             <div class="key">city:</div>
             <select class="dropdownStyle input_create" (change)="userAnswersClick($event)"  formControlName="city">
                 <option *ngFor="let city of cities"  [ngValue]="city">{{city['שם יישוב']}}</option>

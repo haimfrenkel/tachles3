@@ -46,6 +46,7 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
 # Names our volume
 volumes:
   my-db: null

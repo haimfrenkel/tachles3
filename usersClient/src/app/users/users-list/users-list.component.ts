@@ -14,7 +14,6 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-
   columnDefs: ColDef[] = [
     { headerName: "id", field: "id", sortable: true, filter: true },
     { headerName: "firstName", field: "firstName" },
@@ -29,8 +28,8 @@ export class UsersListComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.rowData = this.userService.getAllUsers().pipe(map(data => data.map(this.convertToUserList)));
+  ngOnInit(): void {    
+    this.rowData = this.userService.getAllUsers().pipe(map((data: User[]) => data.map(this.convertToUserList)));
   }
 
   getSelectedRows(): void {
@@ -41,19 +40,19 @@ export class UsersListComponent implements OnInit {
   }
 
   NavToDetail(event) {
-    console.log("event.data.id:", event.data.id);
     this.router.navigate(['users/personal-card', event.data.id]);
-
   }
 
   convertToUserList(data: User): UserList {
+    
+    
     let user: UserList = {
       "id": data.id,
       "firstName": data.men.name.firstName,
       "lastName": data.men.name.lastName,
       "fatherName": data.men.fatherName,
       "phoneNumber": data.men.phones[0]?.number ? data.men.phones[0].number : 0,
-      "city": data.address.city,
+      "city": data.userName,
     }
     return user
   }

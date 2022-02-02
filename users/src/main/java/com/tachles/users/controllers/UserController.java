@@ -1,23 +1,18 @@
 package com.tachles.users.controllers;
 
 
-import com.tachles.users.models.PersonalInformation;
+import com.tachles.users.ResponseMessage;
 import com.tachles.users.models.User;
-import com.tachles.users.repositorys.UserRepository;
+import com.tachles.users.service.UploadService;
 import com.tachles.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver;
-
-import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -26,43 +21,48 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    UploadService uploadService;
+
     @PostMapping()
     public User createOne(@RequestBody User user) {
         return userService.create(user);
     }
 
     @PostMapping("uploadFile")
-        public String submit(@RequestParam("file") MultipartFile file) {
-        System.out.println("file" + file.getName());
-        System.out.println("file" + file.getContentType());
-        System.out.println("file" + file.getSize());
-        System.out.println("file" + file.getOriginalFilename());
-        System.out.println();
-        try {
-            file.getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        String message = "";
+        if (uploadService.hasCSVFormat(file)) {
+            System.out.println("file: " + file.getContentType());
+
+            try {
+                userService.saveMany(file);
+                message = "Uploaded the file successfully: " + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
         }
-
-        return "fileUploadView";
-        }
-
-
+        message = "Please upload a csv file!";
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getOne(@PathVariable(value = "id")long id){
-       return new ResponseEntity<User>(userService.getOneByID(id), HttpStatus.OK);
+    public ResponseEntity<User> getOne(@PathVariable(value = "id") long id) {
+        return new ResponseEntity<User>(userService.getOneByID(id), HttpStatus.OK);
     }
+
     @GetMapping()
-    public ArrayList<User> getAllUsers(){
+    public ArrayList<User> getAllUsers() {
         return userService.getAll();
     }
+
+
     @DeleteMapping("/{id}")
-    public  ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id)  {
-        System.out.println("delete User "+id);
-
+    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id) {
+        System.out.println("delete User " + id);
         return userService.deleteUser(id);
-
     }
 }
 

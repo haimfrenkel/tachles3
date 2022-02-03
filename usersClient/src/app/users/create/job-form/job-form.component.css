@@ -3,3 +3,10 @@
     margin: 5px;
     margin-left: 10px;
 }
+.note_for_job {
+    width: 200px;
+     margin-left: 25px; 
+     text-align: center; 
+     font-size: 13px; 
+     color: red;
+}

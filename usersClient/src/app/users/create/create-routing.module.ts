@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddressFomrComponent } from './address-form/address-fomr.component';
+import { AddressFormComponent } from './address-form/address-form.component';
 import { BankAccountFormComponent } from './bank-account-form/bank-account-form.component';
 import { ChildFormComponent } from './child-form/child-form.component';
 import { JobFormComponent } from './job-form/job-form.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'JobFormComponent', component:  JobFormComponent },
   { path: 'ChildFormComponent', component:  ChildFormComponent },
   { path: 'BankAccountFormComponent', component: BankAccountFormComponent },
-  { path: 'AddressFomrComponent', component: AddressFomrComponent },
+  { path: 'AddressFomrComponent', component: AddressFormComponent },
 
 ];
 

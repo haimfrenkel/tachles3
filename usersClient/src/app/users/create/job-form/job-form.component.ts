@@ -21,8 +21,6 @@ export class JobFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
-    console.log(this.saveSRV.user);
-
   }
 
   initForm() {
@@ -41,19 +39,23 @@ export class JobFormComponent implements OnInit {
   }
 
   addJobs(idx: number) {
-    this.createData(idx)
-    this.saveSRV.onValueChange(this.key, this.convert)
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),
     });
     this.jobs.push(jobForm);  
     this.sowButtontAdd++;  
+    
   }
 
-  pushAddress(data: any) {
-    console.log("pushAddress.data: ",data );
-    
+  saveJob(idx: number){
+    this.createData(idx)  
+    console.log(this.convert);
+      
+    this.saveSRV.onValueChange(this.key, this.convert)
+  }
+
+  pushAddress(data: Address) {    
     this.address = data
   }
 

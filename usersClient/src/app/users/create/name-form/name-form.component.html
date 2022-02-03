@@ -1,22 +1,18 @@
 <div class="card_name">
-<form [formGroup]="form">
+  <form [formGroup]="form">
     <div class="header ">
-      
-      <div class="key">start name:</div>
-      <select class="dropdownStyle input_create"  formControlName="startName">
+      <div class="key">{{ "START_NAME" | translate}}</div>
+      <select class="dropdownStyle input_create" formControlName="startName">
         <option *ngFor="let startName of startNameOptions" [ngValue]="startName">{{startName}}</option>
-     </select>
-      <!-- <input class="input_create" type="text" formControlName="startName"> -->
-      <div class="key">first name:</div>
+      </select>
+      <div class="key">{{ "FIRST_NAME" | translate}}</div>
       <input class="input_create" type="text" formControlName="firstName">
-      <div class="key">last name:</div>
+      <div class="key">{{ "LAST_NAME" | translate}}</div>
       <input class="input_create" type="text" formControlName="lastName">
-      <div class="key">end name:</div>
-      <select class="dropdownStyle input_create"  formControlName="endName">
+      <div class="key">{{ "END_NAME" | translate}}</div>
+      <select class="dropdownStyle input_create" formControlName="endName">
         <option *ngFor="let endName of endNameOptions" [ngValue]="endName">{{endName}}</option>
-     </select>
-      <!-- <input class="input_create" type="text" formControlName="endName"> -->
-
+      </select>
     </div>
-</form>
+  </form>
 </div>

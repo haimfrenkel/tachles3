@@ -17,13 +17,11 @@ export class ChildFormComponent implements OnInit {
   convert: Child
   name: Name
   keyForName: string = "child"
-  sowButtontAdd:number =0
+  sowButtontAdd: number = 0
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.initForm()
-    console.log(this.saveSRV.user);
-
   }
 
 
@@ -49,19 +47,19 @@ export class ChildFormComponent implements OnInit {
     this.saveSRV.onValueChange(this.key, this.convert)
     const childForm = new FormGroup({
       'dob': new FormControl(),
-      'sex': new FormControl(),
+      'gender': new FormControl(),
       'maritalStatus': new FormControl(),
       'placeOfStudy': new FormControl()
     });
+    this.sowButtontAdd++
     this.children.push(childForm);
-    this.sowButtontAdd++;
   }
 
   pushName(data: any) {
     this.name = data
   }
 
-  createData(idx: number) {
+  createData(idx: number) {    
     this.convert = {
       dob: this.form.get(['children', idx, 'dob'])?.value,
       gender: this.form.get(['children', idx, 'gender'])?.value,

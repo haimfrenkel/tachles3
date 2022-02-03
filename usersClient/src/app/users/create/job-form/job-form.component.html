@@ -3,20 +3,21 @@
 <div class="card card_create " >
 
     <form [formGroup]="form">
-        <div class="header" formArrayName="jobs">
+        <div class="header" formArrayName="jobs"> {{ "WORK" | translate }}
             <div class="row div_center">
-                <a *ngFor="let Job of jobs.controls; let i = index">  
-                    
+                <a *ngFor="let Job of jobs.controls; let i = index">         
                     <div class="card card_create card_job">  
                         <a [formGroupName]="i">
-                            <div class="key">job {{i+1}}:</div>
+                            <div class="key">{{ "JOB" | translate }}</div>
                             <input class="input_create" type="text" formControlName="job">
-                            <div class="key">company name:</div>
+                            <div class="key">{{ "COMPANY_NAME" | translate }}</div>
                             <input class="input_create" type="text" formControlName="companyName">
                         </a>
-  keyForAddress: string = "job"
-                        <app-address-fomr [key]="keyForAddress" (data)=pushAddress($event)  ></app-address-fomr>
-                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>add job</button>
+                        <app-address-form [key]="keyForAddress" (data)=pushAddress($event)  ></app-address-form>
+                        <div class="note_for_job">{{ "NOTE_FOR_JOB" | translate }}</div>
+                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>{{ "ADD_JOB" | translate }}</button>
+                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=saveJob(i)>{{ "SAVE_JOB" | translate }}</button>
+
                     </div>     
                 </a>
             </div>

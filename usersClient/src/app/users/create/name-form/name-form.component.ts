@@ -10,8 +10,8 @@ import { CreateService } from '../create.service';
   styleUrls: ['./name-form.component.css']
 })
 export class NameFormComponent implements OnInit {
-  @Input() key;
-  @Input() idx;
+  @Input('key') key;
+  @Input('idx') idx;
   @Output() data = new EventEmitter<Name>()
 
   form: FormGroup
@@ -24,8 +24,9 @@ export class NameFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.editForm();
+    this.key = `${this.key}Name`
     this.subscription = this.form.valueChanges.subscribe(data => {
-      if (this.key == "child") {
+      if (this.key == "childName") {
         this.sendEmitToParent();
       } else {
         this.saveSRV.onValueChange(this.key, data);

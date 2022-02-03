@@ -1,29 +1,28 @@
-<div class="card card_create">
+<div class="card card_create" style="display:inline-block;">
   <form [formGroup]="form">
-      <div class="header row" formArrayName="children">
-        <a *ngFor="let child of children.controls; let i = index">
-          <a [formGroupName]="i">
-            <div style="margin-left: 40%;">child {{i+1}}</div>
-            <div class="header_child"  >
-              <app-name-form [key]="keyForName" [idx]="i" (data)=pushName($event)></app-name-form>
-              <div style="padding-left: 27px;">                <div class="key">DOB:</div>
-                <input class="input_create" type="date" formControlName="dob">
-                <div class="key">sex:</div>
-                <input class="input_create" type="text" formControlName="sex">
-                <div class="key">marital Status:</div>
-                <input class="input_create" type="text" formControlName="maritalStatus">
-                <div class="key">place Of Study:</div>
-                <input class="input_create" type="text" formControlName="placeOfStudy">
-              </div>
+    <div class="header row" formArrayName="children">
+      <a *ngFor="let child of children.controls; let i = index">
+        {{i}}
+        <a [formGroupName]="i">
+          <div style="margin-left: 40%;">child {{i+1}}</div>
+          <div class="header_child">
+            <app-name-form [key]="keyForName" [idx]="i" (data)=pushName($event)></app-name-form>
+            <div style="padding-left: 27px;">
+              <div class="key">{{ "DOB" | translate }}</div>
+              <input class="input_create" type="date" formControlName="dob">
+              <div class="key">{{ "GENDER" | translate }}</div>
+              <input class="input_create" type="text" formControlName="gender">
+              <div class="key">{{ "MARITAL_STATUS" | translate }}</div>
+              <input class="input_create" type="text" formControlName="maritalStatus">
+              <div class="key">{{ "PLACE_OF_STUDY" | translate }}</div>
+              <input class="input_create" type="text" formControlName="placeOfStudy">
             </div>
-          </a>
-          <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;" (click)=addChildern(i)>to add child</button>
+          </div>
         </a>
-        
-      </div>
+        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;"
+          (click)=addChildern(i)>add child</button>
+      </a>
+
+    </div>
   </form>
 </div>
-<div>
-    
-</div>
-

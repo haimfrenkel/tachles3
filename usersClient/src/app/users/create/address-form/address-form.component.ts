@@ -7,11 +7,11 @@ import { CreateService } from '../create.service';
 
 
 @Component({
-  selector: 'app-address-fomr',
-  templateUrl: './address-fomr.component.html',
-  styleUrls: ['./address-fomr.component.css']
+  selector: 'app-address-form',
+  templateUrl: './address-form.component.html',
+  styleUrls: ['./address-form.component.css']
 })
-export class AddressFomrComponent implements OnInit {
+export class AddressFormComponent implements OnInit {
   @Input() key
   @Input() idx
   @Output() data = new EventEmitter<Address>()
@@ -20,7 +20,7 @@ export class AddressFomrComponent implements OnInit {
   subscription: Subscription
   cities: any;
   streets: any;
-  city: any;
+  cityT: any;
 
   constructor(private saveSRV: CreateService) { }
 
@@ -31,7 +31,7 @@ export class AddressFomrComponent implements OnInit {
       this.cities = res.result.records
     })
 
-    this.saveSRV.getStreet().subscribe((res) => { })
+    // this.saveSRV.getStreet().subscribe((res) => { })
 
     this.subscription = this.form.valueChanges.subscribe(data => {
       if (this.key == "job") {
@@ -43,9 +43,15 @@ export class AddressFomrComponent implements OnInit {
   }
 
   userAnswersClick(event) {
-    this.city = this.form.get('city')?.value;
+    console.log('here');
+    
+    this.cityT = this.form.get('city')?.value;
+    console.log(this.cityT);
+    
     this.saveSRV.getStreet().subscribe((res) => {
-      this.streets = res.result.records.filter(s => s['סמל_ישוב'] == this.city['סמל יישוב'])
+      console.log(res);
+      
+      this.streets = res.result.records.filter(s => s['סמל_ישוב']== this.cityT['סמל יישוב'])
     })
   }
 

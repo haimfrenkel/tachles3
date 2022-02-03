@@ -52,7 +52,8 @@ export class MainFormComponent implements OnInit {
     if (this.nextToPersonal) {
       this.nextToPersonal = false
     } else {
-    } this.nextToPersonal = true
+      this.nextToPersonal = true
+    }
   }
 
   next_to_child() {

@@ -9,7 +9,9 @@ import { User } from 'src/models&Languages/users/userType';
 })
 export class CreateService {
   user: User
-
+  urlCity=`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`;
+  urlStreet =`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4&q=`
+  urlEnd=`&limit=60000`
   constructor(private httpClient:HttpClient) {
     this.user = {
       userName: "",
@@ -68,12 +70,13 @@ export class CreateService {
   }
   
   get (): Observable <any>{
-    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&limit=60000`)
+    return this.httpClient.get(`${this.urlCity}${this.urlEnd}`)
                                
   }
-  getStreet (): Observable <any>{
-    return this.httpClient.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=60000`)
-                              
+  getStreet (city:string): Observable <any>{
+    console.log("city",city);
+    let url =this.urlCity +city +this.urlEnd
+    return this.httpClient.get(url)
   }
   onSave(key: string, value: any) {
     switch (key) {

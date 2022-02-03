@@ -47,9 +47,9 @@ export class AddressFomrComponent implements OnInit {
   userAnswersClick(event){
     console.log("this.form.value.city['סמל יישוב']: " ,this.form.value.city['סמל יישוב']);
     this.city=this.form.value.city;
-    this.saveSRV.getStreet().subscribe((res)=>{ 
-      // console.log("res",res)
-      this.streets = res.result.records.filter(s=>s['סמל_ישוב']==this.city['סמל יישוב'])
+    this.saveSRV.getStreet(this.city).subscribe((res)=>{ 
+       console.log("res",res)
+      this.streets = res.result.records
       // console.log(this.streets)
     
     //   this.streets = res.result.records.filter(s=>s['שם רחוב']== this.form.value.city)

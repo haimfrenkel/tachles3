@@ -5,7 +5,7 @@
         <div class="">
             <div class="key">city:</div>
             <select class="dropdownStyle input_create" (change)="userAnswersClick($event)"  formControlName="city">
-                <option *ngFor="let city of cities"  [ngValue]="city">{{city['שם יישוב']}}</option>
+                <option *ngFor="let city of cities"  [ngValue]="city['שם יישוב']">{{city['שם יישוב']}}</option>
             </select>
         <!-- <input class="input_create" type="text" formControlName="city"> -->
         <div *ngIf="this.form.value.city">

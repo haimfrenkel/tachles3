@@ -1,7 +1,6 @@
 package com.tachles.users.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,5 +22,5 @@ public class Child extends BaseModel {
     private String placeOfStudy;
     @ManyToOne
     @JsonBackReference
-    private User user;
+    private UserM user;
 }

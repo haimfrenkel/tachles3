@@ -1,11 +1,8 @@
 package com.tachles.users.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -16,8 +13,8 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class User extends BaseModel {
-    public String userName;
+public class UserM extends BaseModel {
+    private String userName;
 //    private int ID;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalInformation men;
@@ -35,6 +32,7 @@ public class User extends BaseModel {
     @JsonManagedReference
     private List<Child> children;
     private String shtibel;
+    private String password;
 }
 
 

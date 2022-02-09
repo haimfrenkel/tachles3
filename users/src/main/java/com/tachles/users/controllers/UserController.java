@@ -2,7 +2,7 @@ package com.tachles.users.controllers;
 
 
 import com.tachles.users.ResponseMessage;
-import com.tachles.users.models.User;
+import com.tachles.users.models.UserM;
 import com.tachles.users.service.UploadService;
 import com.tachles.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @CrossOrigin(origins = "*")
@@ -25,7 +24,7 @@ public class UserController {
     UploadService uploadService;
 
     @PostMapping()
-    public User createOne(@RequestBody User user) {
+    public UserM createOne(@RequestBody UserM user) {
         return userService.create(user);
     }
 
@@ -49,12 +48,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getOne(@PathVariable(value = "id") long id) {
-        return new ResponseEntity<User>(userService.getOneByID(id), HttpStatus.OK);
+    public ResponseEntity<UserM> getOne(@PathVariable(value = "id") long id) {
+        return new ResponseEntity<UserM>(userService.getOneByID(id), HttpStatus.OK);
     }
 
     @GetMapping()
-    public ArrayList<User> getAllUsers() {
+    public ArrayList<UserM> getAllUsers() {
         return userService.getAll();
     }
 

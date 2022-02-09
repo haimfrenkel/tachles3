@@ -13,13 +13,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class UploadService {
@@ -31,58 +28,58 @@ public class UploadService {
         return TYPE.equals(file.getContentType());
     }
 
-    public static List<User> csvToUsers(InputStream is) {
+    public static List<UserM> csvToUsers(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
-            List<User> Users = new ArrayList<User>();
-
+            List<UserM> Users = new ArrayList<UserM>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
-                User user = new User();
-                user.setUserName(csvRecord.get("userName"));
-                user.setDateOfMarriage(LocalDate.parse(csvRecord.get("dateOfMarriage"), formatter));
-                user.setShtibel(csvRecord.get("shtibel"));
+                UserM user = new UserM();
+                user.setUserName(csvRecord.get("שם משתמש"));
+                user.setDateOfMarriage(LocalDate.parse(csvRecord.get("תאריך נישואין"), formatter));
+                user.setShtibel(csvRecord.get("שטיבל"));
                 user.setMen(new PersonalInformation());
                 user.getMen().setName(new Name());
-                user.getMen().getName().setStartName(csvRecord.get("startName"));
-                user.getMen().getName().setFirstName(csvRecord.get("firstName"));
-                user.getMen().getName().setLastName(csvRecord.get("lastName"));
-                user.getMen().getName().setEndName(csvRecord.get("endName"));
-                user.getMen().setFatherName(csvRecord.get("fatherName"));
-                user.getMen().setGrandfatherName(csvRecord.get("grandfatherName"));
-                user.getMen().setGreatGrandfatherName(csvRecord.get("greatGrandfatherName"));
-                user.getMen().setDOB(LocalDate.parse(csvRecord.get("DOB"), formatter));
-                user.getMen().setEmail(csvRecord.get("email"));
-                user.getMen().setMaritalStatus(csvRecord.get("maritalStatus"));
+                user.getMen().getName().setStartName(csvRecord.get("כינוי התחלה"));
+                user.getMen().getName().setFirstName(csvRecord.get("שם פרטי"));
+                user.getMen().getName().setLastName(csvRecord.get("שם משפחה"));
+                user.getMen().getName().setEndName(csvRecord.get("כינוי סוף"));
+                user.getMen().setFatherName(csvRecord.get("שם האב"));
+                user.getMen().setGrandfatherName(csvRecord.get("שם הסב"));
+                user.getMen().setGreatGrandfatherName(csvRecord.get("שם אבי הסב"));
+                user.getMen().setDOB(LocalDate.parse(csvRecord.get("תאריך לידה"), formatter));
+                user.getMen().setEmail(csvRecord.get("אמייל"));
+                user.getMen().setMaritalStatus(csvRecord.get("סטטוס נישואין"));
                 user.getMen().setPhones(new ArrayList<Phone>());
-                user.getMen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("number")), Boolean.parseBoolean(csvRecord.get("whatsapp")), user.getMen()));
+                user.getMen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("מספר טלפון")), Boolean.parseBoolean(csvRecord.get("whatsapp")), user.getMen()));
                 user.setWomen(new PersonalInformation());
                 user.getWomen().setName(new Name());
-                user.getWomen().getName().setStartName(csvRecord.get("startName"));
-                user.getWomen().getName().setFirstName(csvRecord.get("firstName"));
-                user.getWomen().getName().setLastName(csvRecord.get("lastName"));
-                user.getWomen().getName().setEndName(csvRecord.get("endName"));
-                user.getWomen().setFatherName(csvRecord.get("fatherName"));
-                user.getWomen().setGrandfatherName(csvRecord.get("grandfatherName"));
-                user.getWomen().setGreatGrandfatherName(csvRecord.get("greatGrandfatherName"));
-                user.getWomen().setDOB(LocalDate.parse(csvRecord.get("DOB"), formatter));
-                user.getWomen().setEmail(csvRecord.get("email"));
-                user.getWomen().setMaritalStatus(csvRecord.get("maritalStatus"));
+                user.getWomen().getName().setStartName(csvRecord.get("כינוי התחלה 1"));
+                user.getWomen().getName().setFirstName(csvRecord.get("שם פרטי 1"));
+                user.getWomen().getName().setLastName(csvRecord.get("שם משפחה 1"));
+                user.getWomen().getName().setEndName(csvRecord.get("כינוי סוף 1"));
+                user.getWomen().setFatherName(csvRecord.get("שם האב 1"));
+                user.getWomen().setGrandfatherName(csvRecord.get("שם הסב 1"));
+                user.getWomen().setGreatGrandfatherName(csvRecord.get("שם אבי הסב 1"));
+                user.getWomen().setDOB(LocalDate.parse(csvRecord.get("תאריך לידה 1"), formatter));
+                user.getWomen().setEmail(csvRecord.get("אמייל 1"));
+                user.getWomen().setMaritalStatus(csvRecord.get("סטטוס נישואין 1"));
                 user.getWomen().setPhones(new ArrayList<Phone>());
-                user.getWomen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("number")), Boolean.parseBoolean(csvRecord.get("whatsapp")), user.getWomen()));
+                user.getWomen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("מספר טלפון 1")), Boolean.parseBoolean(csvRecord.get("whatsapp 1")), user.getMen()));
                 user.setAddress(new Address());
-                user.getAddress().setState(csvRecord.get("state"));
-                user.getAddress().setCity(csvRecord.get("city"));
-                user.getAddress().setStreet(csvRecord.get("street"));
-                user.getAddress().setBuildingNumber(Integer.parseInt(csvRecord.get("buildingNumber")));
-                user.getAddress().setApartment(Integer.parseInt(csvRecord.get("apartment")));
+                user.getAddress().setState(csvRecord.get("מדינה"));
+                user.getAddress().setCity(csvRecord.get("עיר"));
+                user.getAddress().setStreet(csvRecord.get("רחוב"));
+                user.getAddress().setBuildingNumber(Integer.parseInt(csvRecord.get("מספר בניין")));
+                user.getAddress().setApartment(Integer.parseInt(csvRecord.get("מספר דירה")));
+                user.getAddress().setZipCode(Integer.parseInt(csvRecord.get("מיקוד")));
                 user.setBankAccount(new BankAccount());
-                user.getBankAccount().setBankNo(Integer.parseInt(csvRecord.get("bankNo")));
-                user.getBankAccount().setBankName(csvRecord.get("bankName"));
-                user.getBankAccount().setBranchNo(Integer.parseInt(csvRecord.get("branchNo")));
-                user.getBankAccount().setAccountNo(Integer.parseInt(csvRecord.get("accountNo")));
+                user.getBankAccount().setBankNo(Integer.parseInt(csvRecord.get("מספר בנק")));
+                user.getBankAccount().setBankName(csvRecord.get("שם הבנק"));
+                user.getBankAccount().setBranchNo(Integer.parseInt(csvRecord.get("מספר סניף")));
+                user.getBankAccount().setAccountNo(Integer.parseInt(csvRecord.get("מספר חשבון")));
                 Users.add(user);
             }
             return Users;

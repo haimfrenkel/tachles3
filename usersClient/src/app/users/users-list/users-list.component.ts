@@ -43,9 +43,7 @@ export class UsersListComponent implements OnInit {
     this.router.navigate(['users/personal-card', event.data.id]);
   }
 
-  convertToUserList(data: User): UserList {
-    
-    
+  convertToUserList(data: User): UserList {    
     let user: UserList = {
       "id": data.id,
       "firstName": data.men.name.firstName,

@@ -1,9 +1,7 @@
 package com.tachles.users.service;
 
-import com.tachles.users.models.User;
+import com.tachles.users.models.UserM;
 import com.tachles.users.repositorys.UserRepository;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,20 +18,21 @@ public class UserService {
     UserRepository userRepository;
     @Autowired
     UploadService uploadService;
-    User user;
+    UserM user;
 
-    public User create(User user) {
+    public UserM create(UserM user) {
         return userRepository.save(user);
     }
 
-    public User getOneByID(long id) {
+    public UserM getOneByID(long id) {
         System.out.println("id:" + id);
         return userRepository.findById(id).orElseThrow();
     }
 
+
     public void saveMany(MultipartFile file) {
         try {
-            List<User> users = uploadService.csvToUsers(file.getInputStream());
+            List<UserM> users = uploadService.csvToUsers(file.getInputStream());
             userRepository.saveAll(users);
         } catch (IOException e) {
             throw new RuntimeException("fail to store csv data: " + e.getMessage());
@@ -42,14 +40,14 @@ public class UserService {
     }
 
 
-    public ArrayList<User> getAll() {
+    public ArrayList<UserM> getAll() {
         System.out.println("user");
-        return (ArrayList<User>) userRepository.findAll();
+        return (ArrayList<UserM>) userRepository.findAll();
     }
 
     public ResponseEntity<?> deleteUser(long id) {
         System.out.println("delete User " + id);
-        User user = getOneByID(id);
+        UserM user = getOneByID(id);
         userRepository.delete(user);
         return ResponseEntity.ok().build();
 

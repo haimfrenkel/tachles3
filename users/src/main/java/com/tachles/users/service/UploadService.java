@@ -28,15 +28,15 @@ public class UploadService {
         return TYPE.equals(file.getContentType());
     }
 
-    public static List<UserM> csvToUsers(InputStream is) {
+    public static List<User> csvToUsers(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
-            List<UserM> Users = new ArrayList<UserM>();
+            List<User> Users = new ArrayList<User>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
-                UserM user = new UserM();
+                User user = new User();
                 user.setUserName(csvRecord.get("שם משתמש"));
                 user.setDateOfMarriage(LocalDate.parse(csvRecord.get("תאריך נישואין"), formatter));
                 user.setShtibel(csvRecord.get("שטיבל"));

@@ -1,11 +1,11 @@
 package com.tachles.users.repositorys;
 
-import com.tachles.users.models.UserM;
+import com.tachles.users.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserM, Long> {
-
-      UserM findByUserName(String userName);
+public interface UserRepository extends CrudRepository<User, Long> {
+      User findByUserName(String username);
 }

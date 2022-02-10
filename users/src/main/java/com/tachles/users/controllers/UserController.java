@@ -2,7 +2,7 @@ package com.tachles.users.controllers;
 
 
 import com.tachles.users.ResponseMessage;
-import com.tachles.users.models.UserM;
+import com.tachles.users.models.User;
 import com.tachles.users.service.UploadService;
 import com.tachles.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class UserController {
     UploadService uploadService;
 
     @PostMapping()
-    public UserM createOne(@RequestBody UserM user) {
+    public User createOne(@RequestBody User user) {
         return userService.create(user);
     }
 
@@ -48,12 +48,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserM> getOne(@PathVariable(value = "id") long id) {
-        return new ResponseEntity<UserM>(userService.getOneByID(id), HttpStatus.OK);
+    public ResponseEntity<User> getOne(@PathVariable(value = "id") long id) {
+        return new ResponseEntity<User>(userService.getOneByID(id), HttpStatus.OK);
     }
 
     @GetMapping()
-    public ArrayList<UserM> getAllUsers() {
+    public ArrayList<User> getAllUsers() {
         return userService.getAll();
     }
 

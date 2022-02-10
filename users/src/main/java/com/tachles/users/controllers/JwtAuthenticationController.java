@@ -5,6 +5,7 @@ import com.tachles.users.models.JwtRequest;
 import com.tachles.users.models.JwtResponse;
 import com.tachles.users.models.UserDTO;
 import com.tachles.users.service.JwtUserDetailsService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,13 +28,15 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    @RequestMapping(value = "login", method = RequestMethod.POST)
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody @NotNull JwtRequest authenticationRequest) throws Exception {
+        System.out.println("enter in createAuthenticationToken");
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        System.out.println("pass the user detalis");
 
+        System.out.println(userDetails);
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
@@ -41,6 +44,7 @@ public class JwtAuthenticationController {
 
 
     private void authenticate(String username, String password) throws Exception {
+        System.out.println(username + " + " +password);
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {

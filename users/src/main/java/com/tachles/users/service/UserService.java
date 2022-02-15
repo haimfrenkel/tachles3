@@ -35,7 +35,7 @@ public class UserService {
     public User getOneByID(long id) {
         System.out.println("id:" + id);
         User user = userRepository.findById(id).orElseThrow();
-        user.setPassword("*********");
+        user.setPassword("**********");
         return user;
     }
 

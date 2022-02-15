@@ -3,6 +3,7 @@ export const langMap = {
     "USER_NAME": "שם משתמש",
     "DATA_OF_MARRIAGE": "תאריך נישואין",
     "STIBEL": "שטיבל",
+    "PASSWORD": "סיסמא",
     "CHILDREN": "ילדים",
     "STATE": "מדינה",
     "CITY": "עיר",
@@ -43,7 +44,8 @@ export const langMap = {
     "HUSBAND_DETALIS": "פרטי הגבר",
     "WIFE_DETALIS": "פרטי האישה",
     "USER_DETALIS": "פרטי משתמש",
-    "WORK": "עבודה"
+    "WORK": "עבודה",
+    "CREATE_NEW_USER" : "צור משתמש חדש"
     // },
     // BUTTONS: {
 

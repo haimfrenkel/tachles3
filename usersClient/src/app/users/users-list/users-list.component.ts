@@ -14,13 +14,14 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
+  
   columnDefs: ColDef[] = [
-    { headerName: "id", field: "id", sortable: true, filter: true },
-    { headerName: "firstName", field: "firstName" },
-    { headerName: "lastName", field: "lastName", sortable: true, filter: true },
-    { headerName: "fatherName", field: "fatherName" },
-    { headerName: "phoneNumber", field: "phoneNumber" },
-    { headerName: "city", field: "city", sortable: true, filter: true }
+    { headerName: "שם משתמש", field: "username", sortable: true, filter: true },
+    { headerName: "שם פרטי", field: "firstName" },
+    { headerName: "שם משפחה", field: "lastName", sortable: true, filter: true },
+    { headerName: "שם האב", field: "fatherName" },
+    { headerName: "מספר טלפון", field: "phoneNumber" },
+    { headerName: "עיר מגורים", field: "city", sortable: true, filter: true }
   ];
   rowData: Observable<UserList[]>;
 
@@ -32,12 +33,7 @@ export class UsersListComponent implements OnInit {
     this.rowData = this.userService.getAllUsers().pipe(map((data: User[]) => data.map(this.convertToUserList)));
   }
 
-  getSelectedRows(): void {
-    const selectedNodes = this.agGrid.api.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
-    const selectedDataStringPresentation = selectedData.map(node => `${node.make} ${node.model}`).join(', ');
-    alert(`Selected nodes: ${selectedDataStringPresentation}`);
-  }
+ 
 
   NavToDetail(event) {
     this.router.navigate(['users/personal-card', event.data.id]);
@@ -46,12 +42,13 @@ export class UsersListComponent implements OnInit {
   convertToUserList(data: User): UserList {    
     let user: UserList = {
       "id": data.id,
+      "username": data.userName,
       "firstName": data.men.name.firstName,
       "lastName": data.men.name.lastName,
       "fatherName": data.men.fatherName,
       "phoneNumber": data.men.phones[0]?.number ? data.men.phones[0].number : 0,
-      "city": data.userName,
-    }
+      "city": data.address.city,
+    }    
     return user
   }
 }

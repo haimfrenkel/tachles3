@@ -1,10 +1,10 @@
 export interface UserList {
-    ID?: number;
+    username: string,
     firstName: string;
     lastName: string;
     fatherName: string;
     phoneNumber: number;
     city: string
-    id?:number;
+    id?: number;
 
-    }
+}

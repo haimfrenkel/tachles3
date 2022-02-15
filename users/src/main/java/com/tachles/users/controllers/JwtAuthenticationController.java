@@ -13,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,24 +28,20 @@ public class JwtAuthenticationController {
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody @NotNull JwtRequest authenticationRequest) throws Exception {
-        System.out.println("enter in createAuthenticationToken");
-
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        System.out.println("pass the user detalis");
-
-        System.out.println(userDetails);
         final String token = jwtTokenUtil.generateToken(userDetails);
-
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
 
+
     private void authenticate(String username, String password) throws Exception {
-        System.out.println(username + " + " +password);
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {

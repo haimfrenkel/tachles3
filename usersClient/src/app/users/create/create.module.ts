@@ -9,8 +9,8 @@ import { MainFormComponent } from './main-form/main-form.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateRoutingModule } from './create-routing.module';
-import { TranslatePipe } from 'src/app/languages/translate.pipe';
 import { AddressFormComponent } from './address-form/address-form.component';
+import { LanguagesModule } from 'src/app/languages/languages.module';
 
 
 @NgModule({
@@ -22,14 +22,15 @@ import { AddressFormComponent } from './address-form/address-form.component';
     JobFormComponent,
     MainFormComponent,
     PersonalFormComponent,
-    TranslatePipe,
-    AddressFormComponent
+    AddressFormComponent,
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CreateRoutingModule
+    CreateRoutingModule,
+    LanguagesModule
   ]
 })
 export class CreateModule { }

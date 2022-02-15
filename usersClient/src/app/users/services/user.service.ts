@@ -18,7 +18,7 @@ export class UserService extends BaseHttpService<User> {
   }
 
   getAllUsers(): Observable<User[]> {
-    if(!this.users){
+    if (!this.users) {
       this.users = this.getAll("users");
     }
     return this.users
@@ -28,14 +28,11 @@ export class UserService extends BaseHttpService<User> {
     return this.getOneByID("users", "", id)
   }
 
-  uploadFile(formData: FormData){
-    return this.create("users", "/uploadFile", formData).subscribe(data=>{
+  uploadFile(formData: FormData) {
+    return this.create("users", "/uploadFile", formData).subscribe(data => {
       console.log(data);
-      
+
     })
   }
-
- 
-  
 }
 

@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { MatIconModule } from '@angular/material/icon';
+import { LanguagesModule } from '../languages/languages.module';
 
 
 @NgModule({
@@ -29,15 +30,14 @@ import { MatIconModule } from '@angular/material/icon';
     UploadFileComponent,
   ],
   imports: [
-
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
-    MatIconModule
-
+    MatIconModule,
+    LanguagesModule
   ]
 })
 export class UsersModule { }

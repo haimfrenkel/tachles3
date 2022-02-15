@@ -37,7 +37,7 @@ public class UploadService {
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
                 User user = new User();
-                user.setUserName(csvRecord.get("שם משתמש"));
+                user.setUserName(csvRecord.get("אמייל"));
                 user.setDateOfMarriage(LocalDate.parse(csvRecord.get("תאריך נישואין"), formatter));
                 user.setShtibel(csvRecord.get("שטיבל"));
                 user.setMen(new PersonalInformation());

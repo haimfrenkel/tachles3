@@ -10,10 +10,6 @@ export class UsersComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
-    // this.userService.getOneByID("users", "", 1).subscribe(data => {
-    //   console.log(data);
-    // })
-  }
+  ngOnInit(): void { }
 
 }

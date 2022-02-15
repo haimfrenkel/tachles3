@@ -5,20 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslatePipe } from './languages/translate.pipe';
+import { LoginComponent } from './auth/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { UsersModule } from './users/users.module';
+import { LanguagesModule } from './languages/languages.module';
 
-// export function setupTranslateServiceFactory(
-//   service: TranslateService): Function {
-// return () => service.use('he');
-// }
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    // TranslatePipe
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -27,8 +29,17 @@ import { TranslatePipe } from './languages/translate.pipe';
     HttpClientModule,
     AgGridModule.withComponents([]),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    AuthModule,
+    LanguagesModule
   ],
-  providers: [],
+  
+
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

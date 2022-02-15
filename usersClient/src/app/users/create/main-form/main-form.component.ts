@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CreateService } from '../create.service';
-import { TranslatePipe } from 'src/app/languages/translate.pipe';
 
 @Component({
   selector: 'app-main-form',

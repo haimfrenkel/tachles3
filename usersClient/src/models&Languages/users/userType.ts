@@ -11,7 +11,7 @@ export class User {
     women: PersonalInformation;
     address: Address;
     bankAccount: BankAccount;
-    dateOfMarriage: string;
+    dateOfMarriage: Date;
     role?:string;
     shtibel: string;
     id?:number;

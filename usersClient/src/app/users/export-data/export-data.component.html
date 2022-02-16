@@ -1,0 +1,9 @@
+<div>
+  <button
+    (click)="onBtnExport()" style="margin-bottom: 5px; font-weight: bold;" > Export to Excel</button>
+   
+  
+</div><ag-grid-angular (gridReady)="onGridReady($event)"  style="width: 1200px; height: 300px;" class="ag-theme-alpine" [popupParent]="popupParent"
+[rowData]="rowData | async  "
+    [columnDefs]="columnDefs" rowSelection="multiple" >
+</ag-grid-angular>

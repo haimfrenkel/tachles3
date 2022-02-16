@@ -16,7 +16,8 @@
         <app-address-form></app-address-form>
         <app-bank-account-form></app-bank-account-form>
     </div>
-    <button *ngIf="!nextToPersonal" type="button" class="btn btn-secondary button" (click)="next()">{{ "NEXT" | translate }}</button>
+    <button *ngIf="!nextToPersonal" type="button" class="btn btn-secondary button" (click)="next()">{{ "NEXT" |
+        translate }}</button>
     <div *ngIf="nextToPersonal">
         <div class="row div_center">
             <app-personal-form gender="men"></app-personal-form>

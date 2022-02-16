@@ -15,6 +15,7 @@ import { UsersComponent } from './users.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguagesModule } from '../languages/languages.module';
+import { ExportDataComponent } from './export-data/export-data.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LanguagesModule } from '../languages/languages.module';
     DetailsOfFamilyComponent,
     CreateUserComponent,
     UploadFileComponent,
+    ExportDataComponent,
   ],
   imports: [
     CommonModule,

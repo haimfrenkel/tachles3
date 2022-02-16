@@ -35,7 +35,7 @@ endURL: string = "&limit=60000"
         maritalStatus: "",
         phones: [],
         jobs: [],
-        DOB: ""
+        DOB: new Date()
       },
       women: {
         ID: 0,
@@ -52,7 +52,7 @@ endURL: string = "&limit=60000"
         maritalStatus: "",
         phones: [],
         jobs: [],
-        DOB: ""
+        DOB: new Date()
       },
       address: {
         state: "",
@@ -69,7 +69,7 @@ endURL: string = "&limit=60000"
         accountNo: 0
       },
       children: [],
-      dateOfMarriage: "",
+      dateOfMarriage: new Date(),
       shtibel: ""
     }
   }

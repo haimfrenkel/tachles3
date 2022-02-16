@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 import { UserList } from '../../../models&Languages/users/userList.interface';
 import { User } from '../../../models&Languages/users/userType';
 import { map, Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { UserService } from '../services/user.service';
 })
 export class UsersListComponent implements OnInit {
   
+  private gridApi!: GridApi;
   columnDefs: ColDef[] = [
     { headerName: "שם משתמש", field: "username", sortable: true, filter: true },
     { headerName: "שם פרטי", field: "firstName" },
@@ -38,7 +39,7 @@ export class UsersListComponent implements OnInit {
   NavToDetail(event) {
     this.router.navigate(['users/personal-card', event.data.id]);
   }
-
+ 
   convertToUserList(data: User): UserList {    
     let user: UserList = {
       "id": data.id,

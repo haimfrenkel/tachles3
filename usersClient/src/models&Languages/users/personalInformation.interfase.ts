@@ -8,7 +8,7 @@ export interface PersonalInformation {
     fatherName: string;
     grandfatherName?: string;
     greatGrandfatherName?: string;
-    DOB: string;
+    DOB: Date;
     email: string;
     phones: Phone[];
     jobs: Job[];

@@ -26,19 +26,6 @@ services:
     restart: always
     expose:
       - "4200"
-  server:
-    build:
-      context: .
-      dockerfile: javaDockerFile
-    container_name: server
-    ports:
-      - "8080:8080"
-    command: java -jar users-0.0.1-SNAPSHOT.jar
-    restart: always
-    environment:
-      MYSQL_DB_HOST: 'db'
-    expose:
-      - "8080"
   db:
     image: mysql:5.7
     restart: always

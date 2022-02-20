@@ -28,11 +28,12 @@ export class UserService extends BaseHttpService<User> {
     return this.getOneByID("users", "", id)
   }
 
-  uploadFile(formData: FormData) {
-    return this.create("users", "/uploadFile", formData).subscribe(data => {
-      console.log(data);
+  uploadFile(formData: FormData): Observable<any> {
+    return this.create("users", "/uploadFile", formData)
+  }
 
-    })
+  deleteUser(id: number): Observable<any> {
+    return this.deleteOne("users", "", id)
   }
 }
 

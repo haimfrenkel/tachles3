@@ -9,9 +9,10 @@ import { UserService } from '../services/user.service';
 })
 export class CreateService extends UserService {
   user: User
-cityURL: string = "https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&"
-streetURL: string = "https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&q="
-endURL: string = "&limit=60000"
+  cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`
+  streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`
+  endURL: string = "&limit=60000"
+
   constructor(protected override http: HttpClient) {
     super(http);
     this.initUser()
@@ -20,8 +21,9 @@ endURL: string = "&limit=60000"
   initUser() {
     this.user = {
       userName: "",
+      password: "1234",
       men: {
-        ID: 0,
+        taz: 0,
         name: {
           startName: "",
           firstName: "",
@@ -38,7 +40,7 @@ endURL: string = "&limit=60000"
         DOB: new Date()
       },
       women: {
-        ID: 0,
+        taz: 0,
         name: {
           startName: "",
           firstName: "",
@@ -75,30 +77,32 @@ endURL: string = "&limit=60000"
   }
 
   getCity(): Observable<any> {
-    return this.http.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595&limit=60000`)
+    return this.http.get(`${this.cityURL}${this.endURL}`)
+  }
 
+  getStreet(city: string): Observable<any> {
+    return this.http.get(`${this.streetURL}${city}${this.endURL}`)
   }
-  getStreet(): Observable<any> {
-  let url = this.streetURL + "ירושלים" + this.endURL
-    return this.http.get(`https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=60000`)
-  }
-  
+
   onValueChange(key: string, value: any) {
-    console.log(this.user);
-    console.log(key);
-    
     switch (key) {
       case "men":
         this.user.men = { ...this.user.men, ...value }
+        console.log(this.user.men.taz);
+        
+        this.user.password = this.user.men.taz.toString()
         break;
       case "menPhones":
         this.user.men.phones = { ...value.phones }
+        console.log(typeof (this.user.men.phones[0].number));
+        console.log(this.user.men.phones);
+
         break;
       case "menJobs":
         this.user.men.jobs.push(value)
         break;
       case "menName":
-        this.user.men.name = {...value};
+        this.user.men.name = { ...value };
         break;
       case "women":
         this.user.women = { ...this.user.women, ...value }
@@ -110,16 +114,16 @@ endURL: string = "&limit=60000"
         this.user.women.jobs.push(value)
         break;
       case "womenName":
-        this.user.women.name = {...value};
+        this.user.women.name = { ...value };
         break;
       case "main":
-        this.user = {...this.user, ...value}
+        this.user = { ...this.user, ...value }
         break;
       case "bankAccount":
-        this.user.bankAccount = {...value};
+        this.user.bankAccount = { ...value };
         break;
       case "address":
-        this.user.address = {...value};
+        this.user.address = { ...value };
         break;
       case "children":
         this.user.children.push(value);
@@ -127,6 +131,8 @@ endURL: string = "&limit=60000"
     }
   }
   save(): Observable<any> {
-  return  this.create("users", "", this.user);
+    console.log(this.user);
+    
+    return this.create("users", "", this.user);
   }
 }

@@ -36,7 +36,7 @@ export class PersonalFormComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      'ID': new FormControl(),
+      'taz': new FormControl(),
       'fatherName': new FormControl(),
       'grandfatherName': new FormControl(),
       'greatGrandfatherName': new FormControl(),
@@ -48,7 +48,7 @@ export class PersonalFormComponent implements OnInit {
 
   editForm() {
     if (this.gender == "men") {
-      this.form.get('ID')?.setValue(this.saveSRV.user.men.ID ? this.saveSRV.user.men.ID : "");
+      this.form.get('taz')?.setValue(this.saveSRV.user.men.taz ? this.saveSRV.user.men.taz : 0);
       this.form.get('fatherName')?.setValue(this.saveSRV.user.men.fatherName ? this.saveSRV.user.men.fatherName : "")
       this.form.get('grandfatherName')?.setValue(this.saveSRV.user.men.grandfatherName ? this.saveSRV.user.men.grandfatherName : "")
       this.form.get('greatGrandfatherName')?.setValue(this.saveSRV.user.men.greatGrandfatherName ? this.saveSRV.user.men.greatGrandfatherName : "")
@@ -57,7 +57,7 @@ export class PersonalFormComponent implements OnInit {
       this.form.get('maritalStatus')?.setValue(this.saveSRV.user.men.maritalStatus ? this.saveSRV.user.men.maritalStatus : "")
     }
     if (this.gender == "women") {
-      this.form.get('ID')?.setValue(this.saveSRV.user.women.ID ? this.saveSRV.user.women.ID : "");
+      this.form.get('taz')?.setValue(this.saveSRV.user.women.taz ? this.saveSRV.user.women.taz : 0);
       this.form.get('fatherName')?.setValue(this.saveSRV.user.women.fatherName ? this.saveSRV.user.women.fatherName : "")
       this.form.get('grandfatherName')?.setValue(this.saveSRV.user.women.grandfatherName ? this.saveSRV.user.women.grandfatherName : "")
       this.form.get('greatGrandfatherName')?.setValue(this.saveSRV.user.women.greatGrandfatherName ? this.saveSRV.user.women.greatGrandfatherName : "")

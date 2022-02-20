@@ -4,7 +4,7 @@
       <a *ngFor="let phone of phones.controls; let i = index">
         <a [formGroupName]="i">
           <div class="key">{{ "PHONE_NUMBER" | translate }}</div>
-          <input class="input_create" style="margin-left: 0px;" type="text" formControlName="number">
+          <input class="input_create" style="margin-left: 0px;" type="number" formControlName="number">
           <div class="row">
             <img class="img_whatsapp" src="../../../assets/WhatsApp.png">
             <input class="input_checkbox" type="checkbox" formControlName="whatsapp">

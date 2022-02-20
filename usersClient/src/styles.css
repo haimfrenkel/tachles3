@@ -19,15 +19,13 @@ margin-top: 0px;
     letter-spacing: normal;
     margin-left: 20px;
     margin: 10px 20px 2px 20px;
-    text-transform: capitalize
-    
+    text-transform: capitalize  
 }
 
 .input_create{
     width: 200px;
     height: 30px;
     margin-left: 20px;
-    text-transform:uppercase;
 }
 .card_create{
     padding: 10px;

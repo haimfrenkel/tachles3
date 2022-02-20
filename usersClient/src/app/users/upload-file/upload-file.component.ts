@@ -20,9 +20,11 @@ export class UploadFileComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.fileName = file.name;
-      const formData = new FormData();
+      let formData = new FormData();
       formData.append("file", file);    
-      this.userService.uploadFile(formData)
+      this.userService.uploadFile(formData).subscribe(data=>{
+       formData = new FormData()
+      })
     }
   }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin()
 @RestController
 @RequestMapping("users")
 

@@ -19,7 +19,7 @@ export class AddressFormComponent implements OnInit {
   subscription: Subscription
   cities: any;
   streets: any;
-  cityT: any;
+  city: any;
 
   constructor(private saveSRV: CreateService) { }
 
@@ -29,7 +29,6 @@ export class AddressFormComponent implements OnInit {
     this.saveSRV.getCity().subscribe((res) => {
       this.cities = res.result.records
     })
-
     // this.saveSRV.getStreet().subscribe((res) => { })
 
     this.subscription = this.form.valueChanges.subscribe(data => {
@@ -42,15 +41,9 @@ export class AddressFormComponent implements OnInit {
   }
 
   userAnswersClick(event) {
-    console.log('here');
-    
-    this.cityT = this.form.get('city')?.value;
-    console.log(this.cityT);
-    
-    this.saveSRV.getStreet().subscribe((res) => {
-      console.log(res);
-      
-      this.streets = res.result.records.filter(s => s['סמל_ישוב']== this.cityT['סמל יישוב'])
+    this.city = this.form.get('city')?.value;
+    this.saveSRV.getStreet(this.city).subscribe((res) => {      
+      this.streets = res.result.records
     })
   }
 

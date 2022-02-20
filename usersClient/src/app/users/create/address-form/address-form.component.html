@@ -6,7 +6,7 @@
             <input class="input_create" type="text" formControlName="state">
             <div class="key">{{ "CITY" | translate}}</div>
             <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="city">
-                <option *ngFor="let city of cities" [ngValue]="city" >{{city['שם יישוב']}}</option>
+                <option *ngFor="let city of cities" [ngValue]="city['שם יישוב']" >{{city['שם יישוב']}}</option>
             </select>
             <div *ngIf="this.form.value.city">
                 <div class="key">{{ "STREET" | translate}}</div>

@@ -3,7 +3,7 @@ import { Name } from './name.interface'
 import { Job } from './job.interface'
 
 export interface PersonalInformation {
-    ID: number;
+    taz: number;
     name: Name;
     fatherName: string;
     grandfatherName?: string;

@@ -22,8 +22,8 @@ export class PhoneFormComponent implements OnInit {
     this.form = new FormGroup({
       phones: new FormArray([
         new FormGroup({
-          'number': new FormControl(),
-          'whatsapp': new FormControl()
+          'number': new FormControl(0),
+          'whatsapp': new FormControl(false)
         })
       ])
     })
@@ -35,7 +35,7 @@ export class PhoneFormComponent implements OnInit {
 
   addPhone() {
     const phonesForm = new FormGroup({
-      'number': new FormControl(),
+      'number': new FormControl(0),
       'whatsapp': new FormControl(false)
     });
     this.phones.push(phonesForm);
@@ -43,11 +43,6 @@ export class PhoneFormComponent implements OnInit {
 
   savePhones() {
     this.savaSRV.onValueChange(this.keyForPhone, this.form.value)
-    console.log(this.form.value);
-    console.log(this.keyForPhone);
-    
-    console.log(this.savaSRV.user);
-    
   }
 }
 

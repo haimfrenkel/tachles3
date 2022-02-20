@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { AuthGuardService } from '../auth/auth-guard.service';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { MainFormComponent } from './create/main-form/main-form.component';
 import { PersonalCardComponent } from './personal-card/personal-card.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';

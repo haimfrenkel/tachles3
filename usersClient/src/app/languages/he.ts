@@ -1,5 +1,6 @@
 export const langMap = {
     // FIELDS: {
+    "GENERAL_DETALIS": "פרטים כלליים",
     "USER_NAME": "שם משתמש",
     "DATA_OF_MARRIAGE": "תאריך נישואין",
     "STIBEL": "שטיבל",
@@ -28,6 +29,7 @@ export const langMap = {
     "MARITAL_STATUS": "מצב משפחתי",
     "PHONE_NUMBER": "מספר טלפון",
     "JOB": "תפקיד",
+    "JOBS": "עבודות",
     "COMPANY_NAME": "שם החברה",
     "PLACE_OF_STUDY": "מקום לימודים",
     "GENDER": "מגדר",
@@ -39,13 +41,15 @@ export const langMap = {
     "SAVE_JOB": "שמור עבודה",
     "NEXT": "הבא",
     "SAVE_USER": "שמור משתמש",
+    "DELETE_USER": "מחק משתמש",
+    "EXPORT_TO_EXCEL" : "יייצוא לאקסל",
     "BANK": "פרטי חשבון בנק",
     "ADDRESS": "כתובת",
     "HUSBAND_DETALIS": "פרטי הגבר",
     "WIFE_DETALIS": "פרטי האישה",
     "USER_DETALIS": "פרטי משתמש",
     "WORK": "עבודה",
-    "CREATE_NEW_USER" : "צור משתמש חדש"
+    "CREATE_NEW_USER": "צור משתמש חדש"
     // },
     // BUTTONS: {
 

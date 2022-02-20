@@ -27,6 +27,7 @@ public class UserService {
 
     public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.getMen().getPhones());
         User userRes = userRepository.save(user);
         userRes.setPassword("*********");
         return userRes;

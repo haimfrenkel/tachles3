@@ -20,6 +20,7 @@ import java.util.List;
 public class PersonalInformation extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Name name;
+    private Long taz;
     private String fatherName;
     private String grandfatherName;
     private String greatGrandfatherName;

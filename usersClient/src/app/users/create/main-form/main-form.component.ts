@@ -68,7 +68,6 @@ export class MainFormComponent implements OnInit {
   addChild() {
     this.numberOfChildren++;
     this.children.push(this.numberOfChildren);
-    console.log(this.numberOfChildren);
   }
 
   save() {

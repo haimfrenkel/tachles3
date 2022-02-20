@@ -35,6 +35,8 @@ services:
       - "8080:8080"
     command: java -jar users-0.0.1-SNAPSHOT.jar
     restart: always
+    environment:
+      MYSQL_DB_HOST: 'db'
     expose:
       - "8080"
   db:
@@ -47,7 +49,7 @@ services:
       # You can use whatever password you like
       MYSQL_PASSWORD: 'password'
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'   
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '3306:3306'

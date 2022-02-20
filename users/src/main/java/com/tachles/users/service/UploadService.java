@@ -37,7 +37,7 @@ public class UploadService {
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
                 User user = new User();
-                user.setUserName(csvRecord.get("אמייל"));
+                user.setUserName(csvRecord.get("שם משתמש"));
                 user.setDateOfMarriage(LocalDate.parse(csvRecord.get("תאריך נישואין"), formatter));
                 user.setShtibel(csvRecord.get("שטיבל"));
                 user.setMen(new PersonalInformation());
@@ -49,6 +49,7 @@ public class UploadService {
                 user.getMen().setFatherName(csvRecord.get("שם האב"));
                 user.getMen().setGrandfatherName(csvRecord.get("שם הסב"));
                 user.getMen().setGreatGrandfatherName(csvRecord.get("שם אבי הסב"));
+                user.getMen().setTaz(Long.parseLong(csvRecord.get("מספר זהות")));
                 user.getMen().setDOB(LocalDate.parse(csvRecord.get("תאריך לידה"), formatter));
                 user.getMen().setEmail(csvRecord.get("אמייל"));
                 user.getMen().setMaritalStatus(csvRecord.get("סטטוס נישואין"));
@@ -63,11 +64,12 @@ public class UploadService {
                 user.getWomen().setFatherName(csvRecord.get("שם האב 1"));
                 user.getWomen().setGrandfatherName(csvRecord.get("שם הסב 1"));
                 user.getWomen().setGreatGrandfatherName(csvRecord.get("שם אבי הסב 1"));
+                user.getWomen().setTaz(Long.parseLong(csvRecord.get("מספר זהות 1")));
                 user.getWomen().setDOB(LocalDate.parse(csvRecord.get("תאריך לידה 1"), formatter));
                 user.getWomen().setEmail(csvRecord.get("אמייל 1"));
                 user.getWomen().setMaritalStatus(csvRecord.get("סטטוס נישואין 1"));
                 user.getWomen().setPhones(new ArrayList<Phone>());
-                user.getWomen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("מספר טלפון 1")), Boolean.parseBoolean(csvRecord.get("whatsapp 1")), user.getMen()));
+                user.getWomen().getPhones().add(new Phone(Long.parseLong(csvRecord.get("מספר טלפון 1")), Boolean.parseBoolean(csvRecord.get("whatsapp 1")), user.getWomen()));
                 user.setAddress(new Address());
                 user.getAddress().setState(csvRecord.get("מדינה"));
                 user.getAddress().setCity(csvRecord.get("עיר"));

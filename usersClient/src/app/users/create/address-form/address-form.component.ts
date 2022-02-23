@@ -21,18 +21,20 @@ export class AddressFormComponent implements OnInit {
   streets: any;
   city: any;
 
-  constructor(private saveSRV: CreateService) { }
-
-  ngOnInit(): void {
+  constructor(private saveSRV: CreateService) { 
     this.initForm()
     this.editForm()
+  }
+
+  ngOnInit(): void {
+   
     this.saveSRV.getCity().subscribe((res) => {
       this.cities = res.result.records
     })
     // this.saveSRV.getStreet().subscribe((res) => { })
 
     this.subscription = this.form.valueChanges.subscribe(data => {
-      if (this.key == "job") {
+      if (this.key.includes("Job")) {
         this.endEmitToParent()
       } else {
         this.saveSRV.onValueChange("address", data)
@@ -64,6 +66,8 @@ export class AddressFormComponent implements OnInit {
   }
 
   editForm() {
+    console.log(this.key);
+    
     if (this.key == "menJobs") {
       this.form.get('state')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.state ? this.saveSRV.user.men.jobs[this.idx].address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.city ? this.saveSRV.user.men.jobs[this.idx].address.city : "");
@@ -81,9 +85,9 @@ export class AddressFormComponent implements OnInit {
       this.form.get('zipCode')?.setValue(this.saveSRV.user.women.jobs[this.idx].address.zipCode ? this.saveSRV.user.women.jobs[this.idx].address.zipCode : 0);
     }
     else {
-      this.form.get('state')?.setValue(this.saveSRV.user.address.state ? this.saveSRV.user.address.state : "ישראל");
+      this.form.get('state')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.address.city ? this.saveSRV.user.address.city : "");
-      this.form.get('street')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "");
+      this.form.get('street')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "בחר רחוב");
       this.form.get('buildingNumber')?.setValue(this.saveSRV.user.address.buildingNumber ? this.saveSRV.user.address.buildingNumber : 0);
       this.form.get('apartment')?.setValue(this.saveSRV.user.address.apartment ? this.saveSRV.user.address.apartment : 0);
       this.form.get('zipCode')?.setValue(this.saveSRV.user.address.zipCode ? this.saveSRV.user.address.zipCode : 0);

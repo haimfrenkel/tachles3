@@ -19,12 +19,16 @@ export class NameFormComponent implements OnInit {
   startNameOptions: string[] = [" ","הרב", "הרה''ג", "מרת","הרבנית", ];
   endNameOptions: string[] = [" ", "שליט''א", "תליט''א", "הי''ו", "נ''י", "'תחי"];
 
-  constructor(private saveSRV: CreateService) { }
-
-  ngOnInit(): void {
+  constructor(private saveSRV: CreateService) {
     this.initForm();
     this.editForm();
+   }
+
+  ngOnInit(): void {
     this.key = `${this.key}Name`
+   
+    
+   
     this.subscription = this.form.valueChanges.subscribe(data => {
       if (this.key == "childName") {
         this.sendEmitToParent();
@@ -47,7 +51,8 @@ export class NameFormComponent implements OnInit {
     })
   }
   editForm() {
-    if (this.key == "menName") {
+
+    if (this.key == "menName") {      
       this.form.get('startName')?.setValue(this.saveSRV.user.men.name.startName ? this.saveSRV.user.men.name.startName : "")
       this.form.get('firstName')?.setValue(this.saveSRV.user.men.name.firstName ? this.saveSRV.user.men.name.firstName : "")
       this.form.get('lastName')?.setValue(this.saveSRV.user.men.name.lastName ? this.saveSRV.user.men.name.lastName : "")

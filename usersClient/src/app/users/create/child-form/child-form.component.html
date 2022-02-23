@@ -2,7 +2,6 @@
   <form [formGroup]="form">
     <div class="header row" formArrayName="children">
       <a *ngFor="let child of children.controls; let i = index">
-        {{i}}
         <a [formGroupName]="i">
           <div style="margin-left: 40%;">child {{i+1}}</div>
           <div class="header_child">
@@ -20,8 +19,11 @@
           </div>
         </a>
         <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;"
-          (click)=addChildern(i)>add child</button>
+          (click)="addChildern(i)">{{ "ADD_CHILD" | translate }}</button>
+          <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;"
+          (click)="saveChild()">{{ "SAVE_CHILD" | translate }}</button>
       </a>
+      
 
     </div>
   </form>

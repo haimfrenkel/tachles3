@@ -22,7 +22,7 @@ export class MainFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
-    this.editForm
+    this.editForm()
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onValueChange("main", data)
     })
@@ -41,10 +41,10 @@ export class MainFormComponent implements OnInit {
     })
   }
 
-  editForm() {
+  editForm() { 
     this.form.get('userName')?.setValue(this.saveSRV.user.userName ? this.saveSRV.user.userName : "")
     this.form.get('dateOfMarriage')?.setValue(this.saveSRV.user.dateOfMarriage ? this.saveSRV.user.dateOfMarriage : "")
-    this.form.get('dateOfMarriage')?.setValue(this.saveSRV.user.shtibel ? this.saveSRV.user.shtibel : "")
+    this.form.get('shtibel')?.setValue(this.saveSRV.user.shtibel ? this.saveSRV.user.shtibel : "")
   }
 
   next() {

@@ -18,7 +18,9 @@ export class ChildFormComponent implements OnInit {
   name: Name
   keyForName: string = "child"
   sowButtontAdd: number = 0
-  constructor(private saveSRV: CreateService) { }
+  keyForChildern: string = 'children'
+  constructor(private saveSRV: CreateService) {
+  }
 
   ngOnInit(): void {
     this.initForm()
@@ -30,7 +32,7 @@ export class ChildFormComponent implements OnInit {
       children: new FormArray([
         new FormGroup({
           'dob': new FormControl(),
-          'sex': new FormControl(),
+          'gender': new FormControl(),
           'maritalStatus': new FormControl(),
           'placeOfStudy': new FormControl()
         })
@@ -59,7 +61,7 @@ export class ChildFormComponent implements OnInit {
     this.name = data
   }
 
-  createData(idx: number) {    
+  createData(idx: number) {
     this.convert = {
       dob: this.form.get(['children', idx, 'dob'])?.value,
       gender: this.form.get(['children', idx, 'gender'])?.value,
@@ -67,5 +69,11 @@ export class ChildFormComponent implements OnInit {
       placeOfStudy: this.form.get(['children', idx, 'placeOfStudy'])?.value,
       name: this.name
     }
+  }
+
+  saveChild() {
+    this.saveSRV.onValueChange(this.keyForChildern, this.form.value)
+    console.log(this.saveSRV.user);
+    
   }
 }

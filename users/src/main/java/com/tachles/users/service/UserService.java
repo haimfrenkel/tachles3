@@ -24,7 +24,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
     public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         System.out.println(user.getMen().getPhones());
@@ -59,6 +58,9 @@ public class UserService {
         User user = getOneByID(id);
         userRepository.delete(user);
         return ResponseEntity.ok().build();
+    }
+
+    public User updateOne(){
 
     }
 }

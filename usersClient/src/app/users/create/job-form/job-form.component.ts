@@ -14,7 +14,6 @@ export class JobFormComponent implements OnInit {
   form: FormGroup
   convert: Job
   address: Address
-  keyForAddress: string = "job"
   sowButtontAdd:number =0
 
   constructor(private saveSRV: CreateService) { }

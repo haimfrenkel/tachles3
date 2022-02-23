@@ -42,6 +42,7 @@ export const langMap = {
     "NEXT": "הבא",
     "SAVE_USER": "שמור משתמש",
     "DELETE_USER": "מחק משתמש",
+    "EDIT_USER": "ערוך פרטי משתמש",
     "EXPORT_TO_EXCEL" : "יייצוא לאקסל",
     "BANK": "פרטי חשבון בנק",
     "ADDRESS": "כתובת",
@@ -49,7 +50,10 @@ export const langMap = {
     "WIFE_DETALIS": "פרטי האישה",
     "USER_DETALIS": "פרטי משתמש",
     "WORK": "עבודה",
-    "CREATE_NEW_USER": "צור משתמש חדש"
+    "CREATE_NEW_USER": "צור משתמש חדש",
+    "ADD_CHILD": "הוסף ילד",
+    "SAVE_CHILD": "שמור ילדים",
+    "SAVE_AND_ADD_CHILD": "שמור והוסף ילד"
     // },
     // BUTTONS: {
 

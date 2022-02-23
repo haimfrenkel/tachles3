@@ -57,7 +57,10 @@ public class UserController {
         return userService.getAll();
     }
 
-
+@PutMapping("/{id}")
+public User updateUser(){
+        return userService.updateOne();
+}
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id) {
         System.out.println("delete User " + id);

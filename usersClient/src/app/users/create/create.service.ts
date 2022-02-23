@@ -9,9 +9,10 @@ import { UserService } from '../services/user.service';
 })
 export class CreateService extends UserService {
   user: User
-  cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`
-  streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`
-  endURL: string = "&limit=60000"
+  cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`;
+  streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`;
+  endURL: string = "&limit=60000";
+  editMode: boolean = false;
 
   constructor(protected override http: HttpClient) {
     super(http);
@@ -89,14 +90,11 @@ export class CreateService extends UserService {
       case "men":
         this.user.men = { ...this.user.men, ...value }
         console.log(this.user.men.taz);
-        
+
         this.user.password = this.user.men.taz.toString()
         break;
       case "menPhones":
         this.user.men.phones = { ...value.phones }
-        console.log(typeof (this.user.men.phones[0].number));
-        console.log(this.user.men.phones);
-
         break;
       case "menJobs":
         this.user.men.jobs.push(value)
@@ -130,9 +128,12 @@ export class CreateService extends UserService {
         break;
     }
   }
+  
   save(): Observable<any> {
-    console.log(this.user);
-    
+    if (this.editMode && this.user.id) {
+      this.editMode = false
+      return this.updateOne("users", "", this.user.id, this.user)
+    }
     return this.create("users", "", this.user);
   }
 }

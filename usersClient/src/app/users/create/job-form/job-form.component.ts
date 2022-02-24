@@ -12,9 +12,9 @@ import { CreateService } from '../create.service';
 export class JobFormComponent implements OnInit {
   @Input() key
   form: FormGroup
-  convert: Job
+  arrayOfData: Job[] = [];
   address: Address
-  sowButtontAdd:number =0
+  sowButtontAdd: number = 0
 
   constructor(private saveSRV: CreateService) { }
 
@@ -30,7 +30,7 @@ export class JobFormComponent implements OnInit {
           'job': new FormControl(),
         })
       ])
-    }) 
+    })
   }
 
   get jobs() {
@@ -38,32 +38,33 @@ export class JobFormComponent implements OnInit {
   }
 
   addJobs(idx: number) {
+    this.parseToJobObject(idx)
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),
     });
-    this.jobs.push(jobForm);  
-    this.sowButtontAdd++;  
-    
+    this.jobs.push(jobForm);
+    this.sowButtontAdd++;
   }
 
-  saveJob(idx: number){
-    this.createData(idx)  
-    console.log(this.convert);
-      
-    this.saveSRV.onValueChange(this.key, this.convert)
+  saveJob(idx: number) {
+    this.parseToJobObject(idx)
+    console.log(this.arrayOfData);
+
+    this.saveSRV.onValueChange(this.key, this.arrayOfData)
   }
 
-  pushAddress(data: Address) {    
+  onPushAddress(data: Address) {
     this.address = data
   }
 
-  createData(idx: number){
-    this.convert = {
-      job: this.form.get(['jobs',idx, 'job'])?.value,
-      companyName: this.form.get(['jobs',idx, 'companyName'])?.value,
+  parseToJobObject(idx: number) {
+    
+    const convert: Job = {
+      job: this.form.get(['jobs', idx, 'job'])?.value,
+      companyName: this.form.get(['jobs', idx, 'companyName'])?.value,
       address: this.address
-    }   
+    }
+    this.arrayOfData.push(convert)
   }
-
 }

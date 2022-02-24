@@ -26,8 +26,6 @@ export class PersonalFormComponent implements OnInit {
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onValueChange(this.gender, data)
     })
-    console.log(this.saveSRV.user);
-    
   }
 
   ngOnDestroy() {

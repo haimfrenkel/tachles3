@@ -11,7 +11,7 @@ export class PhoneFormComponent implements OnInit {
   @Input() key
   keyForPhone: string
   form: FormGroup;
-  constructor(private savaSRV: CreateService) { }
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
     this.keyForPhone = `${this.key}Phones`
@@ -42,7 +42,7 @@ export class PhoneFormComponent implements OnInit {
   }
 
   savePhones() {
-    this.savaSRV.onValueChange(this.keyForPhone, this.form.value)
+    this.saveSRV.onValueChange(this.keyForPhone, this.form.value)    
   }
 }
 

@@ -15,17 +15,15 @@ export class DetailsOfFamilyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editUser(){
+  editUser() {
     this.createSRV.user = this.user;
     this.createSRV.editMode = true;
-    console.log(this.createSRV.user);
-    
     this.router.navigate(['/users/create'])
   }
 
   deleteThisUser(id: number) {
-    this.userSRV.deleteUser(id).subscribe(data=>{
+    this.userSRV.deleteUser(id).subscribe(data => {
       this.router.navigate(['/users']);
-    })    
+    })
   }
 }

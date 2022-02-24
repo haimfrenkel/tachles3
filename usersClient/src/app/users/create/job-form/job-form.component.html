@@ -13,7 +13,7 @@
                             <div class="key">{{ "COMPANY_NAME" | translate }}</div>
                             <input class="input_create" type="text" formControlName="companyName">
                         </a>
-                        <app-address-form [key]="key" (data)=pushAddress($event)  ></app-address-form>
+                        <app-address-form [key]="key" (submitAddressEvent)=onPushAddress($event)  ></app-address-form>
                         <div class="note_for_job">{{ "NOTE_FOR_JOB" | translate }}</div>
                         <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>{{ "ADD_JOB" | translate }}</button>
                         <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=saveJob(i)>{{ "SAVE_JOB" | translate }}</button>

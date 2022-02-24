@@ -13,7 +13,7 @@ import { CreateService } from '../create.service';
 export class AddressFormComponent implements OnInit {
   @Input() key
   @Input() idx
-  @Output() data = new EventEmitter<Address>()
+  @Output() submitAddressEvent = new EventEmitter<Address>()
 
   form: FormGroup
   subscription: Subscription
@@ -66,8 +66,6 @@ export class AddressFormComponent implements OnInit {
   }
 
   editForm() {
-    console.log(this.key);
-    
     if (this.key == "menJobs") {
       this.form.get('state')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.state ? this.saveSRV.user.men.jobs[this.idx].address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.city ? this.saveSRV.user.men.jobs[this.idx].address.city : "");
@@ -95,7 +93,7 @@ export class AddressFormComponent implements OnInit {
   }
 
   endEmitToParent() {
-    this.data.emit(this.form.value)
+    this.submitAddressEvent.emit(this.form.value)
   }
 }
 

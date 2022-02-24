@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreateService } from '../create.service';
 
@@ -18,7 +19,7 @@ export class MainFormComponent implements OnInit {
   nextToChild: boolean = false;
 
 
-  constructor(private saveSRV: CreateService) { }
+  constructor(private saveSRV: CreateService, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -73,6 +74,7 @@ export class MainFormComponent implements OnInit {
   save() {
     this.saveSRV.save().subscribe(data => {
       this.saveSRV.initUser();
+      this.router.navigate(["/users"])
     })
   }
 }

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Child } from 'src/models&Languages/users/child.interface';
 import { Name } from 'src/models&Languages/users/name.interface';
 import { CreateService } from '../create.service';
+import { MainFormComponent } from '../main-form/main-form.component';
 
 @Component({
   selector: 'app-child-form',
@@ -13,13 +15,15 @@ export class ChildFormComponent implements OnInit {
   @Input() key
 
   idx: number;
-  form: FormGroup
-  convert: Child
-  name: Name
-  keyForName: string = "child"
-  sowButtontAdd: number = 0
-  keyForChildern: string = 'children'
-  constructor(private saveSRV: CreateService) {
+  form: FormGroup;
+  convert: Child;
+  name: Name;
+  keyForName: string = "child";
+  sowButtontAdd: number = 0;
+  keyForChildern: string = 'children';
+  MainFormComponent: any;
+
+  constructor(private saveSRV: CreateService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -46,7 +50,6 @@ export class ChildFormComponent implements OnInit {
 
   addChildern(idx: number) {
     this.createData(idx)
-    this.saveSRV.onValueChange(this.key, this.convert)
     const childForm = new FormGroup({
       'dob': new FormControl(),
       'gender': new FormControl(),
@@ -75,5 +78,9 @@ export class ChildFormComponent implements OnInit {
     this.saveSRV.onValueChange(this.keyForChildern, this.form.value)
     console.log(this.saveSRV.user);
     
+    this.saveSRV.save().subscribe(data => {
+      this.saveSRV.initUser();
+      this.router.navigate(["/users"])
+    })
   }
 }

@@ -1,27 +1,29 @@
 <div class="card card_create card_address">
     <h3 *ngIf="key ==undefined" class="header ">{{ "ADDRESS" | translate}} </h3>
-    <form [formGroup]="form">
-        <div class="">
-            <div class="key">{{ "STATE" | translate}}</div>
-            <input class="input_create" type="text" formControlName="state">
-            <div class="key">{{ "CITY" | translate}}</div>
-            <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="city">
-                <option *ngFor="let city of cities" [ngValue]="city['שם יישוב']" >{{city['שם יישוב']}}</option>
-            </select>
-            <div *ngIf="this.form.value.city">
-                <div class="key">{{ "STREET" | translate}}</div>
-                <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="street">
-                    <option *ngFor="let street of streets" [ngValue]="street['שם_רחוב']">{{street['שם_רחוב']}}</option>
+        <form [formGroup]="form">
+            <div class="">
+                <div class="key">{{ "STATE" | translate}}</div>
+                <input class="input_create" type="text" formControlName="state">
+                <div class="key">{{ "CITY" | translate}}</div>
+                <select class="dropdownStyle input_create" (change)="userAnswersClick($event)" formControlName="city">
+                    <option *ngFor="let city of cities" [ngValue]="city['שם יישוב']">{{city['שם יישוב']}}</option>
                 </select>
-                <div *ngIf="this.form.value.street">
-                    <div class="key">{{ "BUILDING_NUMBER" | translate}}</div>
-                    <input class="input_create" type="text" formControlName="buildingNumber">
-                    <div class="key">{{ "APARTMENT" | translate}}</div>
-                    <input class="input_create" type="text" formControlName="apartment">
-                    <div class="key">{{ "ZIP_CODE" | translate}}</div>
-                    <input class="input_create" type="text" formControlName="zipCode">
+                <div *ngIf="this.form.value.city">
+                    <div class="key">{{ "STREET" | translate}}</div>
+                    <select class="dropdownStyle input_create" (change)="userAnswersClick($event)"
+                        formControlName="street">
+                        <option *ngFor="let street of streets" [ngValue]="street['שם_רחוב']">{{street['שם_רחוב']}}
+                        </option>
+                    </select>
+                    <div *ngIf="this.form.value.street">
+                        <div class="key">{{ "BUILDING_NUMBER" | translate}}</div>
+                        <input class="input_create" type="text" formControlName="buildingNumber">
+                        <div class="key">{{ "APARTMENT" | translate}}</div>
+                        <input class="input_create" type="text" formControlName="apartment">
+                        <div class="key">{{ "ZIP_CODE" | translate}}</div>
+                        <input class="input_create" type="text" formControlName="zipCode">
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 </div>

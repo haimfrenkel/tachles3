@@ -13,7 +13,7 @@
                 </div>
             </div>
         </form>
-        <app-address-form></app-address-form>
+        <app-address-form [key]="this.keyForMain"></app-address-form>
         <app-bank-account-form></app-bank-account-form>
     </div>
     <button *ngIf="!nextToPersonal" type="button" class="btn btn-secondary button" (click)="next()">{{ "NEXT" |

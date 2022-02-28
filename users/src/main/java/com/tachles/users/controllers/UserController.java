@@ -3,6 +3,7 @@ package com.tachles.users.controllers;
 
 import com.tachles.users.ResponseMessage;
 import com.tachles.users.models.User;
+import com.tachles.users.models.UserCSVUploadRes;
 import com.tachles.users.service.UploadService;
 import com.tachles.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,23 +30,18 @@ public class UserController {
     }
 
     @PostMapping("uploadFile")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        String message = "";
-        if (uploadService.hasCSVFormat(file)) {
-            System.out.println("file: " + file.getContentType());
-
-            try {
-                userService.saveMany(file);
-                message = "Uploaded the file successfully: " + file.getOriginalFilename();
-                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-            } catch (Exception e) {
-                message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+    public ResponseEntity<UserCSVUploadRes> uploadFile(@RequestParam("file") MultipartFile file) {
+        if (UploadService.hasCSVFormat(file)) {
+            UserCSVUploadRes response = userService.uploadUserFromCSV(file);
+            if (response.isSuccess())
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
         }
-        message = "Please upload a csv file!";
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getOne(@PathVariable(value = "id") long id) {
@@ -57,10 +53,11 @@ public class UserController {
         return userService.getAll();
     }
 
-@PutMapping("/{id}")
-public User updateUser(){
-        return userService.updateOne();
-}
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable(value = "id") Long id, @RequestBody User user) {
+        return userService.updateOne(id, user);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id) {
         System.out.println("delete User " + id);

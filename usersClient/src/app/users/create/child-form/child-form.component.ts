@@ -16,12 +16,12 @@ export class ChildFormComponent implements OnInit {
 
   idx: number;
   form: FormGroup;
-  convert: Child;
   name: Name;
   keyForName: string = "child";
   sowButtontAdd: number = 0;
   keyForChildern: string = 'children';
   MainFormComponent: any;
+  arrayOfChildern: Child [] = []
 
   constructor(private saveSRV: CreateService, private router: Router) {
   }
@@ -49,7 +49,7 @@ export class ChildFormComponent implements OnInit {
   }
 
   addChildern(idx: number) {
-    this.createData(idx)
+    this.parseToChildObject(idx)
     const childForm = new FormGroup({
       'dob': new FormControl(),
       'gender': new FormControl(),
@@ -64,20 +64,20 @@ export class ChildFormComponent implements OnInit {
     this.name = data
   }
 
-  createData(idx: number) {
-    this.convert = {
+  parseToChildObject(idx: number) {
+     const convert: Child = {
       dob: this.form.get(['children', idx, 'dob'])?.value,
       gender: this.form.get(['children', idx, 'gender'])?.value,
       maritalStatus: this.form.get(['children', idx, 'maritalStatus'])?.value,
       placeOfStudy: this.form.get(['children', idx, 'placeOfStudy'])?.value,
       name: this.name
     }
+    this.arrayOfChildern.push(convert)
   }
 
-  saveChild() {
-    this.saveSRV.onValueChange(this.keyForChildern, this.form.value)
-    console.log(this.saveSRV.user);
-    
+  saveChild(idx: number) {
+    this.parseToChildObject(idx)
+    this.saveSRV.onValueChange(this.keyForChildern, this.arrayOfChildern)    
     this.saveSRV.save().subscribe(data => {
       this.saveSRV.initUser();
       this.router.navigate(["/users"])

@@ -28,7 +28,7 @@ public class UploadService {
         return TYPE.equals(file.getContentType());
     }
 
-    public static List<User> csvToUsers(InputStream is) {
+    public static List<User> parseCsvToUsers(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {

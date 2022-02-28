@@ -86,8 +86,6 @@ export class CreateService extends UserService {
   }
 
   onValueChange(key: string, value: any) {
-    console.log(value);
-    
     switch (key) {
       case "men":
         this.user.men = { ...this.user.men, ...value }
@@ -124,14 +122,12 @@ export class CreateService extends UserService {
         this.user.address = { ...value };
         break;
       case "children":
-        this.user.children = value.childern;
+        this.user.children = value;
         break;
     }
   }
-  
+
   save(): Observable<any> {
-    console.log(this.user);
-    
     if (this.editMode && this.user.id) {
       this.editMode = false
       return this.updateOne("users", "", this.user.id, this.user)

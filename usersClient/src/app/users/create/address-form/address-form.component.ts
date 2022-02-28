@@ -23,11 +23,12 @@ export class AddressFormComponent implements OnInit {
 
   constructor(private saveSRV: CreateService) { 
     this.initForm()
-    this.editForm()
   }
 
-  ngOnInit(): void {
-   
+   ngOnInit() {
+    this.editForm()
+    if(this.key == "menJobs"){
+    }
     this.saveSRV.getCity().subscribe((res) => {
       this.cities = res.result.records
     })
@@ -65,7 +66,7 @@ export class AddressFormComponent implements OnInit {
     })
   }
 
-  editForm() {
+ editForm() { 
     if (this.key == "menJobs") {
       this.form.get('state')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.state ? this.saveSRV.user.men.jobs[this.idx].address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.city ? this.saveSRV.user.men.jobs[this.idx].address.city : "");
@@ -82,8 +83,8 @@ export class AddressFormComponent implements OnInit {
       this.form.get('apartment')?.setValue(this.saveSRV.user.women.jobs[this.idx].address.apartment ? this.saveSRV.user.women.jobs[this.idx].address.apartment : 0);
       this.form.get('zipCode')?.setValue(this.saveSRV.user.women.jobs[this.idx].address.zipCode ? this.saveSRV.user.women.jobs[this.idx].address.zipCode : 0);
     }
-    else {
-      this.form.get('state')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "ישראל");
+    if(this.key = "main") {
+      this.form.get('state')?.setValue(this.saveSRV.user.address.state ? this.saveSRV.user.address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.address.city ? this.saveSRV.user.address.city : "");
       this.form.get('street')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "בחר רחוב");
       this.form.get('buildingNumber')?.setValue(this.saveSRV.user.address.buildingNumber ? this.saveSRV.user.address.buildingNumber : 0);

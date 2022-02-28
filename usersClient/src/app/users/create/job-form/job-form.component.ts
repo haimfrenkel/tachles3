@@ -12,14 +12,14 @@ import { CreateService } from '../create.service';
 export class JobFormComponent implements OnInit {
   @Input() key
   form: FormGroup
-  arrayOfData: Job[] = [];
+  arrayOfJobs: Job[] = [];
   address: Address
   sowButtontAdd: number = 0
 
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm()    
   }
 
   initForm() {
@@ -49,9 +49,7 @@ export class JobFormComponent implements OnInit {
 
   saveJob(idx: number) {
     this.parseToJobObject(idx)
-    console.log(this.arrayOfData);
-
-    this.saveSRV.onValueChange(this.key, this.arrayOfData)
+    this.saveSRV.onValueChange(this.key, this.arrayOfJobs)
   }
 
   onPushAddress(data: Address) {
@@ -59,12 +57,11 @@ export class JobFormComponent implements OnInit {
   }
 
   parseToJobObject(idx: number) {
-    
     const convert: Job = {
       job: this.form.get(['jobs', idx, 'job'])?.value,
       companyName: this.form.get(['jobs', idx, 'companyName'])?.value,
       address: this.address
     }
-    this.arrayOfData.push(convert)
+    this.arrayOfJobs.push(convert)
   }
 }

@@ -17,6 +17,7 @@ export class MainFormComponent implements OnInit {
   numberOfChildren = 0
   nextToPersonal: boolean = false;
   nextToChild: boolean = false;
+  keyForMain: string = "main"
 
 
   constructor(private saveSRV: CreateService, private router: Router) { }

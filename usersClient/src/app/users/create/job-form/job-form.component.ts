@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Address } from 'src/models&Languages/users/address.interface';
 import { Job } from 'src/models&Languages/users/job.interface';
 import { CreateService } from '../create.service';
@@ -11,6 +12,7 @@ import { CreateService } from '../create.service';
 })
 export class JobFormComponent implements OnInit {
   @Input() key
+  subscription: Subscription
   form: FormGroup
   arrayOfJobs: Job[] = [];
   address: Address
@@ -19,7 +21,14 @@ export class JobFormComponent implements OnInit {
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    this.initForm()    
+    this.initForm() 
+    this.subscription = this.form.valueChanges.subscribe(data=>{
+      this.saveSRV.onValueChange(this.key, data)            
+    })   
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   initForm() {
@@ -37,31 +46,12 @@ export class JobFormComponent implements OnInit {
     return this.form.controls["jobs"] as FormArray
   }
 
-  addJobs(idx: number) {
-    this.parseToJobObject(idx)
+  addJobs() {
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),
     });
     this.jobs.push(jobForm);
     this.sowButtontAdd++;
-  }
-
-  saveJob(idx: number) {
-    this.parseToJobObject(idx)
-    this.saveSRV.onValueChange(this.key, this.arrayOfJobs)
-  }
-
-  onPushAddress(data: Address) {
-    this.address = data
-  }
-
-  parseToJobObject(idx: number) {
-    const convert: Job = {
-      job: this.form.get(['jobs', idx, 'job'])?.value,
-      companyName: this.form.get(['jobs', idx, 'companyName'])?.value,
-      address: this.address
-    }
-    this.arrayOfJobs.push(convert)
   }
 }

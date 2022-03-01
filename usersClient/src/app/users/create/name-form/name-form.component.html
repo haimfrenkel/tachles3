@@ -1,4 +1,28 @@
-<div class="card_name">
+
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill" style="padding: 15px;">
+      <mat-label>{{ "START_NAME" | translate }}</mat-label>
+      <mat-select matInput formControlName="startName">
+        <mat-option *ngFor="let startName of startNameOptions" [value]="startName">{{startName}}</mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-label>{{ "FIRST_NAME" | translate }}</mat-label>
+          <input matInput formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="padding: 15px;">
+        <mat-label>{{ "LAST_NAME" | translate }}</mat-label>
+          <input matInput formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="padding: 15px;">
+        <mat-label>{{ "END_NAME" | translate }}</mat-label>
+          <mat-select matInput formControlName="endName">
+            <mat-option *ngFor="let endName of endNameOptions" [value]="endName">{{endName}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+  </form>
+<!-- <div class="card_name">
   <form [formGroup]="form">
     <div class="header ">
       <div class="key">{{ "START_NAME" | translate}}</div>
@@ -15,4 +39,4 @@
       </select>
     </div>
   </form>
-</div>
+</div> -->

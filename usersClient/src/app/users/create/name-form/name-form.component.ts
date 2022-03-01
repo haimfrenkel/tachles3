@@ -12,26 +12,21 @@ import { CreateService } from '../create.service';
 export class NameFormComponent implements OnInit {
   @Input('key') key;
   @Input('idx') idx;
-  @Output() data = new EventEmitter<Name>()
-
   form: FormGroup
   subscription: Subscription
   startNameOptions: string[] = [" ","הרב", "הרה''ג", "מרת","הרבנית", ];
   endNameOptions: string[] = [" ", "שליט''א", "תליט''א", "הי''ו", "נ''י", "'תחי"];
 
-  constructor(private saveSRV: CreateService) {
-    this.initForm();
-    this.editForm();
-   }
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
+    this.initForm();
+    this.editForm();
     this.key = `${this.key}Name`
-   
-    
-   
     this.subscription = this.form.valueChanges.subscribe(data => {
       if (this.key == "childName") {
-        this.sendEmitToParent();
+        this.saveSRV.onValueChange(this.key, data, this.idx);
+
       } else {
         this.saveSRV.onValueChange(this.key, data);
       }
@@ -64,7 +59,7 @@ export class NameFormComponent implements OnInit {
       this.form.get('lastName')?.setValue(this.saveSRV.user.women.name.lastName ? this.saveSRV.user.women.name.lastName : "")
       this.form.get('endName')?.setValue(this.saveSRV.user.women.name.endName ? this.saveSRV.user.women.name.endName : "")
     }
-    if(this.key == "child"){
+    if(this.key == "child" && this.saveSRV.user.children[this.idx]){
       this.form.get('startName')?.setValue(this.saveSRV.user.children[this.idx].name.startName ? this.saveSRV.user.children[this.idx].name.startName : "")
       this.form.get('firstName')?.setValue(this.saveSRV.user.children[this.idx].name.firstName ? this.saveSRV.user.children[this.idx].name.firstName : "")
       this.form.get('lastName')?.setValue(this.saveSRV.user.children[this.idx].name.lastName ? this.saveSRV.user.children[this.idx].name.lastName : "")
@@ -72,7 +67,5 @@ export class NameFormComponent implements OnInit {
     }
   }
 
-  sendEmitToParent() {
-    this.data.emit(this.form.value)
-  }
+  
 }

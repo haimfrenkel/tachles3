@@ -85,7 +85,7 @@ export class CreateService extends UserService {
     return this.http.get(`${this.streetURL}${city}${this.endURL}`)
   }
 
-  onValueChange(key: string, value: any) {
+  onValueChange(key: string, value: any, idx?: any) {    
     switch (key) {
       case "men":
         this.user.men = { ...this.user.men, ...value }
@@ -95,7 +95,10 @@ export class CreateService extends UserService {
         this.user.men.phones = value.phones
         break;
       case "menJobs":
-        this.user.men.jobs = value
+        this.user.men.jobs = value.jobs
+        break;
+      case "menJobsAddress":
+        this.user.men.jobs[idx].address = { ...value }
         break;
       case "menName":
         this.user.men.name = { ...value };
@@ -107,7 +110,10 @@ export class CreateService extends UserService {
         this.user.women.phones = value.phones
         break;
       case "womenJobs":
-        this.user.women.jobs = value
+        this.user.women.jobs = value.jobs
+        break;
+      case "womenJobsAddress":
+        this.user.women.jobs[idx].address = { ...value }
         break;
       case "womenName":
         this.user.women.name = { ...value };
@@ -122,9 +128,14 @@ export class CreateService extends UserService {
         this.user.address = { ...value };
         break;
       case "children":
-        this.user.children = value;
+        this.user.children = value.children;
+        break;
+        case "childName":
+        this.user.children[idx].name = {...value};
         break;
     }
+    console.log(this.user);
+    
   }
 
   save(): Observable<any> {

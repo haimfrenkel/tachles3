@@ -11,11 +11,13 @@ import { CreateService } from '../create.service';
 })
 export class MainFormComponent implements OnInit {
   subscription: Subscription
-  form: FormGroup;
+  mainForm: FormGroup;
+  moreDetalisForm: FormGroup;
   confirmPass: string
   keyForMen: string = 'men';
   keyForWomen: string = 'women';
   keyForAddress: string = 'address';
+  displayMoreDetalisForm: boolean = false;
   displayMenForm: boolean = false;
   displayWomenForm: boolean = false;
   displayChildForm: boolean = false
@@ -26,8 +28,12 @@ export class MainFormComponent implements OnInit {
   constructor(private saveSRV: CreateService, private router: Router) { }
 
   ngOnInit(): void {
-    this.initForm()
-    this.subscription = this.form.valueChanges.subscribe(data=>{
+    this.initMainForm()
+    this.initMoreDetalisForm()
+    this.subscription = this.mainForm.valueChanges.subscribe(data=>{
+      this.saveSRV.onValueChange("main", data)      
+    })
+    this.subscription = this.moreDetalisForm.valueChanges.subscribe(data=>{
       this.saveSRV.onValueChange("main", data)      
     })
   }
@@ -36,11 +42,18 @@ export class MainFormComponent implements OnInit {
     this.subscription.unsubscribe()
   }
 
-  initForm() {
-    this.form = new FormGroup({
+  initMainForm() {
+    this.mainForm = new FormGroup({
       'userName': new FormControl(null, [Validators.required]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'confirmPassword': new FormControl(null, Validators.required),  
+    })
+  }
+
+  initMoreDetalisForm(){
+    this.moreDetalisForm = new FormGroup({
+      'dateOfMarriage': new FormControl(),
+      'shtibel': new FormControl()
     })
   }
 
@@ -50,12 +63,29 @@ export class MainFormComponent implements OnInit {
     })
   }
 
+  cancel(){
+    this.saveSRV.initUser()
+    this.router.navigate(['/users'])
+  }
  
+  openMoreDetalisForm() {
+    if (this.displayMoreDetalisForm) {
+      this.displayMoreDetalisForm = false;
+    } else {
+      this.displayMenForm = false
+      this.displayAddressForm = false;
+      this.displayBankAccountForm = false;
+      this.displayChildForm = false;
+      this.displayWomenForm = false;
+      this.displayMoreDetalisForm = true
+    }
+  }
 
   openMenForm() {
     if (this.displayMenForm) {
       this.displayMenForm = false;
     } else {
+      this.displayMoreDetalisForm = false
       this.displayAddressForm = false;
       this.displayBankAccountForm = false;
       this.displayChildForm = false;
@@ -68,6 +98,7 @@ export class MainFormComponent implements OnInit {
     if (this.displayWomenForm) {
       this.displayWomenForm = false;
     } else {
+      this.displayMoreDetalisForm = false
       this.displayAddressForm = false;
       this.displayBankAccountForm = false;
       this.displayChildForm = false;
@@ -80,6 +111,7 @@ export class MainFormComponent implements OnInit {
     if (this.displayAddressForm) {
       this.displayAddressForm = false;
     } else {
+      this.displayMoreDetalisForm = false
       this.displayMenForm = false;
       this.displayBankAccountForm = false;
       this.displayChildForm = false;
@@ -92,6 +124,7 @@ export class MainFormComponent implements OnInit {
     if (this.displayBankAccountForm) {
       this.displayBankAccountForm = false;
     } else {
+      this.displayMoreDetalisForm = false
       this.displayAddressForm = false;
       this.displayMenForm = false;
       this.displayChildForm = false;
@@ -104,6 +137,7 @@ export class MainFormComponent implements OnInit {
     if (this.displayChildForm) {
       this.displayChildForm = false;
     } else {
+      this.displayMoreDetalisForm = false
       this.displayAddressForm = false;
       this.displayBankAccountForm = false;
       this.displayMenForm = false;

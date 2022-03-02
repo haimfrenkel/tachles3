@@ -95,9 +95,7 @@ export class CreateService extends UserService {
       case "menPhones":
         this.user.men.phones = value.phones
         break;
-      case "menJobs":
-        console.log(value);
-        
+      case "menJobs":        
         this.user.men.jobs = value.jobs
         break;
       case "menName":
@@ -125,13 +123,9 @@ export class CreateService extends UserService {
         this.user.address = { ...value };
         break;
       case "children":
-        console.log(value);
-
         this.user.children =   value.children;
         break;
     }
-    console.log(this.user);
-    
   }
 
   save(): Observable<any> {

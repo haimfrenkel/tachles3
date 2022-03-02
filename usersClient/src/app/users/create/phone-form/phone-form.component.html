@@ -2,7 +2,7 @@
   <a formArrayName="phones">
     <a *ngFor="let phone of phones.controls; let i = index">
       <a [formGroupName]="i">
-        <mat-form-field appearance="fill" style="padding: 15px;">
+        <mat-form-field appearance="outline" style="padding: 15px;">
           <mat-label>{{ "PHONE_NUMBER" | translate }}</mat-label>
           <input matInput formControlName="number">
         </mat-form-field>

@@ -1,18 +1,18 @@
 <mat-card>{{ "BANK" | translate}}
   <form [formGroup]="form">
-      <mat-form-field appearance="fill" style="padding: 15px;">
+      <mat-form-field appearance="outline" style="padding: 15px;">
           <mat-label>{{ "BANK_NAME" | translate }}</mat-label>
           <input matInput formControlName="bankName">
       </mat-form-field>
-      <mat-form-field appearance="fill" style="padding: 15px;">
+      <mat-form-field appearance="outline" style="padding: 15px;">
         <mat-label>{{ "BANK_NUMBER" | translate }}</mat-label>
           <input matInput formControlName="bankNo">
       </mat-form-field>
-      <mat-form-field appearance="fill" style="padding: 15px;">
+      <mat-form-field appearance="outline" style="padding: 15px;">
         <mat-label>{{ "BRANCH_NUMBER" | translate }}</mat-label>
           <input matInput formControlName="branchNo">
       </mat-form-field>
-      <mat-form-field appearance="fill" style="padding: 15px;">
+      <mat-form-field appearance="outline" style="padding: 15px;">
         <mat-label>{{ "ACCOUNT_NUMBER" | translate }}</mat-label>
         <input matInput formControlName="accountNo">
     </mat-form-field>

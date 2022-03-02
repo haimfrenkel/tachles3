@@ -12,6 +12,7 @@ import { CreateService } from '../create.service';
 export class NameFormComponent implements OnInit {
   @Input('key') key;
   @Input('idx') idx;
+  @Output() childObj = new EventEmitter<Name>()
   form: FormGroup
   subscription: Subscription
   startNameOptions: string[] = [" ","הרב", "הרה''ג", "מרת","הרבנית", ];
@@ -21,16 +22,17 @@ export class NameFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.editForm();
     this.key = `${this.key}Name`
-    this.subscription = this.form.valueChanges.subscribe(data => {
-      if (this.key == "childName") {
-        this.saveSRV.onValueChange(this.key, data, this.idx);
-
-      } else {
-        this.saveSRV.onValueChange(this.key, data);
-      }
+    if(this.key.includes('child')){
+      this.subscription = this.form.valueChanges.subscribe(data => {
+        this.sendNameObjToParent()     
     })
+    } else {
+      this.subscription = this.form.valueChanges.subscribe(data => {
+        this.saveSRV.onValueChange(this.key, data);      
+    })
+    }
+  
   }
   
   ngOnDestroy() {
@@ -67,5 +69,7 @@ export class NameFormComponent implements OnInit {
     }
   }
 
-  
+  sendNameObjToParent(){    
+    this.childObj.emit(this.form.value);
+  }
 }

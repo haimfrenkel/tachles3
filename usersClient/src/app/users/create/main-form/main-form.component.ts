@@ -47,27 +47,10 @@ export class MainFormComponent implements OnInit {
   save(){
     this.saveSRV.save().subscribe(data=>{
       this.router.navigate(['/users'])
-      console.log(this.saveSRV.user); 
     })
   }
 
-  // checkIfCustomerExists(): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: boolean } | null => {
-  //     const check = this.checkMatching(control.value)
-  //     if (check) {
-  //       return { 'DontMatch': true };
-  //     }
-  //     return null;
-  //   };
-  // }
-
-  // checkMatching(Pass: any): boolean | null {
-  //   let pass = this.form ? this.form.get('password')?.value : null
-  //   if (Pass != pass) {
-  //     return true
-  //   }
-  //   return null
-  // }
+ 
 
   openMenForm() {
     if (this.displayMenForm) {

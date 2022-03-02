@@ -1,33 +1,33 @@
 <mat-card >
   <form [formGroup]="form">
     <app-name-form [key]="gender"></app-name-form>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "ID" | translate }}</mat-label>
       <input matInput formControlName="taz">
     </mat-form-field>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "FATHER_NAME" | translate }}</mat-label>
       <input matInput formControlName="fatherName">
     </mat-form-field>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "GRAND_FATHER_NAME" | translate }}</mat-label>
       <input matInput formControlName="grandfatherName">
     </mat-form-field>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "CREAT_GREANFATHER_NAME" | translate }}</mat-label>
       <input matInput formControlName="greatGrandfatherName">
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>{{ "DOB" | translate }}</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="DOB" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "EMAIL" | translate }}</mat-label>
       <input matInput formControlName="email">
     </mat-form-field>
-    <mat-form-field appearance="fill" style="padding: 15px;">
+    <mat-form-field appearance="outline" style="padding: 15px;">
       <mat-label>{{ "MARITAL_STATUS" | translate }}</mat-label>
       <mat-select matInput formControlName="maritalStatus">
         <mat-option *ngFor="let maritalStatus of maritalStatusOptions" [value]="maritalStatus">{{maritalStatus}}</mat-option>

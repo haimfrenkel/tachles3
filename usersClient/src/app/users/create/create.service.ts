@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Child } from 'src/models&Languages/users/child.interface';
 import { User } from 'src/models&Languages/users/userType';
 import { UserService } from '../services/user.service';
 
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class CreateService extends UserService {
   user: User
+  child: Child[];
   cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`;
   streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`;
   endURL: string = "&limit=60000";
@@ -16,7 +18,7 @@ export class CreateService extends UserService {
 
   constructor(protected override http: HttpClient) {
     super(http);
-    this.initUser()
+    this.initUser()    
   }
 
   initUser() {
@@ -89,16 +91,14 @@ export class CreateService extends UserService {
     switch (key) {
       case "men":
         this.user.men = { ...this.user.men, ...value }
-        this.user.password = this.user.men.taz.toString()
         break;
       case "menPhones":
         this.user.men.phones = value.phones
         break;
       case "menJobs":
+        console.log(value);
+        
         this.user.men.jobs = value.jobs
-        break;
-      case "menJobsAddress":
-        this.user.men.jobs[idx].address = { ...value }
         break;
       case "menName":
         this.user.men.name = { ...value };
@@ -111,9 +111,6 @@ export class CreateService extends UserService {
         break;
       case "womenJobs":
         this.user.women.jobs = value.jobs
-        break;
-      case "womenJobsAddress":
-        this.user.women.jobs[idx].address = { ...value }
         break;
       case "womenName":
         this.user.women.name = { ...value };
@@ -128,10 +125,9 @@ export class CreateService extends UserService {
         this.user.address = { ...value };
         break;
       case "children":
-        this.user.children = value.children;
-        break;
-        case "childName":
-        this.user.children[idx].name = {...value};
+        console.log(value);
+
+        this.user.children =   value.children;
         break;
     }
     console.log(this.user);

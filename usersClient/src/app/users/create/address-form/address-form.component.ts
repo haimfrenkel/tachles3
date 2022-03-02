@@ -13,7 +13,7 @@ import { CreateService } from '../create.service';
 export class AddressFormComponent implements OnInit {
   @Input() key
   @Input() idx
-  @Output() submitAddressEvent = new EventEmitter<Address>()
+  @Output() addressObj = new EventEmitter<Address>()
 
   form: FormGroup
   subscription: Subscription
@@ -23,29 +23,23 @@ export class AddressFormComponent implements OnInit {
 
   constructor(private saveSRV: CreateService) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.initForm()
-    if(this.key.includes('Jobs')){
-      this.key = `${this.key}Address`        
-    }
     this.saveSRV.getCity().subscribe((res) => {
       this.cities = res.result.records
     })
     this.subscription = this.form.valueChanges.subscribe(data => {
-      if(this.key.includes('Jobs')){
-        this.saveSRV.onValueChange(this.key, data, this.idx)
-        console.log(this.saveSRV.user);
-
-      } else {
+      if (this.key.includes('Jobs')) {
+        this.sendAddressObjToParent()
+      } else {   
         this.saveSRV.onValueChange(this.key, data)
       }
-        console.log(this.saveSRV.user);     
     })
   }
 
   userAnswersClick(event) {
     this.city = this.form.get('city')?.value;
-    this.saveSRV.getStreet(this.city).subscribe((res) => {            
+    this.saveSRV.getStreet(this.city).subscribe((res) => {
       this.streets = res.result.records
     })
   }
@@ -57,7 +51,7 @@ export class AddressFormComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      'state': new FormControl(''),
+      'state': new FormControl('ישראל'),
       'city': new FormControl(''),
       'street': new FormControl(''),
       'buildingNumber': new FormControl(''),
@@ -66,8 +60,8 @@ export class AddressFormComponent implements OnInit {
     })
   }
 
- editForm() { 
-    if (this.key == "menJobs") { 
+  editForm() {
+    if (this.key == "menJobs") {
       this.form.get('state')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.state ? this.saveSRV.user.men.jobs[this.idx].address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.city ? this.saveSRV.user.men.jobs[this.idx].address.city : "");
       this.form.get('street')?.setValue(this.saveSRV.user.men.jobs[this.idx].address.street ? this.saveSRV.user.men.jobs[this.idx].address.street : "");
@@ -83,7 +77,7 @@ export class AddressFormComponent implements OnInit {
       this.form.get('apartment')?.setValue(this.saveSRV.user.women.jobs[this.idx].address.apartment ? this.saveSRV.user.women.jobs[this.idx].address.apartment : 0);
       this.form.get('zipCode')?.setValue(this.saveSRV.user.women.jobs[this.idx].address.zipCode ? this.saveSRV.user.women.jobs[this.idx].address.zipCode : 0);
     }
-    if(this.key = "main") {
+    if (this.key = "main") {
       this.form.get('state')?.setValue(this.saveSRV.user.address.state ? this.saveSRV.user.address.state : "ישראל");
       this.form.get('city')?.setValue(this.saveSRV.user.address.city ? this.saveSRV.user.address.city : "");
       this.form.get('street')?.setValue(this.saveSRV.user.address.street ? this.saveSRV.user.address.street : "בחר רחוב");
@@ -91,6 +85,10 @@ export class AddressFormComponent implements OnInit {
       this.form.get('apartment')?.setValue(this.saveSRV.user.address.apartment ? this.saveSRV.user.address.apartment : 0);
       this.form.get('zipCode')?.setValue(this.saveSRV.user.address.zipCode ? this.saveSRV.user.address.zipCode : 0);
     }
+  }
+
+  sendAddressObjToParent() {
+    this.addressObj.emit(this.form.value);
   }
 }
 

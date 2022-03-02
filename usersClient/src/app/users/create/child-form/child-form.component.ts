@@ -13,7 +13,7 @@ import { MainFormComponent } from '../main-form/main-form.component';
   styleUrls: ['./child-form.component.css']
 })
 export class ChildFormComponent implements OnInit {
-  maritalStatusOptions:string[]=[" ","רווק/ה",  "נשוי/ה",  "גרוש/ה",  "אלמן/ה" ]
+  maritalStatusOptions: string[] = [" ", "רווק/ה", "נשוי/ה", "גרוש/ה", "אלמן/ה"]
   idx: number;
   form: FormGroup;
   name: Name;
@@ -24,14 +24,13 @@ export class ChildFormComponent implements OnInit {
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    
     this.initForm()
-    this.subscription = this.form.valueChanges.subscribe(data=>{
-      this.saveSRV.onValueChange("children", data)            
-    })   
+    this.subscription = this.form.valueChanges.subscribe(data => {
+      this.saveSRV.onValueChange("children", data)
+    })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
@@ -40,10 +39,16 @@ export class ChildFormComponent implements OnInit {
     this.form = new FormGroup({
       children: new FormArray([
         new FormGroup({
-          'dob': new FormControl(),
-          'gender': new FormControl(),
-          'maritalStatus': new FormControl(),
-          'placeOfStudy': new FormControl()
+          'dob': new FormControl(''),
+          'gender': new FormControl(''),
+          'maritalStatus': new FormControl(''),
+          'placeOfStudy': new FormControl(''),
+          name: new FormGroup({
+            'startName': new FormControl(''),
+            'firstName': new FormControl(''),
+            'lastName': new FormControl(''),
+            'endName': new FormControl(''),
+          })
         })
       ])
     })
@@ -58,8 +63,18 @@ export class ChildFormComponent implements OnInit {
       'dob': new FormControl(),
       'gender': new FormControl(),
       'maritalStatus': new FormControl(),
-      'placeOfStudy': new FormControl()
+      'placeOfStudy': new FormControl(),
+      name: new FormGroup({
+        'startName': new FormControl(''),
+        'firstName': new FormControl(''),
+        'lastName': new FormControl(''),
+        'endName': new FormControl(''),
+      })
     });
     this.children.push(childForm);
   }
+
+  enterNameToChild(nameFromChild: Name, i: any) {
+    this.form.get(['children', i, 'name'])?.setValue(nameFromChild);
+  }  
 }

@@ -22,7 +22,7 @@ export class JobFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm() 
-    this.subscription = this.form.valueChanges.subscribe(data=>{
+    this.subscription = this.form.valueChanges.subscribe(data=>{      
       this.saveSRV.onValueChange(this.key, data)            
     })   
   }
@@ -37,6 +37,14 @@ export class JobFormComponent implements OnInit {
         new FormGroup({
           'companyName': new FormControl(),
           'job': new FormControl(),
+          address: new FormGroup({
+            'state': new FormControl(''),
+            'city': new FormControl(''),
+            'street': new FormControl(''),
+            'buildingNumber': new FormControl(''),
+            'apartment': new FormControl(''),
+            'zipCode': new FormControl(''),
+          })
         })
       ])
     })
@@ -50,8 +58,19 @@ export class JobFormComponent implements OnInit {
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),
+      address: new FormGroup({
+        'state': new FormControl(''),
+        'city': new FormControl(''),
+        'street': new FormControl(''),
+        'buildingNumber': new FormControl(''),
+        'apartment': new FormControl(''),
+        'zipCode': new FormControl(''),
+      })
     });
     this.jobs.push(jobForm);
-    this.sowButtontAdd++;
+  }
+
+  enterAddressToJob(addressFromChild: Address, index: any){
+    this.form.get(['jobs', index, 'address'])?.setValue(addressFromChild);
   }
 }

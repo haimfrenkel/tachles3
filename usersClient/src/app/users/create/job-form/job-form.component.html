@@ -2,22 +2,21 @@
     <div formArrayName="jobs"> {{ "WORK" | translate }}
         <a *ngFor="let Job of jobs.controls; let i = index">
             <a [formGroupName]="i">
-                <mat-form-field appearance="fill" style="padding: 15px;">
+                <mat-form-field appearance="outline" style="padding: 15px;">
                     <mat-label>{{ "JOB" | translate }}</mat-label>
                     <input matInput formControlName="job">
                 </mat-form-field>
-                <mat-form-field appearance="fill" style="padding: 15px;">
+                <mat-form-field appearance="outline" style="padding: 15px;">
                     <mat-label>{{ "COMPANY_NAME" | translate }}</mat-label>
                     <input matInput formControlName="companyName">
                 </mat-form-field>
-                <app-address-form [key]="key" [idx]="i"></app-address-form>
+                <app-address-form [key]="key" [idx]="i" (addressObj)="enterAddressToJob($event, i)"></app-address-form>
             </a>
-             
         </a>
         <div class="example-button-container">
-            <button mat-mini-fab color="primary"  (click)="addJobs()" >
-              <mat-icon>plus_one</mat-icon>
+            <button mat-mini-fab color="primary" (click)="addJobs()">
+                <mat-icon>plus_one</mat-icon>
             </button>
-          </div>          
+        </div>
     </div>
 </form>

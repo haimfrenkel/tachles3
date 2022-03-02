@@ -1,20 +1,20 @@
 <form [formGroup]="form">
   <a formArrayName="phones">
-    <div class="header">
-      <a *ngFor="let phone of phones.controls; let i = index">
-        <a [formGroupName]="i">
-          <div class="key">{{ "PHONE_NUMBER" | translate }}</div>
-          <input class="input_create" style="margin-left: 0px;" type="number" formControlName="number">
-          <div class="row">
-            <img class="img_whatsapp" src="../../../assets/WhatsApp.png">
-            <input class="input_checkbox" type="checkbox" formControlName="whatsapp">
-          </div>
-        </a>
+    <a *ngFor="let phone of phones.controls; let i = index">
+      <a [formGroupName]="i">
+        <mat-form-field appearance="outline" style="padding: 15px;">
+          <mat-label>{{ "PHONE_NUMBER" | translate }}</mat-label>
+          <input matInput formControlName="number">
+        </mat-form-field>
+        <mat-label>{{ "WAHTSAPP" | translate }}</mat-label>
+        <mat-checkbox formControlName="whatsapp"> <img class="img_whatsapp" src="../../../assets/WhatsApp.png">
+        </mat-checkbox>
       </a>
+    </a>
+    <div class="example-button-container">
+      <button mat-mini-fab color="primary"  (click)="addPhone()" >
+        <mat-icon>plus_one</mat-icon>
+      </button>
     </div>
   </a>
-  <div class="not_for_phone">{{ "NOTE_FOR_PHONE" | translate }}</div>
-  <button class="btn btn-secondary header button" type="submit" (click)="savePhones()">{{ "SAVE_PHONE" | translate }}</button>
-  <button class="btn btn-secondary header button" type="submit" (click)="addPhone()">{{ "ADD_PHONE" | translate }}</button>
-  <img class="img" src="../../../assets/plus.png">
 </form>

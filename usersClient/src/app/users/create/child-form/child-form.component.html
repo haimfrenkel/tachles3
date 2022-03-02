@@ -1,28 +1,37 @@
-<div class="card card_create" style="display:inline-block;">
-  <form [formGroup]="form">
-    <div class="header row" formArrayName="children">
+<mat-card>
+<form [formGroup]="form">
+    <div  formArrayName="children">
       <a *ngFor="let child of children.controls; let i = index">
-        {{i}}
         <a [formGroupName]="i">
-          <div style="margin-left: 40%;">child {{i+1}}</div>
-          <div class="header_child">
-            <app-name-form [key]="keyForName" [idx]="i" (data)=pushName($event)></app-name-form>
-            <div style="padding-left: 27px;">
-              <div class="key">{{ "DOB" | translate }}</div>
-              <input class="input_create" type="date" formControlName="dob">
-              <div class="key">{{ "GENDER" | translate }}</div>
-              <input class="input_create" type="text" formControlName="gender">
-              <div class="key">{{ "MARITAL_STATUS" | translate }}</div>
-              <input class="input_create" type="text" formControlName="maritalStatus">
-              <div class="key">{{ "PLACE_OF_STUDY" | translate }}</div>
-              <input class="input_create" type="text" formControlName="placeOfStudy">
-            </div>
-          </div>
+            <app-name-form [key]="keyForName" [idx]="i" (childObj)="enterNameToChild($event, i)"></app-name-form>  
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "DOB" | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dob">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>     
+            <mat-form-field appearance="outline" style="padding: 15px;">
+              <mat-label>{{ "GENDER" | translate }}</mat-label>
+              <input matInput formControlName="gender">
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="padding: 15px;">
+              <mat-label>{{ "MARITAL_STATUS" | translate }}</mat-label>
+              <mat-select matInput formControlName="maritalStatus">
+                <mat-option *ngFor="let maritalStatus of maritalStatusOptions" [value]="maritalStatus">{{maritalStatus}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="padding: 15px;">
+              <mat-label>{{ "PLACE_OF_STUDY" | translate }}</mat-label>
+              <input matInput formControlName="placeOfStudy">
+            </mat-form-field>
         </a>
-        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary btn-lg button" style="margin-left: 45%;"
-          (click)=addChildern(i)>add child</button>
       </a>
-
+      
+      <div class="example-button-container">
+        <button mat-mini-fab color="primary"  (click)="addChildern()" >
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>    
     </div>
   </form>
-</div>
+</mat-card>

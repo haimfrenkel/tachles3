@@ -9,9 +9,12 @@ import { CreateService } from '../create.service';
   styleUrls: ['./personal-form.component.css']
 })
 export class PersonalFormComponent implements OnInit {
+  displayPhoneForm: boolean = false;
+  displayJobForm: boolean = false;
   @Input() gender;
   keyForJob: string
   keyForName: string
+  keyForPhones: string
   form: FormGroup;
   subscription: Subscription
   maritalStatusOptions:string[]=[" ","רווק/ה",  "נשוי/ה",  "גרוש/ה",  "אלמן/ה" ]
@@ -23,11 +26,10 @@ export class PersonalFormComponent implements OnInit {
     this.editForm()
     this.keyForJob = `${this.gender}Jobs`
     this.keyForName = `${this.gender}Name`
+    this.keyForPhones = `${this.gender}Phones`
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onValueChange(this.gender, data)
     })
-    console.log(this.saveSRV.user);
-    
   }
 
   ngOnDestroy() {
@@ -64,6 +66,24 @@ export class PersonalFormComponent implements OnInit {
       this.form.get('DOB')?.setValue(this.saveSRV.user.women.DOB ? this.saveSRV.user.women.DOB : "")
       this.form.get('email')?.setValue(this.saveSRV.user.women.email ? this.saveSRV.user.women.email : "")
       this.form.get('maritalStatus')?.setValue(this.saveSRV.user.women.maritalStatus ? this.saveSRV.user.women.maritalStatus : "")
+    }
+  }
+
+  openPhoneForm(){
+    if(this.displayPhoneForm){
+      this.displayPhoneForm = false;
+    } else {
+      this.displayJobForm = false;
+      this.displayPhoneForm = true
+    }
+  }
+
+  openJobForm(){
+    if(this.displayJobForm){
+      this.displayJobForm = false;
+    } else {
+      this.displayPhoneForm = false;
+      this.displayJobForm = true
     }
   }
 }

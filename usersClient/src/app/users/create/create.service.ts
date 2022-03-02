@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Child } from 'src/models&Languages/users/child.interface';
 import { User } from 'src/models&Languages/users/userType';
 import { UserService } from '../services/user.service';
 
@@ -9,13 +10,15 @@ import { UserService } from '../services/user.service';
 })
 export class CreateService extends UserService {
   user: User
-  cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`
-  streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`
-  endURL: string = "&limit=60000"
+  child: Child[];
+  cityURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=351d4347-8ee0-4906-8e5b-9533aef13595`;
+  streetURL: string = `https://data.gov.il/api/3/action/datastore_search?resource_id=a7296d1a-f8c9-4b70-96c2-6ebb4352f8e3&q=`;
+  endURL: string = "&limit=60000";
+  editMode: boolean = false;
 
   constructor(protected override http: HttpClient) {
     super(http);
-    this.initUser()
+    this.initUser()    
   }
 
   initUser() {
@@ -84,22 +87,18 @@ export class CreateService extends UserService {
     return this.http.get(`${this.streetURL}${city}${this.endURL}`)
   }
 
-  onValueChange(key: string, value: any) {
+  onValueChange(key: string, value: any, idx?: any) {    
     switch (key) {
       case "men":
         this.user.men = { ...this.user.men, ...value }
-        console.log(this.user.men.taz);
-        
-        this.user.password = this.user.men.taz.toString()
         break;
       case "menPhones":
-        this.user.men.phones = { ...value.phones }
-        console.log(typeof (this.user.men.phones[0].number));
-        console.log(this.user.men.phones);
-
+        this.user.men.phones = value.phones
         break;
       case "menJobs":
-        this.user.men.jobs.push(value)
+        console.log(value);
+        
+        this.user.men.jobs = value.jobs
         break;
       case "menName":
         this.user.men.name = { ...value };
@@ -108,10 +107,10 @@ export class CreateService extends UserService {
         this.user.women = { ...this.user.women, ...value }
         break;
       case "womenPhones":
-        this.user.women.phones.push(value)
+        this.user.women.phones = value.phones
         break;
       case "womenJobs":
-        this.user.women.jobs.push(value)
+        this.user.women.jobs = value.jobs
         break;
       case "womenName":
         this.user.women.name = { ...value };
@@ -126,13 +125,20 @@ export class CreateService extends UserService {
         this.user.address = { ...value };
         break;
       case "children":
-        this.user.children.push(value);
+        console.log(value);
+
+        this.user.children =   value.children;
         break;
     }
-  }
-  save(): Observable<any> {
     console.log(this.user);
     
+  }
+
+  save(): Observable<any> {
+    if (this.editMode && this.user.id) {
+      this.editMode = false
+      return this.updateOne("users", "", this.user.id, this.user)
+    }
     return this.create("users", "", this.user);
   }
 }

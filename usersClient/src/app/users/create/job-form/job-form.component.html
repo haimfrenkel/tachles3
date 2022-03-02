@@ -1,26 +1,22 @@
-
-
-<div class="card card_create " >
-
-    <form [formGroup]="form">
-        <div class="header" formArrayName="jobs"> {{ "WORK" | translate }}
-            <div class="row div_center">
-                <a *ngFor="let Job of jobs.controls; let i = index">         
-                    <div class="card card_create card_job">  
-                        <a [formGroupName]="i">
-                            <div class="key">{{ "JOB" | translate }}</div>
-                            <input class="input_create" type="text" formControlName="job">
-                            <div class="key">{{ "COMPANY_NAME" | translate }}</div>
-                            <input class="input_create" type="text" formControlName="companyName">
-                        </a>
-                        <app-address-form [key]="keyForAddress" (data)=pushAddress($event)  ></app-address-form>
-                        <div class="note_for_job">{{ "NOTE_FOR_JOB" | translate }}</div>
-                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=addJobs(i)>{{ "ADD_JOB" | translate }}</button>
-                        <button *ngIf="sowButtontAdd == i" class="btn btn-secondary" style="margin-left: 10%; margin-bottom: 30px;" (click)=saveJob(i)>{{ "SAVE_JOB" | translate }}</button>
-
-                    </div>     
-                </a>
-            </div>
+<form [formGroup]="form">
+    <div formArrayName="jobs"> {{ "WORK" | translate }}
+        <a *ngFor="let Job of jobs.controls; let i = index">
+            <a [formGroupName]="i">
+                <mat-form-field appearance="outline" style="padding: 15px;">
+                    <mat-label>{{ "JOB" | translate }}</mat-label>
+                    <input matInput formControlName="job">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 15px;">
+                    <mat-label>{{ "COMPANY_NAME" | translate }}</mat-label>
+                    <input matInput formControlName="companyName">
+                </mat-form-field>
+                <app-address-form [key]="key" [idx]="i" (addressObj)="enterAddressToJob($event, i)"></app-address-form>
+            </a>
+        </a>
+        <div class="example-button-container">
+            <button mat-mini-fab color="primary" (click)="addJobs()">
+                <mat-icon>plus_one</mat-icon>
+            </button>
         </div>
-    </form>
-</div>
+    </div>
+</form>

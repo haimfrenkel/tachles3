@@ -7,26 +7,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChildrenInformationComponent implements OnInit {
   @Input() children: any[];
-  moreInfoChildren: boolean[]=[];
+  moreInfoChildren: boolean[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    
+
     for (let i = 0; i < this.children.length; i++) {
-      this.moreInfoChildren[i]= false;
-      
+      this.moreInfoChildren[i] = false;
+
     }
   }
-  childrenMore(i){
-    console.log("i: ",i);
-    
+  childrenMore(i) {
     if (this.moreInfoChildren[i]) {
-      this.moreInfoChildren[i]= false
-      
+      this.moreInfoChildren[i] = false
     } else {
-      this.moreInfoChildren[i]= true
+      this.moreInfoChildren[i] = true
     }
-
   }
 }

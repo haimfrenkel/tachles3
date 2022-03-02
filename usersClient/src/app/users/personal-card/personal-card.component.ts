@@ -19,9 +19,7 @@ export class PersonalCardComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.snapshot.paramMap.get("id")
         this.userService.getOne(this.id).subscribe((data: User)=>{
-            this.user = data;
-            console.log(this.user);
-            
+            this.user = data;       
         })
     }
 }

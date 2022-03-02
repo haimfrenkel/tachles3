@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CreateService } from '../create/create.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,15 +10,20 @@ import { UserService } from '../services/user.service';
 })
 export class DetailsOfFamilyComponent implements OnInit {
   @Input() user;
-  constructor(private userSRV: UserService, public router: Router) { }
+  constructor(private userSRV: UserService, private createSRV: CreateService, public router: Router) { }
 
   ngOnInit(): void {
   }
 
+  editUser() {
+    this.createSRV.user = this.user;
+    this.createSRV.editMode = true;
+    this.router.navigate(['/users/create'])
+  }
+
   deleteThisUser(id: number) {
-    this.userSRV.deleteUser(id).subscribe(data=>{
+    this.userSRV.deleteUser(id).subscribe(data => {
       this.router.navigate(['/users']);
     })
-    
   }
 }

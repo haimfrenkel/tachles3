@@ -3,10 +3,11 @@
 <mat-card>{{ "NEW_USER" | translate}}
     <section>
         <div class="example-button-row">
+            <button mat-raised-button color="warn" (click)="cancel()">{{ "CANCEL" | translate}}</button>
             <button mat-raised-button color="primary" (click)="save()">{{ "SAVE_USER" | translate}}</button>
         </div>
     </section>
-    <form [formGroup]="form">
+    <form [formGroup]="mainForm">
         <mat-form-field appearance="outline">
             <mat-label>{{ "USER_NAME" | translate }}</mat-label>
             <input matInput formControlName="userName">
@@ -24,14 +25,32 @@
     </form>  
     <section>
         <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="openMoreDetalisForm()">{{ "ADD_MORE_DETALIS" | translate}}</button>
             <button mat-raised-button color="primary" (click)="openAddressForm()">{{ "ADD_ADDRESS" | translate}}</button>
             <button mat-raised-button color="primary" (click)="openBankAccountForm()">{{ "ADD_BANK_ACCOUNT" | translate}}</button>
             <button mat-raised-button color="primary" (click)="openMenForm()">{{ "ADD_MEN" | translate}}</button>
             <button mat-raised-button color="primary" (click)="openWomenForm()">{{ "ADD_WOMEN" | translate}}</button>
             <button mat-raised-button color="primary" (click)="openChildForm()">{{ "ADD_CHILD" | translate}}</button>
         </div>
-
     </section>
+    
+  
+</mat-card>
+
+<mat-card *ngIf="this.displayMoreDetalisForm">
+    <form [formGroup]="moreDetalisForm">
+        <mat-form-field appearance="outline">
+            <mat-label>{{ "DATA_OF_MARRIAGE" | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfMarriage">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>     
+        <mat-form-field appearance="outline" style="padding: 15px;">
+            <mat-label>{{ "SHTIBEL" | translate }}</mat-label>
+            <input matInput formControlName="shtibel">
+        </mat-form-field>
+        
+    </form>  
 </mat-card>
 <app-personal-form *ngIf="this.displayMenForm" [gender]="keyForMen" ></app-personal-form>
 <app-personal-form *ngIf="this.displayWomenForm" [gender]="keyForWomen"></app-personal-form>

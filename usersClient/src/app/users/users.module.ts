@@ -4,11 +4,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersListComponent } from './users-list/users-list.component';
-import { PersonalCardComponent } from './display-user/personal-card/personal-card.component';
-import { PersonalInformationComponent } from './display-user/personal-information/personal-information.component';
-import { AddressPrintComponent } from './display-user/address-print/address-print.component';
-import { ChildrenInformationComponent } from './display-user/children-information/children-information.component';
-import { DetailsOfFamilyComponent } from './display-user/details-of-family/details-of-family.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
@@ -38,11 +33,6 @@ import { HomePageUsersComponent } from './home-page-users/home-page-users.compon
   declarations: [
     UsersComponent,
     UsersListComponent,
-    PersonalCardComponent,
-    PersonalInformationComponent,
-    AddressPrintComponent,
-    ChildrenInformationComponent,
-    DetailsOfFamilyComponent,
     UploadFileComponent,
     ExportDataComponent,
     HomePageUsersComponent,

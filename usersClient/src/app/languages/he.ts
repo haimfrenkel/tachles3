@@ -46,6 +46,7 @@ export const langMap = {
     "DELETE_USER": "מחק משתמש",
     "EDIT_USER": "ערוך פרטי משתמש",
     "EXPORT_TO_EXCEL" : "יייצוא לאקסל",
+    "IMPORT_FROM_EXCEL" : "ייבוא מאקסל",
     "BANK": "פרטי חשבון בנק",
     "ADDRESS": "כתובת",
     "HUSBAND_DETALIS": "פרטי הגבר",

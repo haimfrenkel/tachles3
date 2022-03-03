@@ -1,6 +1,3 @@
-<button type="button" class="bbtn btn-primary" routerLink="/users/create">{{ "CREATE_NEW_USER" | translate }} </button>
-<app-upload-file></app-upload-file>
-<button routerLink="/users/export">{{ "EXPORT_TO_EXCEL" | translate }}</button>
 <ag-grid-angular style="width: 1200px; height: 300px;" class="ag-theme-alpine" [rowData]="rowData | async  "
     [columnDefs]="columnDefs" rowSelection="multiple" (rowDoubleClicked)='NavToDetail($event)'>
 </ag-grid-angular>

@@ -4,19 +4,34 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersListComponent } from './users-list/users-list.component';
-import { PersonalCardComponent } from './personal-card/personal-card.component';
-import { PersonalInformationComponent } from './personal-information/personal-information.component';
-import { AddressPrintComponent } from './address-print/address-print.component';
-import { ChildrenInformationComponent } from './children-information/children-information.component';
-import { DetailsOfFamilyComponent } from './details-of-family/details-of-family.component';
+import { PersonalCardComponent } from './display-user/personal-card/personal-card.component';
+import { PersonalInformationComponent } from './display-user/personal-information/personal-information.component';
+import { AddressPrintComponent } from './display-user/address-print/address-print.component';
+import { ChildrenInformationComponent } from './display-user/children-information/children-information.component';
+import { DetailsOfFamilyComponent } from './display-user/details-of-family/details-of-family.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
-import { MatIconModule } from '@angular/material/icon';
 import { LanguagesModule } from '../languages/languages.module';
 import { ExportDataComponent } from './export-data/export-data.component';
 import { AuthInterceptor } from '../auth/auth.interceptor';
 import { AuthModule } from '../auth/auth.module';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HomePageUsersComponent } from './home-page-users/home-page-users.component';
 
 
 @NgModule({
@@ -30,6 +45,7 @@ import { AuthModule } from '../auth/auth.module';
     DetailsOfFamilyComponent,
     UploadFileComponent,
     ExportDataComponent,
+    HomePageUsersComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +56,17 @@ import { AuthModule } from '../auth/auth.module';
     AgGridModule.withComponents([]),
     MatIconModule,
     LanguagesModule,
-    AuthModule
+    AuthModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

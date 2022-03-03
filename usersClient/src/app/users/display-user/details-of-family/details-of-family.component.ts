@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateService } from '../create/create.service';
-import { UserService } from '../services/user.service';
+import { CreateService } from '../../create/create.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-details-of-family',

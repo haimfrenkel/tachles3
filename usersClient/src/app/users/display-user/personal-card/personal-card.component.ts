@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../models&Languages/users/userType';
-import { UserService } from '../services/user.service';
+import { User } from '../../../../models&Languages/users/userType';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-personal-card',

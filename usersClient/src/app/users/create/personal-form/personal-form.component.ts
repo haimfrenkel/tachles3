@@ -9,9 +9,12 @@ import { CreateService } from '../create.service';
   styleUrls: ['./personal-form.component.css']
 })
 export class PersonalFormComponent implements OnInit {
+  displayPhoneForm: boolean = false;
+  displayJobForm: boolean = false;
   @Input() gender;
   keyForJob: string
   keyForName: string
+  keyForPhones: string
   form: FormGroup;
   subscription: Subscription
   maritalStatusOptions:string[]=[" ","רווק/ה",  "נשוי/ה",  "גרוש/ה",  "אלמן/ה" ]
@@ -23,11 +26,10 @@ export class PersonalFormComponent implements OnInit {
     this.editForm()
     this.keyForJob = `${this.gender}Jobs`
     this.keyForName = `${this.gender}Name`
+    this.keyForPhones = `${this.gender}Phones`
     this.subscription = this.form.valueChanges.subscribe(data => {
       this.saveSRV.onValueChange(this.gender, data)
     })
-    console.log(this.saveSRV.user);
-    
   }
 
   ngOnDestroy() {
@@ -36,7 +38,7 @@ export class PersonalFormComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      'ID': new FormControl(),
+      'taz': new FormControl(),
       'fatherName': new FormControl(),
       'grandfatherName': new FormControl(),
       'greatGrandfatherName': new FormControl(),
@@ -48,7 +50,7 @@ export class PersonalFormComponent implements OnInit {
 
   editForm() {
     if (this.gender == "men") {
-      this.form.get('ID')?.setValue(this.saveSRV.user.men.ID ? this.saveSRV.user.men.ID : "");
+      this.form.get('taz')?.setValue(this.saveSRV.user.men.taz ? this.saveSRV.user.men.taz : 0);
       this.form.get('fatherName')?.setValue(this.saveSRV.user.men.fatherName ? this.saveSRV.user.men.fatherName : "")
       this.form.get('grandfatherName')?.setValue(this.saveSRV.user.men.grandfatherName ? this.saveSRV.user.men.grandfatherName : "")
       this.form.get('greatGrandfatherName')?.setValue(this.saveSRV.user.men.greatGrandfatherName ? this.saveSRV.user.men.greatGrandfatherName : "")
@@ -57,13 +59,31 @@ export class PersonalFormComponent implements OnInit {
       this.form.get('maritalStatus')?.setValue(this.saveSRV.user.men.maritalStatus ? this.saveSRV.user.men.maritalStatus : "")
     }
     if (this.gender == "women") {
-      this.form.get('ID')?.setValue(this.saveSRV.user.women.ID ? this.saveSRV.user.women.ID : "");
+      this.form.get('taz')?.setValue(this.saveSRV.user.women.taz ? this.saveSRV.user.women.taz : 0);
       this.form.get('fatherName')?.setValue(this.saveSRV.user.women.fatherName ? this.saveSRV.user.women.fatherName : "")
       this.form.get('grandfatherName')?.setValue(this.saveSRV.user.women.grandfatherName ? this.saveSRV.user.women.grandfatherName : "")
       this.form.get('greatGrandfatherName')?.setValue(this.saveSRV.user.women.greatGrandfatherName ? this.saveSRV.user.women.greatGrandfatherName : "")
       this.form.get('DOB')?.setValue(this.saveSRV.user.women.DOB ? this.saveSRV.user.women.DOB : "")
       this.form.get('email')?.setValue(this.saveSRV.user.women.email ? this.saveSRV.user.women.email : "")
       this.form.get('maritalStatus')?.setValue(this.saveSRV.user.women.maritalStatus ? this.saveSRV.user.women.maritalStatus : "")
+    }
+  }
+
+  openPhoneForm(){
+    if(this.displayPhoneForm){
+      this.displayPhoneForm = false;
+    } else {
+      this.displayJobForm = false;
+      this.displayPhoneForm = true
+    }
+  }
+
+  openJobForm(){
+    if(this.displayJobForm){
+      this.displayJobForm = false;
+    } else {
+      this.displayPhoneForm = false;
+      this.displayJobForm = true
     }
   }
 }

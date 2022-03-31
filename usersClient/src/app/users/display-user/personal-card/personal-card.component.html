@@ -1,0 +1,10 @@
+<!-- <img   class="img" src="../../../assets/edit_user.png" routerLink="/users/create-user/{{user.id}}"> -->
+<div style="margin-top :50px;">
+    <div class="row" style="margin-left: 50px;">
+        <div style="width: 100px"> </div>
+        <app-details-of-family [user]=user></app-details-of-family>
+        <app-personal-information [personalName]=user.men></app-personal-information>
+        <app-personal-information [personalName]=user.women></app-personal-information>
+        <app-children-information [children]=user.children></app-children-information>
+    </div>
+</div>

@@ -11,9 +11,12 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.url.includes('/login')) {
+    if (request.url.includes('/login', )) {
       return next.handle(request);
    }
+   if (request.url.includes('/data.gov.il', )) {
+    return next.handle(request);
+ }
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.auth.getToken()}`,

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Address } from 'src/models&Languages/users/address.interface';
 import { Job } from 'src/models&Languages/users/job.interface';
 import { CreateService } from '../create.service';
@@ -11,16 +12,23 @@ import { CreateService } from '../create.service';
 })
 export class JobFormComponent implements OnInit {
   @Input() key
+  subscription: Subscription
   form: FormGroup
-  convert: Job
+  arrayOfJobs: Job[] = [];
   address: Address
-  keyForAddress: string = "job"
-  sowButtontAdd:number =0
+  sowButtontAdd: number = 0
 
   constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm() 
+    this.subscription = this.form.valueChanges.subscribe(data=>{      
+      this.saveSRV.onValueChange(this.key, data)            
+    })   
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   initForm() {
@@ -29,42 +37,40 @@ export class JobFormComponent implements OnInit {
         new FormGroup({
           'companyName': new FormControl(),
           'job': new FormControl(),
+          address: new FormGroup({
+            'state': new FormControl(''),
+            'city': new FormControl(''),
+            'street': new FormControl(''),
+            'buildingNumber': new FormControl(''),
+            'apartment': new FormControl(''),
+            'zipCode': new FormControl(''),
+          })
         })
       ])
-    }) 
+    })
   }
 
   get jobs() {
     return this.form.controls["jobs"] as FormArray
   }
 
-  addJobs(idx: number) {
+  addJobs() {
     const jobForm = new FormGroup({
       'companyName': new FormControl(),
       'job': new FormControl(),
+      address: new FormGroup({
+        'state': new FormControl(''),
+        'city': new FormControl(''),
+        'street': new FormControl(''),
+        'buildingNumber': new FormControl(''),
+        'apartment': new FormControl(''),
+        'zipCode': new FormControl(''),
+      })
     });
-    this.jobs.push(jobForm);  
-    this.sowButtontAdd++;  
-    
+    this.jobs.push(jobForm);
   }
 
-  saveJob(idx: number){
-    this.createData(idx)  
-    console.log(this.convert);
-      
-    this.saveSRV.onValueChange(this.key, this.convert)
+  enterAddressToJob(addressFromChild: Address, index: any){
+    this.form.get(['jobs', index, 'address'])?.setValue(addressFromChild);
   }
-
-  pushAddress(data: Address) {    
-    this.address = data
-  }
-
-  createData(idx: number){
-    this.convert = {
-      job: this.form.get(['jobs',idx, 'job'])?.value,
-      companyName: this.form.get(['jobs',idx, 'companyName'])?.value,
-      address: this.address
-    }   
-  }
-
 }

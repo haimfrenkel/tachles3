@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../models&Languages/users/userType';
-import { UserService } from '../services/user.service';
+import { User } from '../../../../models&Languages/users/userType';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-personal-card',
@@ -19,9 +19,7 @@ export class PersonalCardComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.snapshot.paramMap.get("id")
         this.userService.getOne(this.id).subscribe((data: User)=>{
-            this.user = data;
-            console.log(this.user);
-            
+            this.user = data;       
         })
     }
 }

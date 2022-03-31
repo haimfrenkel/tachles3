@@ -1,35 +1,32 @@
 <div class="row">
         
     <div class="card" style="width: 300px; margin: 20px;">
-   
+   <button class="btn btn-primary" (click)="editUser()">{{ "EDIT_USER" | translate }}</button>
+   <button class="btn btn-danger" (click)="deleteThisUser(user.id)">{{ "DELETE_USER" | translate }}</button>
+   <br>
         <div class="card-body" style="width: 300px; margin: 20px;">      
-            <h3>{{user.userName}}'s card</h3>
-            
-
+            <h3>{{'GENERAL_DETALIS' | translate}}</h3>
             <hr style="width: 250px; margin: 0px">
-            <div  class="key">date Of Marriage:</div>
+            <div  class="key">{{ 'DATA_OF_MARRIAGE' | translate }}</div>
             <div class="value">{{user.dateOfMarriage | date }}</div>
-            <div class="key">address:</div>
+            <div class="key">{{ 'ADDRESS' | translate }}</div>
 
             <app-address-print [address]="user.address"></app-address-print>
-            <div  class="key">shtibel:</div>
+            <div  class="key">{{'STIBEL' | translate }}</div>
             <div class="value"> {{user.shtibel}}</div>
-            <div  class="key" >bank account:</div>
-         
+            <div  class="key" >{{'BANK' | translate }}</div>
             <div class="row">
-                <div class="key_bank">bank:  </div>
+                <div class="key_bank">{{'BANK_NAME' | translate }}</div>
                 <div class="value_bank">{{user.bankAccount.bankName}} ({{user.bankAccount.bankNo}})</div>
               </div>
               <div class="row">
-                <div class="key_bank">branch:   </div>
+                <div class="key_bank">{{'BRANCH_NUMBER' | translate }} </div>
                 <div class="value_bank">{{user.bankAccount.branchNo}}</div>
               </div>
               <div class="row">
-                <div class="key_bank">accountNo:  </div>
+                <div class="key_bank">{{'ACCOUNT_NUMBER' | translate }}</div>
                 <div class="value_bank">{{user.bankAccount.accountNo}}</div>
-              </div>
-
-            
+              </div>   
         </div>
     </div>
 </div>

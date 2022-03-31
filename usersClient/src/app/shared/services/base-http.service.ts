@@ -20,7 +20,7 @@ export class BaseHttpService<T>{
   }
   //To return information that the information was successfully received, the type is any, 
   //and the server will return a message that the information was successfully received
-  protected create(eninty: string, queryParmas = "", body: T | any, headers?: HttpHeaders): Observable<any> {    
+  protected create(eninty: string, queryParmas = "", body: T | any, headers?: any): Observable<any> {    
     return this.http.post<any>(`${environment.baseUrl}/${eninty}${queryParmas}`, body);
   }
 

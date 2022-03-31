@@ -1,31 +1,47 @@
-<div class="card card_create"  >
-  <h3 class="header ">{{ gender | translate}}</h3>
-  <div class="row">
+<mat-card >
+  <form [formGroup]="form">
     <app-name-form [key]="gender"></app-name-form>
-    <form [formGroup]="form">
-        <div class="header " style="margin-right: 30px;">
-          <div class="key">{{ "ID" | translate }}</div>
-          <input class="input_create" type="text" formControlName="ID">
-          <div class="key">{{ "FATHER_NAME" | translate }}</div>
-          <input class="input_create" type="text" formControlName="fatherName">
-          <div class="key">{{ "GRAND_FATHER_NAME" | translate }}</div>
-          <input class="input_create" type="text" formControlName="grandfatherName">
-          <div class="key">{{ "CREAT_GREANFATHER_NAME" | translate }}</div>
-          <input class="input_create" type="text" formControlName="greatGrandfatherName">
-          <div class="key">{{ "DOB" | translate }}</div>
-          <input class="input_create" type="date"  formControlName="DOB">
-          <div class="key">{{ "EMAIL" | translate }}</div>
-          <input class="input_create" type="text" formControlName="email">
-          <div class="key">{{ "MARITAL_STATUS" | translate }}</div>
-          <select class="dropdownStyle input_create"  formControlName="maritalStatus">
-            <option *ngFor="let maritalStatus of maritalStatusOptions" [ngValue]="maritalStatus">{{maritalStatus}}</option>
-         </select>
-          <app-phone-form [key]="gender"></app-phone-form>
-        </div>
-    </form>
-    
-    <app-job-form [key]="keyForJob" ></app-job-form>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "ID" | translate }}</mat-label>
+      <input matInput formControlName="taz">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "FATHER_NAME" | translate }}</mat-label>
+      <input matInput formControlName="fatherName">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "GRAND_FATHER_NAME" | translate }}</mat-label>
+      <input matInput formControlName="grandfatherName">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "CREAT_GREANFATHER_NAME" | translate }}</mat-label>
+      <input matInput formControlName="greatGrandfatherName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ "DOB" | translate }}</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="DOB" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "EMAIL" | translate }}</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="padding: 15px;">
+      <mat-label>{{ "MARITAL_STATUS" | translate }}</mat-label>
+      <mat-select matInput formControlName="maritalStatus">
+        <mat-option *ngFor="let maritalStatus of maritalStatusOptions" [value]="maritalStatus">{{maritalStatus}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <section>
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="openJobForm()" >{{ "ADD_JOB" | translate}}</button>
+        <button mat-raised-button color="primary" (click)="openPhoneForm()" >{{ "ADD_PHONE" | translate}}</button>
+    </div>
+</section>
+  <app-phone-form *ngIf="this.displayPhoneForm" [key]="keyForPhones"></app-phone-form>
+  <app-job-form *ngIf="this.displayJobForm" [key]="keyForJob" ></app-job-form>
 
-</div>
-
+</mat-card>
 

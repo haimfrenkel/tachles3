@@ -1,15 +1,19 @@
-<div class="card card_create card_address">
-  <h3 class="header ">{{"BANK" | translate }}</h3>
+<mat-card>{{ "BANK" | translate}}
   <form [formGroup]="form">
-      <div class="">
-        <div class="key">{{"BANK_NAME" | translate}}</div>
-        <input class="input_create" type="text" formControlName="bankName">
-        <div class="key">{{"BANK_NUMBER" | translate}}</div>
-        <input class="input_create" type="text" formControlName="bankNo">
-        <div class="key">{{"BRANCH_NUMBER" | translate}}</div>
-        <input class="input_create" type="text" formControlName="branchNo">
-        <div class="key">{{"ACCOUNT_NUMBER" | translate}}</div>
-        <input class="input_create" type="text" formControlName="accountNo">
-      </div>
+      <mat-form-field appearance="outline" style="padding: 15px;">
+          <mat-label>{{ "BANK_NAME" | translate }}</mat-label>
+          <input matInput formControlName="bankName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="padding: 15px;">
+        <mat-label>{{ "BANK_NUMBER" | translate }}</mat-label>
+          <input matInput formControlName="bankNo">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="padding: 15px;">
+        <mat-label>{{ "BRANCH_NUMBER" | translate }}</mat-label>
+          <input matInput formControlName="branchNo">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="padding: 15px;">
+        <mat-label>{{ "ACCOUNT_NUMBER" | translate }}</mat-label>
+        <input matInput formControlName="accountNo">
+    </mat-form-field>
   </form>
-</div>

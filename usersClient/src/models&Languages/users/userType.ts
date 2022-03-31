@@ -6,6 +6,7 @@ import { Child } from "./child.interface";
 
 export class User {
     userName: string;
+    password?: string;
     children: Child[];
     men: PersonalInformation;
     women: PersonalInformation;

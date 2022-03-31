@@ -1,6 +1,7 @@
 package com.tachles.users.service;
 
 import com.tachles.users.models.User;
+import com.tachles.users.models.UserCSVUploadRes;
 import com.tachles.users.repositorys.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
     public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User userRes = userRepository.save(user);
@@ -40,12 +40,13 @@ public class UserService {
     }
 
 
-    public void saveMany(MultipartFile file) {
+    public UserCSVUploadRes uploadUserFromCSV(MultipartFile file) {
         try {
-            List<User> users = uploadService.csvToUsers(file.getInputStream());
+            List<User> users = uploadService.parseCsvToUsers(file.getInputStream());
             userRepository.saveAll(users);
+            return new UserCSVUploadRes(true, users.size());
         } catch (IOException e) {
-            throw new RuntimeException("fail to store csv data: " + e.getMessage());
+            return new UserCSVUploadRes(false, 0);
         }
     }
 
@@ -58,6 +59,10 @@ public class UserService {
         User user = getOneByID(id);
         userRepository.delete(user);
         return ResponseEntity.ok().build();
+    }
 
+    public User updateOne(long id, User user) {
+        userRepository.findById(id);
+       return userRepository.save(user);
     }
 }

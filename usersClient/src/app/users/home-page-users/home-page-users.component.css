@@ -1,5 +1,5 @@
 .button{
-    margin: 20px;
+    margin: 50px;
 }
 
 :host {
@@ -8,7 +8,7 @@
     align-items: flex-start;
   }
   section {
-    display: table;
+    display: flex;
   }
   
   .example-label {
@@ -19,12 +19,14 @@
   }
   
   .example-button-row {
-    display: table-cell;
-    width: 490px;
+    display: flex;
+    width: 700px;
+    height: 65px;
   }
   
   .example-button-row .mat-button-base {
     margin: 8px 8px 8px 0;
+
   }
   
   .example-flex-container {
@@ -39,3 +41,7 @@
     justify-content: center;
     width: 120px;
   }
+
+  /* .title {
+      
+  } */

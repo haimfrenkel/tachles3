@@ -12,13 +12,6 @@ import { PhoneFormComponent } from './phone-form/phone-form.component';
 
 const routes: Routes = [
   { path: '', component: MainFormComponent },
-  { path: 'PersonalFormComponent', component:  PersonalFormComponent },
-  { path: 'NameFormComponent', component:  NameFormComponent },
-  { path: 'PhoneFormComponent', component:  PhoneFormComponent },
-  { path: 'JobFormComponent', component:  JobFormComponent },
-  { path: 'ChildFormComponent', component:  ChildFormComponent },
-  { path: 'BankAccountFormComponent', component: BankAccountFormComponent },
-  { path: 'AddressFomrComponent', component: AddressFormComponent },
 
 ];
 

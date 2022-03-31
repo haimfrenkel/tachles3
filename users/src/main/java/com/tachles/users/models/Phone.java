@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 
 public class Phone extends BaseModel {
-    private long number;
+    private Long number;
     private boolean whatsapp;
     @ManyToOne
     @JsonBackReference

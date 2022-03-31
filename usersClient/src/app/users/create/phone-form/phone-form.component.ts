@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CreateService } from '../create.service';
 
 @Component({
@@ -9,21 +10,27 @@ import { CreateService } from '../create.service';
 })
 export class PhoneFormComponent implements OnInit {
   @Input() key
-  keyForPhone: string
+  subscription: Subscription
   form: FormGroup;
-  constructor(private savaSRV: CreateService) { }
+  constructor(private saveSRV: CreateService) { }
 
   ngOnInit(): void {
-    this.keyForPhone = `${this.key}Phones`
     this.initForm()
+    this.subscription = this.form.valueChanges.subscribe(data => {
+      this.saveSRV.onValueChange(this.key, data)
+    })
   }
 
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+  
   initForm() {
     this.form = new FormGroup({
       phones: new FormArray([
         new FormGroup({
-          'number': new FormControl(),
-          'whatsapp': new FormControl()
+          'number': new FormControl(0),
+          'whatsapp': new FormControl(false)
         })
       ])
     })
@@ -35,19 +42,10 @@ export class PhoneFormComponent implements OnInit {
 
   addPhone() {
     const phonesForm = new FormGroup({
-      'number': new FormControl(),
+      'number': new FormControl(0),
       'whatsapp': new FormControl(false)
     });
     this.phones.push(phonesForm);
-  }
-
-  savePhones() {
-    this.savaSRV.onValueChange(this.keyForPhone, this.form.value)
-    console.log(this.form.value);
-    console.log(this.keyForPhone);
-    
-    console.log(this.savaSRV.user);
-    
   }
 }
 

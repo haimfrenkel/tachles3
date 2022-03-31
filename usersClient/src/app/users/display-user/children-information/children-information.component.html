@@ -1,4 +1,4 @@
-<h5  style="width: 200px; margin :5px 0px 0px 80px; padding :10px">children</h5>  
+<h5  style="width: 200px; margin :5px 0px 0px 80px; padding :10px">{{ 'CHILDREN' | translate }}</h5>  
 <div *ngFor='let child of children; let i = index' class="card" style="width: 300px; margin: 10px;">   
  <div class="card-body ">
     <div class="row "> 
@@ -7,9 +7,9 @@
         <img *ngIf ='moreInfoChildren[i]' (click)="childrenMore(i)" class="img" src="../../../assets/minus.png">
     </div>   
     <div style="margin-left: 20px;"  *ngIf ='moreInfoChildren[i]'>
-        <div class="card-title">{{child.sex}} </div>
-        <div class="card-title">{{child.maritalStatus}} </div>
-        <div class="card-title">place of study: {{child.placeOfStudy}} </div>
-        <div class="card-title">dob: {{child.dob}} </div>
+        <div class="card-title">{{ 'GENDER' | translate}} {{child.sex}} </div>
+        <div class="card-title">{{ 'MARITAL_STATUS' | translate}} </div>
+        <div class="card-title">{{ 'PLACE_OF_STUDY' | translate}}: {{child.placeOfStudy}} </div>
+        <div class="card-title">{{ 'DOB' | translate}}: {{child.dob | date}} </div>
     </div> 
 </div>

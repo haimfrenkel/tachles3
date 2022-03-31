@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { AuthGuardService } from '../auth/auth-guard.service';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { MainFormComponent } from './create/main-form/main-form.component';
-import { PersonalCardComponent } from './personal-card/personal-card.component';
+import { PersonalCardComponent } from './display-user/personal-card/personal-card.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UsersComponent } from './users.component';
@@ -13,7 +12,7 @@ import { ExportDataComponent } from './export-data/export-data.component';
 const routes: Routes = [
   { path: 'create', loadChildren: () => import('../users/create/create.module').then(m => m.CreateModule), canActivate: [AuthGuard] },
   { path: '', component: UsersComponent, canActivate: [AuthGuard]  },
-  { path:  'personal-card/:id', component: PersonalCardComponent, canActivate: [AuthGuard] },
+  { path:  'personal-card/:id',  loadChildren: () => import('./display-user/display-user.module').then(m => m.DisplayUserModule), canActivate: [AuthGuard] },
   { path:  'export', component: ExportDataComponent, canActivate: [AuthGuard] },
 ];
 
